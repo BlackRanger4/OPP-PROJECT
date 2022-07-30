@@ -50,6 +50,7 @@ public class Home {
 
 
     private ArrayList<User> users ;
+    private int user_num =0;
     private ArrayList<Post> posts ;
     private int post_num;
 
@@ -213,15 +214,59 @@ public class Home {
     }
 
     public void My_Following_Post(MouseEvent mouseEvent) {
+
+        posts = users.get(user_num).getMy_Posts();
+        post_num = posts.size()-1;
+
+        Post post = posts.get(post_num);
+
+        Text_field.setText("");
+        Post_Create_time.setText(post.getText());
+        Post_Image.setImage(post.getImage());
+        List.getItems().clear();
+        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
+        Post_Creater_Name.setText(post.getCreater().getUser_Name());
+        Post_Views.setText("Views:"+(post.getViews()));
+        Posr_Likes.setText("Likes"+(post.getLikes()));
+
+        Page_last_button.setText("Last user");
+        Post_Next_button.setText("Next user");
+        if (users.get(user_num).Is_my_followers(user)) {
+            Create_fuf_button.setText("unFollow");
+        }
+        else {
+            Create_fuf_button.setText("Follow");
+        }
+
     }
 
     public void Post_Analyze_or_Nextuser(MouseEvent mouseEvent) {
+
+        if (Post_Next_button.getText().equals("Post analyze")){
+
+
+        }
+        else if (Post_Next_button.getText().equals("Next user")){
+
+        }
+
     }
 
     public void Page_Analyze_or_Pastuser(MouseEvent mouseEvent) {
+
+        if (Page_last_button.getText().equals("Page analyze")){
+
+
+        }
+        else if (Page_last_button.getText().equals("Next user")){
+
+        }
+
     }
 
     public void CraetePost_or_Follow_UnFollow(MouseEvent mouseEvent) {
+
     }
 
 }
