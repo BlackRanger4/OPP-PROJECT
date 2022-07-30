@@ -2,20 +2,29 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class newgroupchatcont {
+public class newgroupchatcont implements Initializable {
 
     public TextField username;
     public ListView<String> results;
     public TextField groupname;
     public ListView<String> addedmembers;
+    public Button create;
+    public Text errorbox;
 
     private DataBase dataBase;
     private User user;
@@ -24,16 +33,22 @@ public class newgroupchatcont {
     private Scene scene;
 
     public ArrayList<User> users;
-    public String selectedpv;
+    public ArrayList<User> addedmemb;
+    public String selecteduser;
     public User selected;
+    public String groupnametext;
     public int indexof;
+    boolean name;
+    boolean members;
 
-    public void newgroupchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene) {
+    public void newgroupchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene,Stage stage) {
         this.dataBase = dataBase;
         this.user = user;
         this.chatscont = chatscont;
         this.scene = scene;
         newgroupchatcont.stage = stage;
+        members = false;
+        name = false;
     }
 
 
@@ -47,8 +62,28 @@ public class newgroupchatcont {
         }
     }
 
+    public void entergroupname(KeyEvent keyEvent) {
+        groupnametext = groupname.getText();
+        if (dataBase.Group_finder(groupnametext)) {
+            errorbox.setText("Group with this name already exist!");
+            groupnametext = "" ;
+            name = false;
+        }
+        else {
+            errorbox.setText("");
+            name = true;
+        }
+    }
 
+    public void creategroup() {
+        if (name && members) {
+            user.creategroup(groupnametext , getAddedmemb());
+        }
+    }
 
+    public void Back(){
+        chatscont.back();
+    }
 
 
     public TextField getUsername() {
@@ -131,12 +166,12 @@ public class newgroupchatcont {
         this.users = users;
     }
 
-    public String getSelectedpv() {
-        return selectedpv;
+    public String getSelecteuser() {
+        return selecteduser;
     }
 
-    public void setSelectedpv(String selectedpv) {
-        this.selectedpv = selectedpv;
+    public void setSelecteduser (String selectedpv) {
+        this.selecteduser = selectedpv;
     }
 
     public User getSelected() {
@@ -153,5 +188,67 @@ public class newgroupchatcont {
 
     public void setIndexof(int indexof) {
         this.indexof = indexof;
+    }
+
+    public ArrayList<User> getAddedmemb() {
+        return addedmemb;
+    }
+
+    public void setAddedmemb(ArrayList<User> addedmemb) {
+        this.addedmemb = addedmemb;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        results.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+
+                setSelecteduser(results.getSelectionModel().getSelectedItem());
+                indexof = results.getItems().indexOf(getSelecteuser());
+                selected = users.get(indexof);
+                if (user.checkblock(selected)){
+                    errorbox.setText("This user has blocked you!");
+                }
+                else {
+                    errorbox.setText("");
+                    getAddedmembers().getItems().add(getSelecteuser());
+                    getAddedmemb().add(selected);
+                }
+
+                if (getAddedmemb().size() == 0){
+                    members = false;
+                    errorbox.setText("You can't create a group with no users!");
+                }
+                else {
+                    members = true;
+                    errorbox.setText("");
+                }
+
+            }
+        });
+
+        addedmembers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                setSelecteduser(addedmembers.getSelectionModel().getSelectedItem());
+                indexof = addedmembers.getItems().indexOf(getSelecteuser());
+                selected = addedmemb.get(indexof);
+                getAddedmembers().getItems().remove(getSelecteuser());
+                getAddedmemb().remove(selected);
+
+                if (getAddedmemb().size() == 0){
+                    members = false;
+                    errorbox.setText("You can't create a group with no users!");
+                }
+                else {
+                    members = true;
+                    errorbox.setText("");
+                }
+
+            }
+        });
+
     }
 }

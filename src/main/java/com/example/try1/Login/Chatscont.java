@@ -114,8 +114,12 @@ public class Chatscont implements Initializable {
         newpvchatcont.newpvchatcont(dataBase,user,this,scene,stage);
     }
 
-    public void createnewgr() {
-
+    public void createnewgr() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newgroupchat.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        stage.setScene(scene);
+        newgroupchatcont newgroupchatcont = fxmlLoader.getController();
+        newgroupchatcont.newgroupchatcont(dataBase,user,this,scene,stage);
     }
 
     public PV_Chat getSelectedpv() {

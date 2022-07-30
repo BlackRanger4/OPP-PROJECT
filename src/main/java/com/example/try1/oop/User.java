@@ -206,4 +206,18 @@ public class User {
         getMy_Privete_Chat().add(temp);
     }
 
+    public void creategroup (String groupname , ArrayList<User> temp) {
+        Group_Chat test = new Group_Chat(temp,this,groupname,database);
+        int i;
+        int cap = temp.size();
+        getMy_Group_Chat().add(test);
+        for (i=0;i<cap;i++){
+            temp.get(i).getMy_Group_Chat().add(test);
+        }
+    }
+
+    public boolean checkblock(User x) {
+        return x.getBlocked_User().contains(this);
+    }
+
 }

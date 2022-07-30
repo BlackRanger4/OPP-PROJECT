@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.newgroupchatcont">
     <children>
-        <TextField fx:id="username" layoutX="167.0" layoutY="61.0" onAction="#search_user" prefHeight="26.0" prefWidth="209.0" />
+        <TextField fx:id="username" layoutX="167.0" layoutY="61.0" onKeyPressed="#search_user" prefHeight="26.0" prefWidth="209.0" />
         <Text layoutX="187.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a username to search">
             <font>
                 <Font size="14.0" />
@@ -22,16 +22,22 @@
         </Text>
         <ListView fx:id="results" layoutX="142.0" layoutY="143.0" prefHeight="400.0" prefWidth="258.0" />
         <Button layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <TextField fx:id="groupname" layoutX="558.0" layoutY="61.0" onAction="#search_user" prefHeight="26.0" prefWidth="209.0" />
+      <TextField fx:id="groupname" layoutX="558.0" layoutY="61.0" onKeyPressed="#entergroupname" prefHeight="26.0" prefWidth="209.0" />
       <Text layoutX="607.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter group name">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <ListView fx:id="addedmembers" layoutX="533.0" layoutY="256.0" prefHeight="173.0" prefWidth="258.0" />
-      <Text layoutX="611.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Added members">
+      <ListView fx:id="addedmembers" layoutX="532.0" layoutY="225.0" prefHeight="173.0" prefWidth="258.0" />
+      <Text layoutX="611.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Added members">
          <font>
             <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="create" layoutX="619.0" layoutY="487.0" mnemonicParsing="false" onAction="#creategroup" text="Create Group" />
+      <Text fx:id="errorbox" fill="RED" layoutX="599.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="126.936767578125">
+         <font>
+            <Font size="22.0" />
          </font>
       </Text>
     </children>
