@@ -341,10 +341,15 @@ public class Home {
         }
     }
 
-    public void Page_Analyze_or_Pastuser(MouseEvent mouseEvent) {
+    public void Page_Analyze_or_Pastuser(MouseEvent mouseEvent) throws IOException {
 
         if (Page_last_button.getText().equals("Page analyze")){
 
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PageAnalyze.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),900,600);
+            PageAnalyze pageAnalyze = fxmlLoader.getController();
+            pageAnalyze.pageanalyze(this,user);
+            stage.setScene(scene);
 
         }
         else if (Page_last_button.getText().equals("Next user")){
