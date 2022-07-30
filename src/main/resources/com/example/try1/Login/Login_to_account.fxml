@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.LoginToAccount">
+   <children>
+      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="40.0" prefWidth="80.0" text="Back" />
+      <Button layoutX="381.0" layoutY="431.0" mnemonicParsing="false" onMouseClicked="#Forget_Pass" text="Forget your password?" />
+      <Button layoutX="427.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Login_to_acc" text="Login" />
+      <TextField fx:id="Name_or_A1" layoutX="330.0" layoutY="225.0" prefHeight="26.0" prefWidth="240.0" />
+      <TextField fx:id="Pass_or_A2" layoutX="330.0" layoutY="300.0" prefHeight="26.0" prefWidth="240.0" />
+      <Label fx:id="Q1" alignment="CENTER" layoutX="329.0" layoutY="187.0" prefHeight="18.0" prefWidth="240.0" text="Q1" />
+      <Label fx:id="Q2" alignment="CENTER" layoutX="330.0" layoutY="266.0" prefHeight="18.0" prefWidth="240.0" text="q2" textAlignment="CENTER" />
+      <Label fx:id="Error" alignment="CENTER" layoutX="330.0" layoutY="338.0" prefHeight="18.0" prefWidth="240.0" text="Error" textFill="RED" />
+   </children>
+</AnchorPane>
