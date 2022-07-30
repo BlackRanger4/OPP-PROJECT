@@ -60,6 +60,7 @@ public class Post {
             Likers.add(user);
             if (business){
                 Add_like_b();
+                user.add_B_Posts_to_my_likes(this);
             }
         }
     }

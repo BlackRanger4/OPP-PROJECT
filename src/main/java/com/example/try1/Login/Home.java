@@ -4,6 +4,7 @@ import com.example.try1.oop.Comment;
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.Post;
 import com.example.try1.oop.User;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Home {
@@ -58,6 +61,10 @@ public class Home {
 
     public void Back(MouseEvent mouseEvent) {
         firstMenu.Back();
+    }
+    public void back(){
+        stage.setScene(scene);
+        My_Post();
     }
 
     public void Add_Like(MouseEvent mouseEvent) {
@@ -349,10 +356,15 @@ public class Home {
         }
     }
 
-    public void CraetePost_or_Follow_UnFollow(MouseEvent mouseEvent) {
+    public void CraetePost_or_Follow_UnFollow(MouseEvent mouseEvent) throws IOException {
 
         if (Create_fuf_button.getText().equals("Create Post")){
 
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreatePost.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),900,600);
+            CreatePost createPost = fxmlLoader.getController();
+            createPost.createpost(this,user);
+            stage.setScene(scene);
 
         }
         else if (Create_fuf_button.getText().equals("Follow") || Create_fuf_button.getText().equals("unFollow")){
