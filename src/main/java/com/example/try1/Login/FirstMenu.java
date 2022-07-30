@@ -36,7 +36,12 @@ public class FirstMenu {
     }
 
     //////nk//////
-    public void Chats(MouseEvent mouseEvent) {
+    public void Chats(MouseEvent mouseEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Chats.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900 ,600);
+        Chatscont Chatscont = fxmlLoader.getController();
+        Chatscont.Chatscont(dataBase,user,this,scene,stage);
+        stage.setScene(scene);
     }
 
     //////ok//////
