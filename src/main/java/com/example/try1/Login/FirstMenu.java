@@ -193,95 +193,105 @@ public class FirstMenu {
 
     public void Upload_ads(){
 
-        Post post = posts.get(post_Num);
-        post.Add_View(user);
+        try {
+            Post post = posts.get(post_Num);
+            post.Add_View(user);
 
-        Prof_image_of_ads.setImage(post.getCreater().getProfile_Image());
-        Creater_name_of_ads.setText(post.getCreater().getUser_Name());
-        Create_time_of_ads.setText(post.getCreatTime()+","+post.getCreat_our());
-        Likes_of_ads.setText("Likes:"+post.getLikes());
-        Views_of_ads.setText("Views:"+post.getViews());
-        Text_of_ads.setText(post.getText());
-        Image_of_ads.setImage(post.getImage());
-        List_of_ads.getItems().clear();
-        TextField_of_ads.setText("");
-        if (post.getCreater().Is_my_followers(user)){
-            Follow_unFollow.setText("Unfollow");
-        }
-        else {
-            Follow_unFollow.setText("Follow");
-        }
-
+            Prof_image_of_ads.setImage(post.getCreater().getProfile_Image());
+            Creater_name_of_ads.setText(post.getCreater().getUser_Name());
+            Create_time_of_ads.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Likes_of_ads.setText("Likes:" + post.getLikes());
+            Views_of_ads.setText("Views:" + post.getViews());
+            Text_of_ads.setText(post.getText());
+            Image_of_ads.setImage(post.getImage());
+            List_of_ads.getItems().clear();
+            TextField_of_ads.setText("");
+            if (post.getCreater().Is_my_followers(user)) {
+                Follow_unFollow.setText("Unfollow");
+            } else {
+                Follow_unFollow.setText("Follow");
+            }
+        }catch (Exception e){}
     }
 
     public void Like_ads(MouseEvent mouseEvent) {
 
-        Post post = posts.get(post_Num);
-        post.Add_Like(user);
-        Likes_of_ads.setText("Likes:"+post.getLikes());
-
+        try {
+            Post post = posts.get(post_Num);
+            post.Add_Like(user);
+            Likes_of_ads.setText("Likes:" + post.getLikes());
+        }catch (Exception e){}
     }
 
     public void See_Likers_of_ads(MouseEvent mouseEvent) {
-
-        Post post = posts.get(post_Num);
-        List_of_ads.getItems().clear();
-        ArrayList<User> users = post.getLikers();
-        for (User value : users) {
-            List_of_ads.getItems().add(value.getUser_Name());
-        }
-
+        try {
+            Post post = posts.get(post_Num);
+            List_of_ads.getItems().clear();
+            ArrayList<User> users = post.getLikers();
+            for (User value : users) {
+                List_of_ads.getItems().add(value.getUser_Name());
+            }
+        }catch (Exception e){}
     }
 
     public void See_Viewrs_of_ads(MouseEvent mouseEvent) {
 
-        Post post = posts.get(post_Num);
-        List_of_ads.getItems().clear();
-        ArrayList<User> users = post.getViwer();
-        for (User value : users) {
-            List_of_ads.getItems().add(value.getUser_Name());
-        }
+        try {
+            Post post = posts.get(post_Num);
+            List_of_ads.getItems().clear();
+            ArrayList<User> users = post.getViwer();
+            for (User value : users) {
+                List_of_ads.getItems().add(value.getUser_Name());
+            }
+        }catch (Exception e){}
     }
 
     public void Add_Comments_of_ads(MouseEvent mouseEvent) {
 
-        if (!TextField_of_ads.getText().equals("")){
-            Comment comment = new Comment(user,TextField_of_ads.getText());
-            Post post = posts.get(post_Num);
-            post.Add_Comment(comment);
-            See_Comments_of_ads();
-        }
+        try {
+            if (!TextField_of_ads.getText().equals("")) {
+                Comment comment = new Comment(user, TextField_of_ads.getText());
+                Post post = posts.get(post_Num);
+                post.Add_Comment(comment);
+                See_Comments_of_ads();
+            }
+        }catch (Exception e){}
     }
 
     public void See_Comments_of_ads(MouseEvent mouseEvent) {
 
-        Post post = posts.get(post_Num);
-        List_of_ads.getItems().clear();
-        ArrayList<Comment> comments = post.getComments();
-        for (Comment value : comments) {
-            List_of_ads.getItems().add(value.getText());
-        }
+        try {
+            Post post = posts.get(post_Num);
+            List_of_ads.getItems().clear();
+            ArrayList<Comment> comments = post.getComments();
+            for (Comment value : comments) {
+                List_of_ads.getItems().add(value.getText());
+            }
+        }catch (Exception e){}
     }
     public void See_Comments_of_ads() {
 
-        Post post = posts.get(post_Num);
-        List_of_ads.getItems().clear();
-        ArrayList<Comment> comments = post.getComments();
-        for (Comment value : comments) {
-            List_of_ads.getItems().add(value.getText());
-        }
+        try {
+            Post post = posts.get(post_Num);
+            List_of_ads.getItems().clear();
+            ArrayList<Comment> comments = post.getComments();
+            for (Comment value : comments) {
+                List_of_ads.getItems().add(value.getText());
+            }
+        }catch (Exception e){}
     }
 
     public void Follow_of_ads_creater(MouseEvent mouseEvent) {
 
         Post post = posts.get(post_Num);
-        this.user.unfollowing_following_me(post.getCreater());
-        if (post.getCreater().Is_my_followers(user)){
-            Follow_unFollow.setText("Unfollow");
-        }
-        else {
-            Follow_unFollow.setText("Follow");
-        }
+        try {
+            this.user.unfollowing_following_me(post.getCreater());
+            if (post.getCreater().Is_my_followers(user)) {
+                Follow_unFollow.setText("Unfollow");
+            } else {
+                Follow_unFollow.setText("Follow");
+            }
+        }catch (Exception e){}
     }
 
     public void Last_ads(MouseEvent mouseEvent) {

@@ -86,38 +86,48 @@ public class Home {
 
     public void See_Likers(MouseEvent mouseEvent) {
 
-        List.getItems().clear();
-        ArrayList<User> users = posts.get(post_num).getLikers();
+        try {
+            List.getItems().clear();
+            ArrayList<User> users = posts.get(post_num).getLikers();
 
-        for (User value : users) {
-            List.getItems().add(value.getUser_Name());
-        }
+            for (User value : users) {
+                List.getItems().add(value.getUser_Name());
+            }
+        }catch (Exception e){}
     }
 
     public void See_Viewers(MouseEvent mouseEvent) {
-        List.getItems().clear();
-        ArrayList<User> users = posts.get(post_num).getViwer();
 
-        for (User value : users) {
-            List.getItems().add(value.getUser_Name());
-        }
+        try {
+            List.getItems().clear();
+            ArrayList<User> users = posts.get(post_num).getViwer();
+
+            for (User value : users) {
+                List.getItems().add(value.getUser_Name());
+            }
+        }catch (Exception e){}
     }
 
     public void See_Comments(MouseEvent mouseEvent) {
-        List.getItems().clear();
-        ArrayList<Comment> comments = posts.get(post_num).getComments();
 
-        for (Comment value : comments) {
-            List.getItems().add(value.getText());
-        }
+        try {
+            List.getItems().clear();
+            ArrayList<Comment> comments = posts.get(post_num).getComments();
+
+            for (Comment value : comments) {
+                List.getItems().add(value.getText());
+            }
+        }catch (Exception e){}
     }
     public void See_Comments() {
-        List.getItems().clear();
-        ArrayList<Comment> comments = posts.get(post_num).getComments();
+        try {
+            List.getItems().clear();
+            ArrayList<Comment> comments = posts.get(post_num).getComments();
 
-        for (Comment value : comments) {
-            List.getItems().add(value.getText());
-        }
+            for (Comment value : comments) {
+                List.getItems().add(value.getText());
+            }
+        }catch (Exception e){}
     }
 
     public void Next_Post(MouseEvent mouseEvent) {
@@ -339,6 +349,7 @@ public class Home {
 
             try {
                 user.Remove_post(posts.get(post_num));
+
             }
             catch (Exception e){}
         }

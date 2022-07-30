@@ -249,7 +249,6 @@ public class SettingMenu {
 
         if ( file != null) {
             try {
-
                 Image image = new Image(file.toURI().toString());
                 Profile_fig.setImage(image);
                 user.setProfile_Image(image);

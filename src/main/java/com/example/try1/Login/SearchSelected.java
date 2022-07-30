@@ -42,7 +42,10 @@ public class SearchSelected {
         this.user_selected =user_selected;
         this.dataBase =dataBase;
 
-        this.Prof.setImage(user_selected.getProfile_Image());
+        try {
+            this.Prof.setImage(user_selected.getProfile_Image());
+        }
+        catch (Exception e){}
         this.UserName.setText(user_selected.getUser_Name());
         this.Followers_num.setText("Followers:"+user_selected.getMy_Followers_num());
         this.Followings_num.setText("Followings:"+user_selected.getMy_Followings_num());
