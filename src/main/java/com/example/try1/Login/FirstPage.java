@@ -10,6 +10,8 @@ import java.io.IOException;
 
 public class FirstPage {
 
+    //version 1.0.0.0
+
     private static Stage stage;
     private Scene scene;
     private  DataBase dataBase;
