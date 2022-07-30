@@ -47,6 +47,7 @@ public class Home {
     public Button Page_last_button;
     public Button Post_Next_button;
     public Button Create_fuf_button;
+    public Button Remove_post;
 
 
     private ArrayList<User> users ;
@@ -60,17 +61,22 @@ public class Home {
     }
 
     public void Add_Like(MouseEvent mouseEvent) {
-        Post post = posts.get(post_num);
-        post.Add_Like(user);
-        Posr_Likes.setText("Likes:"+post.getLikes());
+
+        try {
+            Post post = posts.get(post_num);
+            post.Add_Like(user);
+            Posr_Likes.setText("Likes:" + post.getLikes());
+        }catch (Exception e){}
     }
 
     public void Add_Comment(MouseEvent mouseEvent) {
 
         if (!Text_field.getText().equals("")){
-            Comment comment = new Comment(user,Text_field.getText());
-            Post post = posts.get(post_num);
-            post.Add_Comment(comment);
+            try {
+                Comment comment = new Comment(user, Text_field.getText());
+                Post post = posts.get(post_num);
+                post.Add_Comment(comment);
+            }catch (Exception e){}
         }
         else {
             Text_field.setText(" enter your message ");
@@ -121,18 +127,20 @@ public class Home {
             post_num =0;
         }
 
-        Post post = posts.get(post_num);
+        try {
+            Post post = posts.get(post_num);
 
-        Text_field.setText("");
-        Post_Create_time.setText(post.getText());
-        Post_Image.setImage(post.getImage());
-        List.getItems().clear();
-        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
-        Post_Creater_Name.setText(post.getCreater().getUser_Name());
-        Post_Views.setText("Views:"+(post.getViews()));
-        Posr_Likes.setText("Likes"+(post.getLikes()));
-
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
     }
 
     public void Last_Post(MouseEvent mouseEvent) {
@@ -142,18 +150,20 @@ public class Home {
             post_num = posts.size()-1;
         }
 
-        Post post = posts.get(post_num);
+        try {
+            Post post = posts.get(post_num);
 
-        Text_field.setText("");
-        Post_Create_time.setText(post.getText());
-        Post_Image.setImage(post.getImage());
-        List.getItems().clear();
-        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
-        Post_Creater_Name.setText(post.getCreater().getUser_Name());
-        Post_Views.setText("Views:"+(post.getViews()));
-        Posr_Likes.setText("Likes"+(post.getLikes()));
-
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
     }
 
     public void My_Post(MouseEvent mouseEvent) {
@@ -163,16 +173,18 @@ public class Home {
 
         Post post = posts.get(post_num);
 
-        Text_field.setText("");
-        Post_Create_time.setText(post.getText());
-        Post_Image.setImage(post.getImage());
-        List.getItems().clear();
-        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
-        Post_Creater_Name.setText(post.getCreater().getUser_Name());
-        Post_Views.setText("Views:"+(post.getViews()));
-        Posr_Likes.setText("Likes"+(post.getLikes()));
-
+        try {
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
         if (user.getBusiness()){
             Page_last_button.setText("Page analyze");
             Post_Next_button.setText("Post analyze");
@@ -191,16 +203,18 @@ public class Home {
 
         Post post = posts.get(post_num);
 
-        Text_field.setText("");
-        Post_Create_time.setText(post.getText());
-        Post_Image.setImage(post.getImage());
-        List.getItems().clear();
-        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
-        Post_Creater_Name.setText(post.getCreater().getUser_Name());
-        Post_Views.setText("Views:"+(post.getViews()));
-        Posr_Likes.setText("Likes"+(post.getLikes()));
-
+        try {
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
         if (user.getBusiness()){
             Page_last_button.setText("Page analyze");
             Post_Next_button.setText("Post analyze");
@@ -211,6 +225,7 @@ public class Home {
             Post_Next_button.setText("------------");
             Create_fuf_button.setText("Create Post");
         }
+        Remove_post.setText("Remove");
     }
 
     public void My_Following_Post(MouseEvent mouseEvent) {
@@ -220,16 +235,18 @@ public class Home {
 
         Post post = posts.get(post_num);
 
-        Text_field.setText("");
-        Post_Create_time.setText(post.getText());
-        Post_Image.setImage(post.getImage());
-        List.getItems().clear();
-        Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-        Post_Create_time.setText(post.getCreatTime()+","+post.getCreat_our());
-        Post_Creater_Name.setText(post.getCreater().getUser_Name());
-        Post_Views.setText("Views:"+(post.getViews()));
-        Posr_Likes.setText("Likes"+(post.getLikes()));
-
+        try {
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
         Page_last_button.setText("Last user");
         Post_Next_button.setText("Next user");
         if (users.get(user_num).Is_my_followers(user)) {
@@ -238,6 +255,37 @@ public class Home {
         else {
             Create_fuf_button.setText("Follow");
         }
+        Remove_post.setText("");
+
+    }
+    public void My_Following_Post() {
+
+        posts = users.get(user_num).getMy_Posts();
+        post_num = posts.size()-1;
+
+        Post post = posts.get(post_num);
+
+        try {
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
+        Page_last_button.setText("Last user");
+        Post_Next_button.setText("Next user");
+        if (users.get(user_num).Is_my_followers(user)) {
+            Create_fuf_button.setText("unFollow");
+        }
+        else {
+            Create_fuf_button.setText("Follow");
+        }
+        Remove_post.setText("");
 
     }
 
@@ -248,9 +296,12 @@ public class Home {
 
         }
         else if (Post_Next_button.getText().equals("Next user")){
-
+            user_num++;
+            if (user_num >= users.size()){
+                user_num = users.size()-1;
+            }
+            My_Following_Post();
         }
-
     }
 
     public void Page_Analyze_or_Pastuser(MouseEvent mouseEvent) {
@@ -260,13 +311,37 @@ public class Home {
 
         }
         else if (Page_last_button.getText().equals("Next user")){
-
+            user_num--;
+            if (user_num <= -1){
+                user_num = 0;
+            }
+            My_Following_Post();
         }
-
     }
 
     public void CraetePost_or_Follow_UnFollow(MouseEvent mouseEvent) {
 
+        if (Create_fuf_button.getText().equals("Create Post")){
+
+        }
+        else if (Create_fuf_button.getText().equals("Follow") || Create_fuf_button.getText().equals("unFollow")){
+           try {
+               users.get(user_num).unfollowing_following_me(user);
+           }
+           catch (Exception e){}
+        }
+
     }
 
+    public void Remove_post(MouseEvent mouseEvent) {
+
+        if (Remove_post.getText().equals("Remove")){
+
+            try {
+                user.Remove_post(posts.get(post_num));
+            }
+            catch (Exception e){}
+        }
+
+    }
 }
