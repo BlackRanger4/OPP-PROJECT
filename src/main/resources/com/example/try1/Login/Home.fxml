@@ -14,7 +14,7 @@
       onMouseClicked="#Back"
       />
       <Button layoutX="14.0" layoutY="311.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Create_Post"
-      onMouseClicked="#CraetePost_or_Follow_UnFollow"
+      onMouseClicked="#CraetePost_or_Follow_UnFollow" fx:id="Create_fuf_button"
       />
       <Button layoutX="753.0" layoutY="533.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="41.0" text="Like"
       onMouseClicked="#Add_Like"
@@ -71,10 +71,10 @@
       onMouseClicked="#My_Following_Post"
       />
       <Button layoutX="14.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Post_Analyze"
-      onMouseClicked="#Post_Analyze_or_Nextuser"
+      onMouseClicked="#Post_Analyze_or_Nextuser" fx:id="Post_Next_button"
       />
       <Button layoutX="14.0" layoutY="279.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Page_Analyze"
-      onMouseClicked="#Page_Analyze_or_Pastuser"
+      onMouseClicked="#Page_Analyze_or_Pastuser" fx:id="Page_last_button"
       />
    </children>
 </AnchorPane>
