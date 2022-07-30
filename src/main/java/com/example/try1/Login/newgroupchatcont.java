@@ -49,6 +49,7 @@ public class newgroupchatcont implements Initializable {
         newgroupchatcont.stage = stage;
         members = false;
         name = false;
+        groupnametext = "";
     }
 
 
@@ -64,20 +65,29 @@ public class newgroupchatcont implements Initializable {
 
     public void entergroupname(KeyEvent keyEvent) {
         groupnametext = groupname.getText();
-        if (dataBase.Group_finder(groupnametext)) {
-            errorbox.setText("Group with this name already exist!");
-            groupnametext = "" ;
-            name = false;
+        if (!groupnametext.equals("")) {
+            name = !dataBase.Group_finder(groupnametext);
         }
         else {
-            errorbox.setText("");
-            name = true;
+            name = false;
         }
     }
 
     public void creategroup() {
         if (name && members) {
             user.creategroup(groupnametext , getAddedmemb());
+            errorbox.setText("");
+        }
+        else  if (!name) {
+            if (!groupnametext.equals("")) {
+                errorbox.setText("Group with this name already exists.");
+            }
+            else {
+                errorbox.setText("Enter a name for your group");
+            }
+        }
+        else {
+            errorbox.setText("You can't create a group with no users!");
         }
     }
 
@@ -219,11 +229,9 @@ public class newgroupchatcont implements Initializable {
 
                 if (getAddedmemb().size() == 0){
                     members = false;
-                    errorbox.setText("You can't create a group with no users!");
                 }
                 else {
                     members = true;
-                    errorbox.setText("");
                 }
 
             }
@@ -240,11 +248,9 @@ public class newgroupchatcont implements Initializable {
 
                 if (getAddedmemb().size() == 0){
                     members = false;
-                    errorbox.setText("You can't create a group with no users!");
                 }
                 else {
                     members = true;
-                    errorbox.setText("");
                 }
 
             }

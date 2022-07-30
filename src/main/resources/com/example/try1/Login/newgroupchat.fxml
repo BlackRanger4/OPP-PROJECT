@@ -34,10 +34,10 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button fx:id="create" layoutX="619.0" layoutY="487.0" mnemonicParsing="false" onAction="#creategroup" text="Create Group" />
-      <Text fx:id="errorbox" fill="RED" layoutX="599.0" layoutY="537.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="126.936767578125">
+      <Button fx:id="create" layoutX="618.0" layoutY="479.0" mnemonicParsing="false" onAction="#creategroup" text="Create Group" />
+      <Text fx:id="errorbox" fill="RED" layoutX="456.0" layoutY="538.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="411.9999755859375">
          <font>
-            <Font size="22.0" />
+            <Font size="14.0" />
          </font>
       </Text>
     </children>
