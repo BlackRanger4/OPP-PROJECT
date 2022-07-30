@@ -181,9 +181,8 @@ public class Home {
         posts = user.getMy_Posts();
         post_num = posts.size()-1;
 
-        Post post = posts.get(post_num);
-
         try {
+            Post post = posts.get(post_num);
             Text_field.setText("");
             Post_Create_time.setText(post.getText());
             Post_Image.setImage(post.getImage());
@@ -205,15 +204,16 @@ public class Home {
             Post_Next_button.setText("------------");
             Create_fuf_button.setText("Create Post");
         }
+        Remove_post.setText("Remove");
     }
     public void My_Post() {
 
         posts = user.getMy_Posts();
         post_num = posts.size()-1;
 
-        Post post = posts.get(post_num);
 
         try {
+            Post post = posts.get(post_num);
             Text_field.setText("");
             Post_Create_time.setText(post.getText());
             Post_Image.setImage(post.getImage());
@@ -243,9 +243,9 @@ public class Home {
         posts = users.get(user_num).getMy_Posts();
         post_num = posts.size()-1;
 
-        Post post = posts.get(post_num);
 
         try {
+            Post post = posts.get(post_num);
             Text_field.setText("");
             Post_Create_time.setText(post.getText());
             Post_Image.setImage(post.getImage());
@@ -273,9 +273,8 @@ public class Home {
         posts = users.get(user_num).getMy_Posts();
         post_num = posts.size()-1;
 
-        Post post = posts.get(post_num);
-
         try {
+            Post post = posts.get(post_num);
             Text_field.setText("");
             Post_Create_time.setText(post.getText());
             Post_Image.setImage(post.getImage());

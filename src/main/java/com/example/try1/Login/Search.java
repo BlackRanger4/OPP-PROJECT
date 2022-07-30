@@ -49,7 +49,10 @@ public class Search {
 
     public void Next(MouseEvent mouseEvent) throws IOException {
 
-        if (dataBase.User_finder(Text.getText())){
+        if (user.getUser_Name().equals(Text.getText())){
+            Error.setText(" you can Search yourself ");
+        }
+        else if (dataBase.User_finder(Text.getText())){
 
             User user = dataBase.User_finder_U(Text.getText());
 
@@ -69,6 +72,7 @@ public class Search {
 
         List.getItems().clear();
         ArrayList<User> users = dataBase.User_Search(Text.getText());
+        users.remove(user);
         for (User value : users) {
             List.getItems().add(value.getUser_Name());
         }

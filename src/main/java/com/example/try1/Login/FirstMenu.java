@@ -58,7 +58,7 @@ public class FirstMenu {
     //////ok//////
     public void Recommends(MouseEvent mouseEvent) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Recommend.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Recommend_User.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         RecommendUser recommendUser = fxmlLoader.getController();
         recommendUser.recommenduser(this,user,dataBase);

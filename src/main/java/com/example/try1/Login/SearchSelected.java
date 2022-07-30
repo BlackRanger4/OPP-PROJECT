@@ -125,7 +125,7 @@ public class SearchSelected {
         else {
             Follow_Button.setText("Unfollow");
         }
-        this.user_selected.unfollowing_following_me(user);
+        this.user.unfollowing_following_me(user_selected);
         this.Followers_num.setText("Followers:"+user_selected.getMy_Followers_num());
     }
 
