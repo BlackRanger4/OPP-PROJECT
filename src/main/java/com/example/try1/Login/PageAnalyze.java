@@ -32,4 +32,5 @@ public class PageAnalyze {
     public void Back(MouseEvent mouseEvent) {
         home.back();
     }
+
 }
