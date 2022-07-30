@@ -152,6 +152,28 @@ public class Home {
         }
         catch (Exception e){}
     }
+    public void Next_Post() {
+
+        post_num--;
+        if (post_num <= -1){
+            post_num =0;
+        }
+
+        try {
+            Post post = posts.get(post_num);
+
+            Text_field.setText("");
+            Post_Create_time.setText(post.getText());
+            Post_Image.setImage(post.getImage());
+            List.getItems().clear();
+            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+            Post_Creater_Name.setText(post.getCreater().getUser_Name());
+            Post_Views.setText("Views:" + (post.getViews()));
+            Posr_Likes.setText("Likes" + (post.getLikes()));
+        }
+        catch (Exception e){}
+    }
 
     public void Last_Post(MouseEvent mouseEvent) {
 
@@ -243,7 +265,6 @@ public class Home {
         posts = users.get(user_num).getMy_Posts();
         post_num = posts.size()-1;
 
-
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
@@ -265,7 +286,7 @@ public class Home {
         else {
             Create_fuf_button.setText("Follow");
         }
-        Remove_post.setText("");
+        Remove_post.setText("---------");
 
     }
     public void My_Following_Post() {
@@ -294,7 +315,7 @@ public class Home {
         else {
             Create_fuf_button.setText("Follow");
         }
-        Remove_post.setText("");
+        Remove_post.setText("---------");
 
     }
 
@@ -332,10 +353,17 @@ public class Home {
 
         if (Create_fuf_button.getText().equals("Create Post")){
 
+
         }
         else if (Create_fuf_button.getText().equals("Follow") || Create_fuf_button.getText().equals("unFollow")){
            try {
-               users.get(user_num).unfollowing_following_me(user);
+               user.unfollowing_following_me(users.get(user_num));
+               if (users.get(user_num).Is_my_followers(user)){
+                   Create_fuf_button.setText("unFollow");
+               }
+               else {
+                   Create_fuf_button.setText("Follow");
+               }
            }
            catch (Exception e){}
         }
@@ -345,13 +373,12 @@ public class Home {
     public void Remove_post(MouseEvent mouseEvent) {
 
         if (Remove_post.getText().equals("Remove")){
-
             try {
                 user.Remove_post(posts.get(post_num));
-
+                Text_field.setText("Post Removed");
+                Next_Post();
             }
             catch (Exception e){}
         }
-
     }
 }
