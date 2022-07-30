@@ -188,4 +188,22 @@ public class User {
         this.CreateTime = LocalDate.now();
     }
 
+    public PV_Chat checkpvret (User y)  {
+        int i;
+        int cap = this.getMy_Privete_Chat().size();
+        for (i=0;i<cap;i++){
+            if (this.getMy_Privete_Chat().get(i).getSecond() == y
+                    || this.getMy_Privete_Chat().get(i).getFirst() == y){
+                return this.getMy_Privete_Chat().get(i);
+            }
+        }
+        return null;
+    }
+
+    public void createpvchat(User y) {
+        PV_Chat temp = new PV_Chat(this,y,null,database);
+        y.getMy_Privete_Chat().add(temp);
+        getMy_Privete_Chat().add(temp);
+    }
+
 }
