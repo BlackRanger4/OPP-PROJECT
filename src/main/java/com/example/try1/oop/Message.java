@@ -54,6 +54,16 @@ public class Message {
         }
     }
 
+    public boolean User_See_Message(User user){
+        if (Viewrs.contains(user)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
     public Message(User sender, String text, Message reply, User forwarded) {
         Text = text;
         Sender = sender;
