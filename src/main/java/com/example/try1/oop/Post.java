@@ -2,11 +2,12 @@ package com.example.try1.oop;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Post {
+public class Post implements Serializable {
 
     private User Creater ;
     String Text  ;

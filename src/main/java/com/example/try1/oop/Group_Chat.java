@@ -1,9 +1,10 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Group_Chat {
+public class Group_Chat implements Serializable {
 
     private ArrayList<User> Members ;
     private User Admin;

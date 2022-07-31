@@ -1,6 +1,8 @@
 module com.example.try1 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    requires org.apache.commons.lang3;
 
 
     opens com.example.try1 to javafx.fxml;

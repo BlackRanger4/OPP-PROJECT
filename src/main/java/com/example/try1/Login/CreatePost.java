@@ -9,8 +9,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class CreatePost {
+public class CreatePost implements Serializable {
 
 
     public TextField Text;

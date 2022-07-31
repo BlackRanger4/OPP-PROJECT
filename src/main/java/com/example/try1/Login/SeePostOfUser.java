@@ -9,9 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SeePostOfUser {
+public class SeePostOfUser implements Serializable {
 
     public ImageView Creater_prof;
     public ImageView Post_image;

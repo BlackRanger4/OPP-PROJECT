@@ -11,9 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FirstMenu {
+public class FirstMenu implements Serializable {
 
 
     private LoginToAccount loginToAccount;

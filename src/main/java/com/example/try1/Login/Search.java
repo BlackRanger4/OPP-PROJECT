@@ -12,9 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Search {
+public class Search implements Serializable {
 
 
     public ListView<String> List;

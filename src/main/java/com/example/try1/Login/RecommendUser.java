@@ -4,9 +4,11 @@ import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RecommendUser {
+public class RecommendUser implements Serializable {
 
     public ListView<String> List;
 

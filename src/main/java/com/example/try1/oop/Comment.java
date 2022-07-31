@@ -1,9 +1,10 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Comment {
+public class Comment implements Serializable {
 
     private String Text ;
     private User Sender ;

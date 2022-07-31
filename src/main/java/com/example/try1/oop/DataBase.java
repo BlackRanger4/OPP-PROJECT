@@ -1,13 +1,23 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
+import java.sql.*;
 import java.util.ArrayList;
+import org.apache.commons.lang3.*;
 
-public class DataBase {
+public class DataBase implements Serializable {
 
     private ArrayList<User> All_User = new ArrayList<>();
     private ArrayList<Group_Chat> All_Group_Chat = new ArrayList<>();
     private ArrayList<PV_Chat>All_Privet_Chat = new ArrayList<>();
     private ArrayList<Post> All_Post = new ArrayList<>();
+
+
+    static final String DElETE_BEFORE_SAVE = "DELETE FROM java_objects";
+
+    static final String WRITE_OBJECT_SQL = "INSERT INTO java_objects(id , name, object_value) VALUES (1, ?, ?)";
+
+    static final String READ_OBJECT_SQL = "SELECT object_value FROM java_objects WHERE id = 1";
 
 
     public boolean User_finder(String User_Name){
@@ -80,6 +90,64 @@ public class DataBase {
         }
         return false;
     }
+
+    public Connection getConnection() throws Exception {
+        String url = "jdbc:mysql://localhost:3306/daz";
+        String username = "root";
+        String password = "400101572";
+        Connection conn = DriverManager.getConnection(url, username, password);
+        return conn;
+    }
+
+    public void savedata(Connection conn) throws SQLException {
+        String className = this.getClass().getName();
+        PreparedStatement pstmt1 = conn.prepareStatement(DElETE_BEFORE_SAVE);
+        PreparedStatement pstmt = conn.prepareStatement(WRITE_OBJECT_SQL);
+
+        byte[] temp = SerializationUtils.serialize(this);
+        pstmt1.executeUpdate();
+
+        // set input parameters
+        pstmt.setString(1, className);
+        pstmt.setObject(2, temp);
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        System.out.println("You saved data");
+    }
+
+    public DataBase loaddata(Connection conn) throws SQLException {
+        PreparedStatement pstmt = conn.prepareStatement(READ_OBJECT_SQL);
+        try {
+            ResultSet rs = pstmt.executeQuery();
+            rs.next();
+            Object object = SerializationUtils.deserialize((byte[])rs.getObject(1));
+            rs.close();
+            pstmt.close();
+            System.out.println("data loaded");
+            return (DataBase) object;
+        }
+        catch (SQLException exception) {
+            return null;
+        }
+    }
+
+    public boolean checkdata(Connection conn) throws SQLException {
+        PreparedStatement pstmt = conn.prepareStatement(READ_OBJECT_SQL);
+        try {
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (SQLException exception) {
+            return false;
+        }
+    }
+
 
 
 

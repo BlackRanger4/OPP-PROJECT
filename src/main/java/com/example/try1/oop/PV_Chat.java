@@ -1,8 +1,9 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PV_Chat {
+public class PV_Chat implements Serializable {
 
     private User First ;
     private User Second ;

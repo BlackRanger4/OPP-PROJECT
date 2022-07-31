@@ -8,9 +8,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.input.MouseEvent;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PostAnalyze {
+public class PostAnalyze implements Serializable {
 
     public LineChart Chart;
     private Home home;

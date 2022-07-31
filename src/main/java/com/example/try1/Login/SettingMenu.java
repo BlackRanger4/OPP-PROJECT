@@ -11,9 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SettingMenu {
+public class SettingMenu implements Serializable {
 
     public TextField Text;
     public Label Error;

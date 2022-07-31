@@ -13,11 +13,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class newgroupchatcont implements Initializable {
+public class newgroupchatcont implements Initializable, Serializable {
 
     public TextField username;
     public ListView<String> results;

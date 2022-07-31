@@ -2,10 +2,11 @@ package com.example.try1.oop;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
 
 
     Image Profile_Image ;

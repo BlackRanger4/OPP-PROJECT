@@ -13,9 +13,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SearchSelected {
+public class SearchSelected implements Serializable {
     
     public ImageView Prof;
     public Label UserName;

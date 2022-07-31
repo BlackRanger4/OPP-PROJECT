@@ -42,7 +42,6 @@ public class newpvchatcont implements Initializable {
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
         }
-        System.out.println(username.getText());
     }
 
     public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage) {

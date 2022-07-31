@@ -1,8 +1,9 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Day_Information {
+public class Day_Information implements Serializable {
     LocalDate localDate ;
     int Likes =0 ;
     int Views =0 ;

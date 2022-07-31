@@ -2,12 +2,15 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class CreateAccount {
+import java.io.Serializable;
+
+public class CreateAccount implements Serializable {
 
     public TextField Text;
     public Label Question;
@@ -67,6 +70,7 @@ public class CreateAccount {
         if (dataBase.User_finder(user)){
             Error.setText(" a user exist with this user name ");
         }
+
         else {
 
             Error.setText("");

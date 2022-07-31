@@ -10,8 +10,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class LoginToAccount {
+public class LoginToAccount implements Serializable {
 
     public  Label Q2 ;
     public  Label Q1 ;

@@ -1,10 +1,11 @@
 package com.example.try1.oop;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Message {
+public class Message implements Serializable {
 
     private String Text ;
     private User Sender ;
