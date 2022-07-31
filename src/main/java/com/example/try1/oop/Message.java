@@ -16,6 +16,7 @@ public class Message {
     private LocalTime Creat_time_our ;
     private LocalDate Creat_time_date;
 
+    private ArrayList<User> Viewrs = new ArrayList<>();
 
     public String getText() {
         return Text;
@@ -41,11 +42,17 @@ public class Message {
     public LocalDate getCreat_time_date() {
         return Creat_time_date;
     }
-
     public void setText(String text) {
         Text = text;
     }
 
+
+    public void Add_Viewers(User user){
+
+        if (!Viewrs.contains(user)){
+            Viewrs.add(user);
+        }
+    }
 
     public Message(User sender, String text, Message reply, User forwarded) {
         Text = text;
