@@ -33,7 +33,6 @@ public class PostAnalyze {
         }
         Chart.getData().add(series1);
 
-
     }
 
     public void Back(MouseEvent mouseEvent) {
