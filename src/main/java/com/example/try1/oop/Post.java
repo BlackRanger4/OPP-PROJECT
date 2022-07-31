@@ -12,7 +12,7 @@ public class Post implements Serializable {
     private User Creater ;
     String Text  ;
     boolean business ;
-    Image image;
+    String image;
 
     LocalDate CreatTime ;
     LocalTime Creat_our ;
@@ -30,6 +30,8 @@ public class Post implements Serializable {
         return business;
     }
     public Image getImage() {
+
+        Image image = new Image(this.image);
         return image;
     }
     public LocalDate getCreatTime() {
@@ -139,7 +141,7 @@ public class Post implements Serializable {
         this.CreatTime = LocalDate.now();
         this.Creat_our = LocalTime.now();
     }
-    public Post(User creater, String text, Image image) {
+    public Post(User creater, String text, String image) {
         Creater = creater;
         Text = text;
         this.image = image;

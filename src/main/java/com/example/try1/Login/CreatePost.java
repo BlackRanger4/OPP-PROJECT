@@ -17,6 +17,7 @@ public class CreatePost implements Serializable {
     public TextField Text;
     public ImageView image;
 
+    private File file;
     private Home home;
     private User user;
 
@@ -34,7 +35,7 @@ public class CreatePost implements Serializable {
         if (!Text.getText().equals("") || image.getImage() != null) {
 
             try {
-                Post post = new Post(user,Text.getText(),image.getImage());
+                Post post = new Post(user,Text.getText(),file.toURI().toString());
                 user.Add_post(post);
             }catch (Exception e){}
             home.back();
@@ -49,7 +50,7 @@ public class CreatePost implements Serializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File","*.*"));
         File file = fileChooser.showOpenDialog(null);
-
+        this.file =file;
         if ( file != null) {
             try {
                  image.setImage(new Image(file.toURI().toString()));

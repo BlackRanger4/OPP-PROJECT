@@ -1,15 +1,16 @@
 package com.example.try1.oop;
 
 import javafx.scene.image.Image;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class User implements Serializable {
 
 
-    Image Profile_Image ;
+    String Profile_Image ;
+    
     String User_Name ;
     String Password ;
     Boolean business ;
@@ -93,9 +94,10 @@ public class User implements Serializable {
         return My_Following.size();
     }
     public Image getProfile_Image() {
-        return Profile_Image;
+        Image image = new Image(Profile_Image);
+        return image;
     }
-    public void setProfile_Image(Image profile_Image) {
+    public void setProfile_Image(String profile_Image) {
         Profile_Image = profile_Image;
     }
 

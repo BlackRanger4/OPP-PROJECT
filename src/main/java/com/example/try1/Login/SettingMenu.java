@@ -252,7 +252,7 @@ public class SettingMenu implements Serializable {
             try {
                 Image image = new Image(file.toURI().toString());
                 Profile_fig.setImage(image);
-                user.setProfile_Image(image);
+                user.setProfile_Image(file.toURI().toString());
             }
             catch (Exception e){}
         }

@@ -138,6 +138,10 @@ public class Chatscont implements Initializable {
         this.selectedgr = selectedgr;
     }
 
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
