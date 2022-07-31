@@ -54,7 +54,7 @@ public class DataBase implements Serializable {
         int Size = All_User.size();
         ArrayList<User> users = new ArrayList<>();
         for (int i =0 ; i<Size ; i ++){
-            if (All_User.get(i).getUser_Name().contains(name)){
+            if (All_User.get(i).getUser_Name().contains(name) && All_User.get(i).getUser_Name().indexOf(name) == 0 ){
                 users.add(All_User.get(i));
             }
         }
