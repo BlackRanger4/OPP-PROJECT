@@ -7,8 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -23,6 +25,8 @@ public class Chatscont implements Initializable {
     public ListView<String> List;
     public ListView<String> Listchat;
     public ChoiceBox<String> porg;
+    public Button send;
+    public TextField mssgtext;
 
     private DataBase dataBase;
     private User user;
@@ -44,6 +48,7 @@ public class Chatscont implements Initializable {
     public String selectedchat;
     public int indexof;
     boolean pvorgr;
+    public String textmssg;
 
 
     public void Sort_Pv_Chats_with_time(){
@@ -151,7 +156,7 @@ public class Chatscont implements Initializable {
         int cap = pv_chats.size();
         if (cap != 0) {
             for (i = 0; i < cap; i++) {
-                if (!user.getMy_Privete_Chat().get(i).getSecond().getUser_Name().equals(user.getUser_Name())) {
+                if (user.getMy_Privete_Chat().get(i).getSecond().getUser_Name().equals(user.getUser_Name())) {
                     pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
                 } else {
                     pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name());
@@ -206,6 +211,21 @@ public class Chatscont implements Initializable {
         stage.setScene(scene);
         newgroupchatcont newgroupchatcont = fxmlLoader.getController();
         newgroupchatcont.newgroupchatcont(dataBase,user,this,scene,stage);
+    }
+
+    public void sendmassage () {
+        textmssg = mssgtext.getText();
+        Message temp = new Message(user,textmssg,null,null);
+        if (!pvorgr) {
+            selectedpv.getMessages().add(temp);
+            Listchat.setItems(FXCollections.observableList(selectedpv.printchatmassage()));
+            mssgtext.setText("");
+        }
+        else {
+            selectedgr.getMessages().add(temp);
+            Listchat.setItems(FXCollections.observableList(selectedgr.printchatmassage()));
+            mssgtext.setText("");
+        }
     }
 
     public PV_Chat getSelectedpv() {

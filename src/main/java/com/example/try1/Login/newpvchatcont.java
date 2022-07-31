@@ -1,6 +1,8 @@
 package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
+import com.example.try1.oop.Message;
+import com.example.try1.oop.PV_Chat;
 import com.example.try1.oop.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,6 +31,7 @@ public class newpvchatcont implements Initializable {
     public ArrayList<User> users;
     public String selectedpv;
     public User selected;
+    public PV_Chat created;
     public int indexof;
 
 
@@ -38,7 +41,6 @@ public class newpvchatcont implements Initializable {
             users.clear();
         }
         ArrayList<User> users = dataBase.User_Search(username.getText());
-        ArrayList<User> temp = new ArrayList<>();
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
         }
@@ -104,11 +106,12 @@ public class newpvchatcont implements Initializable {
             public void changed(ObservableValue observableValue, Object o, Object t1) {
 
                 selectedpv = results.getSelectionModel().getSelectedItem();
-                indexof = results.getItems().indexOf(selectedpv);
-                selected = users.get(indexof);
+                selected = dataBase.User_finder_U(selectedpv);
                 if (user.checkpvret(selected) == null){
-                    user.createpvchat(selected);
-                    chatscont.setSelectedpv(user.checkpvret(selected));
+                    created = user.createpvchat(selected);
+                    Message intro = new Message(user,"Chat created! " ,null,null);
+                    created.getMessages().add(intro);
+                    chatscont.setSelectedpv(created);
                     Back();
                 }
 

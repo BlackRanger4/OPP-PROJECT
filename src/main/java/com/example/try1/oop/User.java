@@ -203,10 +203,11 @@ public class User implements Serializable {
         return null;
     }
 
-    public void createpvchat(User y) {
+    public PV_Chat createpvchat(User y) {
         PV_Chat temp = new PV_Chat(this,y,null,database);
         y.getMy_Privete_Chat().add(temp);
         getMy_Privete_Chat().add(temp);
+        return temp;
     }
 
     public void creategroup (String groupname , ArrayList<User> temp) {
