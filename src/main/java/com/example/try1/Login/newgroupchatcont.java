@@ -55,11 +55,13 @@ public class newgroupchatcont implements Initializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        users.clear();
+        if (users != null) {
+            users.clear();
+        }
         ArrayList<User> users = dataBase.User_Search(username.getText());
+        ArrayList<User> temp = new ArrayList<>();
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
-            users.add(value);
         }
     }
 

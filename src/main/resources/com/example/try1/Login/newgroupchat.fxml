@@ -22,7 +22,7 @@
         </Text>
         <ListView fx:id="results" layoutX="142.0" layoutY="143.0" prefHeight="400.0" prefWidth="258.0" />
         <Button layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-      <TextField fx:id="groupname" layoutX="558.0" layoutY="61.0" onKeyPressed="#entergroupname" prefHeight="26.0" prefWidth="209.0" />
+      <TextField fx:id="groupname" layoutX="558.0" layoutY="61.0" onInputMethodTextChanged="#entergroupname" prefHeight="26.0" prefWidth="209.0" />
       <Text layoutX="607.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter group name">
          <font>
             <Font size="14.0" />

@@ -34,12 +34,15 @@ public class newpvchatcont implements Initializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        users.clear();
+        if (users != null) {
+            users.clear();
+        }
         ArrayList<User> users = dataBase.User_Search(username.getText());
+        ArrayList<User> temp = new ArrayList<>();
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
-            users.add(value);
         }
+        System.out.println(username.getText());
     }
 
     public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage) {

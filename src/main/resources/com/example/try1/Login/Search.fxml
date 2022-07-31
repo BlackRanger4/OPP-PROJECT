@@ -6,7 +6,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Search">
    <children>
       <TextField fx:id="Text" layoutX="300.0" layoutY="60.0" prefHeight="25.0" prefWidth="300.0"
-      onKeyTyped="#search_user"/>
+      onKeyPressed="#search_user"/>
       <Button layoutX="25.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="25.0" prefWidth="60.0" text="back" />
       <ListView fx:id="List" layoutX="300.0" layoutY="110.0" prefHeight="390.0" prefWidth="300.0" />
       <Button layoutX="375.0" layoutY="520.0" mnemonicParsing="false" onMouseClicked="#Next" prefHeight="25.0" prefWidth="150.0" text="go to  user page" />
