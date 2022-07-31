@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -326,11 +325,18 @@ public class Home {
 
     }
 
-    public void Post_Analyze_or_Nextuser(MouseEvent mouseEvent) {
+    public void Post_Analyze_or_Nextuser(MouseEvent mouseEvent) throws IOException {
 
         if (Post_Next_button.getText().equals("Post analyze")){
 
-
+            try {
+                Post post = posts.get(post_num);
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PostAnalyze.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+                PostAnalyze postAnalyze = fxmlLoader.getController();
+                postAnalyze.postanalyze(this, post);
+                stage.setScene(scene);
+            }catch (Exception e){}
         }
         else if (Post_Next_button.getText().equals("Next user")){
             user_num++;
@@ -398,4 +404,5 @@ public class Home {
             catch (Exception e){}
         }
     }
+
 }
