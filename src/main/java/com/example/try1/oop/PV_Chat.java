@@ -28,7 +28,19 @@ public class PV_Chat implements Serializable {
         Messages.remove(message);
     }
 
+    public Message getLast_Message(){
+        return Messages.get(Messages.size()-1);
+    }
+    public int How_many_Message_not_see(User user){
 
+        int result = 0;
+        for (Message message : Messages) {
+            if (message.User_See_Message(user)) {
+                result++;
+            }
+        }
+        return result;
+    }
 
     public PV_Chat(User first, User second , Message selected,DataBase data) {
 

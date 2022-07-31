@@ -43,7 +43,19 @@ public class Group_Chat implements Serializable {
         Members.remove(user);
     }
 
+    public Message getLast_Message(){
+        return Messages.get(Messages.size()-1);
+    }
+    public int How_many_Message_not_see(User user){
 
+        int result = 0;
+        for (Message message : Messages) {
+            if (message.User_See_Message(user)) {
+                result++;
+            }
+        }
+        return result;
+    }
 
     public Group_Chat(ArrayList<User> members, User admin, String groupName, DataBase data) {
         Members = members;

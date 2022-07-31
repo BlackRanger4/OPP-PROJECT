@@ -1,9 +1,6 @@
 package com.example.try1.Login;
 
-import com.example.try1.oop.DataBase;
-import com.example.try1.oop.Group_Chat;
-import com.example.try1.oop.PV_Chat;
-import com.example.try1.oop.User;
+import com.example.try1.oop.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,6 +32,7 @@ public class Chatscont implements Initializable {
 
     private ArrayList<PV_Chat> pv_chats;
     private ArrayList<Group_Chat> group_chats;
+    private ArrayList<Integer> NumOf_noSee = new ArrayList<>();
     private final String[] pvorgroup = { "pv chats" , "group chats"};
     private ArrayList<String> pvchatsname;
     private ArrayList<String> groupchatsname;
@@ -46,6 +44,94 @@ public class Chatscont implements Initializable {
     public String selectedchat;
     public int indexof;
     boolean pvorgr;
+
+
+    public void Sort_Pv_Chats_with_time(){
+
+        quickSort(pv_chats,0,pv_chats.size()-1);
+
+        NumOf_noSee.clear();
+        for (PV_Chat pv_chat : pv_chats) {
+            NumOf_noSee.add(pv_chat.How_many_Message_not_see(user));
+        }
+
+    }
+    public void swap(ArrayList<PV_Chat> PV, int i, int j) {
+
+        PV_Chat temp = PV.get(i);
+        PV.set(i,PV.get(j)) ;
+        PV.set(j,temp);
+    }
+    public int partition(ArrayList<PV_Chat> PV, int low, int high) {
+
+        PV_Chat pivot = PV.get(high);
+
+        int i = (low - 1);
+
+        for(int j = low; j <= high - 1; j++)
+        {
+
+            if (PV.get(j).getLast_Message().IsAfter(pivot.getLast_Message()))
+            {
+                i++;
+                swap(PV, i, j);
+            }
+        }
+        swap(PV, i + 1, high);
+        return (i + 1);
+    }
+    public void quickSort(ArrayList<PV_Chat> PV, int low, int high) {
+        if (low < high)
+        {
+            int pi = partition(PV, low, high);
+            quickSort(PV, low, pi - 1);
+            quickSort(PV, pi + 1, high);
+        }
+    }
+
+    public void Sort_Group_Chats_with_time(){
+
+        quickSorT(group_chats,0,pv_chats.size()-1);
+
+        NumOf_noSee.clear();
+        for (PV_Chat pv_chat : pv_chats) {
+            NumOf_noSee.add(pv_chat.How_many_Message_not_see(user));
+        }
+
+    }
+    public void swaP(ArrayList<Group_Chat> PV, int i, int j) {
+
+        Group_Chat temp = PV.get(i);
+        PV.set(i,PV.get(j)) ;
+        PV.set(j,temp);
+
+    }
+    public int partitioN(ArrayList<Group_Chat> PV, int low, int high) {
+
+        Group_Chat pivot = PV.get(high);
+
+        int i = (low - 1);
+
+        for(int j = low; j <= high - 1; j++)
+        {
+            if (PV.get(j).getLast_Message().IsAfter(pivot.getLast_Message()))
+            {
+                i++;
+                swaP(PV, i, j);
+            }
+        }
+        swaP(PV, i + 1, high);
+        return (i + 1);
+    }
+    public void quickSorT(ArrayList<Group_Chat> PV, int low, int high) {
+        if (low < high)
+        {
+            int pi = partitioN(PV, low, high);
+            quickSorT(PV, low, pi - 1);
+            quickSorT(PV, pi + 1, high);
+        }
+    }
+
 
     public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage) {
         Chatscont.stage = stage;

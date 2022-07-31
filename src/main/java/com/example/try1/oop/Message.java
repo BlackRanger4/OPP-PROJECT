@@ -54,7 +54,6 @@ public class Message implements Serializable {
             Viewrs.add(user);
         }
     }
-
     public boolean User_See_Message(User user){
         if (Viewrs.contains(user)){
             return true;
@@ -64,6 +63,15 @@ public class Message implements Serializable {
         }
     }
 
+    public boolean IsAfter(Message message){
+
+        if (this.Creat_time_date.isAfter(message.getCreat_time_date())){
+            if (this.Creat_time_our.isAfter(message.getCreat_time_our())){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Message(User sender, String text, Message reply, User forwarded) {
         Text = text;
