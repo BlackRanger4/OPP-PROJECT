@@ -99,6 +99,7 @@ public class newgroupchatcont implements Initializable, Serializable {
         else {
             errorbox.setText("You can't create a group with no users!");
         }
+        chatscont.back();
     }
 
     public void Back(){
@@ -222,14 +223,23 @@ public class newgroupchatcont implements Initializable, Serializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        addedmembers.setCellFactory(new Add());
-        results.setCellFactory(new results());
+        addedmembers.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> stringListView) {
+                return new Add();
+            }
+        });
+        results.setCellFactory(new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> stringListView) {
+                return new results();
+            }
+        });
 
     }
 
 
-
-    class Add implements Callback<ListView<String>, ListCell<String>> {
+    class Add extends ListCell<String> {
         HBox hBox = new HBox();
         Label label = new Label();
         Pane pane = new Pane();
@@ -244,31 +254,25 @@ public class newgroupchatcont implements Initializable, Serializable {
 
 
         @Override
-        public ListCell<String> call(ListView<String> param) {
-
-            return new ListCell<String>(){
-                @Override
-                public void updateItem(String person, boolean empty) {
-                    super.updateItem(person, empty);
-                    if (empty || person == null) {
-                        setText(null);
-                        setGraphic(null);
-                    } else {
-                        label.setText(person);
-                        setGraphic(hBox);
-                        button.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                getAddedmembers().getItems().remove(person);
-                            }
-                        });
+        public void updateItem(String person, boolean empty) {
+            super.updateItem(person, empty);
+            if (empty || person == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                label.setText(person);
+                setGraphic(hBox);
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        getAddedmembers().getItems().remove(person);
                     }
-                }
-            };
+                });
+            }
         }
     }
 
-    class results implements Callback<ListView<String>, ListCell<String>> {
+    class results extends ListCell<String> {
         HBox hBox = new HBox();
         Label label = new Label();
         Pane pane = new Pane();
@@ -283,30 +287,31 @@ public class newgroupchatcont implements Initializable, Serializable {
 
 
         @Override
-        public ListCell<String> call(ListView<String> param) {
-
-            return new ListCell<String>(){
-                @Override
-                public void updateItem(String person, boolean empty) {
-                    super.updateItem(person, empty);
-                    if (empty || person == null) {
-                    } else {
-                        label.setText(person);
-                        setGraphic(hBox);
-                        button.setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent event) {
-                                setSelecteduser(person);
-                                selected = dataBase.User_finder_U(getSelecteduser());
-
+        public void updateItem(String person, boolean empty) {
+            super.updateItem(person, empty);
+            if (empty || person == null) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                label.setText(person);
+                setGraphic(hBox);
+                button.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        setSelecteduser(person);
+                        selected = dataBase.User_finder_U(getSelecteduser());
                                 if (user.checkblock(selected)){
                                     errorbox.setText("This user has blocked you!");
+                                }
+                                else if (getAddedmembers().getItems().contains(person)){
+                                    errorbox.setText("You have added this user!");
                                 }
                                 else {
                                     errorbox.setText("");
                                     getAddedmembers().getItems().add(getSelecteduser());
                                     getAddedmemb().add(selected);
                                 }
+
 
                                 if (getAddedmemb().size() == 0){
                                     members = false;
@@ -318,8 +323,6 @@ public class newgroupchatcont implements Initializable, Serializable {
                         });
                     }
                 }
-            };
-        }
     }
 }
 

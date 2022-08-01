@@ -5,17 +5,21 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +34,7 @@ public class Chatscont implements Initializable {
     public ListView<Message> Listchat;
     public ChoiceBox<String> porg;
     public Button send;
-    public TextField mssgtext;
+    public TextArea mssgtext;
 
     private DataBase dataBase;
     private User user;
@@ -65,6 +69,7 @@ public class Chatscont implements Initializable {
         }
 
     }
+
     public void swap(ArrayList<PV_Chat> PV, int i, int j) {
 
         PV_Chat temp = PV.get(i);
@@ -280,6 +285,14 @@ public class Chatscont implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Listchat.setCellFactory(new Callback<ListView<Message>, ListCell<Message>>() {
+            @Override
+            public ListCell<Message> call(ListView<Message> messageListView) {
+                return new chatshow();
+            }
+        });
+
         porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
 
         getList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -294,7 +307,7 @@ public class Chatscont implements Initializable {
                     Listchat.getItems().addAll(selectedpv.getMessages());
                 }
                 else {
-                    indexof = group_chats.indexOf(selectedchat);
+                    indexof = groupchatsname.indexOf(selectedchat);
                     selectedgr = group_chats.get(indexof);
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedgr.getMessages());
@@ -400,5 +413,48 @@ public class Chatscont implements Initializable {
         this.group_chats = group_chats;
     }
 
+    class chatshow extends ListCell<Message> {
+        HBox hbox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+        Label label = new Label();
+
+        public chatshow() {
+            super();
+            hbox.getChildren().addAll(imgview,label,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+        }
+
+        @Override
+        public void updateItem(Message mssg , boolean empty) {
+            super.updateItem(mssg, empty);
+            if (mssg == null) {
+                setGraphic(null);
+            }
+            else {
+                if (mssg.getImage() == null && mssg.getText() == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else if (mssg.getText() != null && mssg.getImage() == null) {
+                    label.setText(mssg.getText());
+                    setGraphic(hbox);
+                } else if (mssg.getText() == null && mssg.getImage() != null) {
+                    imgview.setImage(mssg.getImage());
+                    double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
+                    imgview.setFitWidth(300);
+                    imgview.setFitHeight(300*cons);
+                    setGraphic(hbox);
+                } else {
+                    label.setText(mssg.getText());
+                    imgview.setImage(mssg.getImage());
+                    double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
+                    imgview.setFitWidth(300);
+                    imgview.setFitHeight(300*cons);
+                    setGraphic(hbox);
+                }
+            }
+        }
+
+    }
 
 }

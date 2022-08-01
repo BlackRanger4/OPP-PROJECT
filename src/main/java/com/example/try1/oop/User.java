@@ -221,10 +221,11 @@ public class User implements Serializable {
         for (i=0;i<cap;i++){
             temp.get(i).getMy_Group_Chat().add(test);
         }
+        Message first  = new Message(this,this.User_Name+ " has created the group!",null,null,null);
+        test.getMessages().add(first);
     }
 
     public boolean checkblock(User x) {
         return x.getBlocked_User().contains(this);
     }
-
 }

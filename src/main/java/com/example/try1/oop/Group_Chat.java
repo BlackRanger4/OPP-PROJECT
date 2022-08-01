@@ -66,7 +66,8 @@ public class Group_Chat implements Serializable {
         this.data = data;
         CreateTime = LocalDate.now();
     }
-/*
+
+    /*
     public ArrayList<Object> printchatmassage() {
         String test = "";
         ArrayList<Object> temp = new ArrayList<>();
@@ -93,5 +94,5 @@ public class Group_Chat implements Serializable {
         }
         return temp;
     }
-*/
+     */
 }

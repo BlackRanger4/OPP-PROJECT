@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
@@ -12,15 +12,13 @@
          <children>
             <ChoiceBox fx:id="porg" layoutX="81.0" layoutY="14.0" onAction="#choose" prefWidth="150.0" value="Select one" />
             <ListView fx:id="List" layoutX="14.0" layoutY="47.0" prefHeight="467.0" prefWidth="218.0" />
-            <ListView fx:id="Listchat" layoutX="247.0" layoutY="14.0" prefHeight="534.0" prefWidth="534.0" />
+            <ListView fx:id="Listchat" layoutX="247.0" layoutY="13.0" prefHeight="526.0" prefWidth="586.0" />
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
             <Button fx:id="newpv" layoutX="14.0" layoutY="523.0" mnemonicParsing="false" onAction="#createnewpv" prefHeight="26.0" prefWidth="218.0" text="Create new pv chat" />
             <Button fx:id="newgroup" layoutX="14.0" layoutY="557.0" mnemonicParsing="false" onAction="#createnewgr" prefHeight="26.0" prefWidth="218.0" text="Create new group chat" />
-            <TextField fx:id="mssgtext" layoutX="247.0" layoutY="557.0" prefHeight="26.0" prefWidth="441.0" />
-            <Button fx:id="send" layoutX="695.0" layoutY="557.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="26.0" prefWidth="25.0" text="&gt;" />
-            <Button layoutX="725.0" layoutY="557.0" mnemonicParsing="false" text="Add fig"
-            onMouseClicked="#Add_Fig"
-            />
+            <Button fx:id="send" layoutX="695.0" layoutY="545.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="38.0" prefWidth="55.0" text="&gt;" />
+            <Button layoutX="756.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="77.0" text="Add fig" />
+            <TextArea fx:id="mssgtext" layoutX="247.0" layoutY="545.0" prefHeight="38.0" prefWidth="442.0" />
          </children>
       </AnchorPane>
    </children>
