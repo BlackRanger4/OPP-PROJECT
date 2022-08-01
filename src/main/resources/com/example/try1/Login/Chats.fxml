@@ -2,9 +2,12 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
    <children>
@@ -12,15 +15,23 @@
          <children>
             <ChoiceBox fx:id="porg" layoutX="81.0" layoutY="14.0" onAction="#choose" prefWidth="150.0" value="Select one" />
             <ListView fx:id="List" layoutX="14.0" layoutY="47.0" prefHeight="467.0" prefWidth="218.0" />
-            <ListView fx:id="Listchat" layoutX="247.0" layoutY="14.0" prefHeight="534.0" prefWidth="534.0" />
+            <ListView fx:id="Listchat" layoutX="247.0" layoutY="81.0" prefHeight="467.0" prefWidth="534.0" />
             <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
             <Button fx:id="newpv" layoutX="14.0" layoutY="523.0" mnemonicParsing="false" onAction="#createnewpv" prefHeight="26.0" prefWidth="218.0" text="Create new pv chat" />
             <Button fx:id="newgroup" layoutX="14.0" layoutY="557.0" mnemonicParsing="false" onAction="#createnewgr" prefHeight="26.0" prefWidth="218.0" text="Create new group chat" />
             <TextField fx:id="mssgtext" layoutX="247.0" layoutY="557.0" prefHeight="26.0" prefWidth="441.0" />
             <Button fx:id="send" layoutX="695.0" layoutY="557.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="26.0" prefWidth="25.0" text="&gt;" />
-            <Button layoutX="725.0" layoutY="557.0" mnemonicParsing="false" text="Add fig"
-            onMouseClicked="#Add_Fig"
+            <Button layoutX="725.0" layoutY="557.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" text="Add fig" />
+            <ImageView fitHeight="65.0" fitWidth="72.0" layoutX="247.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true"
+            fx:id="image_of_pv_group"
             />
+            <Label alignment="CENTER" layoutX="340.0" layoutY="21.0" prefHeight="53.0" prefWidth="348.0" text="Group name"
+            fx:id="name_of_pv_group"
+            >
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

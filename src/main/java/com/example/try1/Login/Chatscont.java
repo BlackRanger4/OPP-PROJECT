@@ -8,11 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -31,6 +29,8 @@ public class Chatscont implements Initializable {
     public ChoiceBox<String> porg;
     public Button send;
     public TextField mssgtext;
+    public ImageView image_of_pv_group;
+    public Label name_of_pv_group;
 
     private DataBase dataBase;
     private User user;
@@ -172,7 +172,7 @@ public class Chatscont implements Initializable {
                     pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name()+"("+NumOf_noSee.get(i)+")");
                     }
                     else {
-                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
+                        pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name());
                     }
                 }
             }
@@ -258,7 +258,7 @@ public class Chatscont implements Initializable {
         if ( file != null) {
             try {
                 Image image = new Image(file.toURI().toString());
-                Message message = new Message(user,null,null,null,file.toURI().toString());
+                Message message = new Message(user,mssgtext.getText(),null,null,file.toURI().toString());
                 if (!pvorgr) {
                     selectedpv.getMessages().add(message);
                     Listchat.getItems().clear();
@@ -290,18 +290,35 @@ public class Chatscont implements Initializable {
                 if (!pvorgr){
                     indexof = pvchatsname.indexOf(selectedchat);
                     selectedpv = pv_chats.get(indexof);
+                    if (selectedpv.getSecond().equals(user)) {
+                        name_of_pv_group.setText(selectedpv.getFirst().getUser_Name());
+                        try {
+                            image_of_pv_group.setImage(selectedpv.getFirst().getProfile_Image());
+                        }catch (Exception e){}
+                    }
+                    else {
+                        name_of_pv_group.setText(selectedpv.getSecond().getUser_Name());
+                        try {
+                            image_of_pv_group.setImage(selectedpv.getSecond().getProfile_Image());
+                        }catch (Exception e){}
+                    }
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedpv.getMessages());
                 }
                 else {
+                    name_of_pv_group.setText(selectedgr.getGroupName());
+                    image_of_pv_group.setImage(selectedgr.getImage());
                     indexof = group_chats.indexOf(selectedchat);
                     selectedgr = group_chats.get(indexof);
+                    try {
+                        image_of_pv_group.setImage(selectedgr.getImage());
+                    }catch (Exception e){}
+                    name_of_pv_group.setText(selectedgr.getGroupName());
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedgr.getMessages());
                 }
             }
         });
-
     }
 
 
