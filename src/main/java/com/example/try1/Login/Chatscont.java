@@ -99,10 +99,9 @@ public class Chatscont implements Initializable {
         quickSorT(group_chats,0,pv_chats.size()-1);
 
         NumOf_noSee.clear();
-        for (PV_Chat pv_chat : pv_chats) {
-            NumOf_noSee.add(pv_chat.How_many_Message_not_see(user));
+        for (Group_Chat group_chat : group_chats) {
+            NumOf_noSee.add(group_chat.How_many_Message_not_see(user));
         }
-
     }
     public void swaP(ArrayList<Group_Chat> PV, int i, int j) {
 
@@ -152,14 +151,15 @@ public class Chatscont implements Initializable {
 
     public void extpvchats() {
         pvchatsname.clear();
+        Sort_Pv_Chats_with_time();
         int i;
         int cap = pv_chats.size();
         if (cap != 0) {
             for (i = 0; i < cap; i++) {
                 if (user.getMy_Privete_Chat().get(i).getSecond().getUser_Name().equals(user.getUser_Name())) {
-                    pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
+                    pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name()+"("+NumOf_noSee.get(i)+")");
                 } else {
-                    pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name());
+                    pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name()+"("+NumOf_noSee.get(i)+")");
                 }
             }
         }
@@ -167,11 +167,12 @@ public class Chatscont implements Initializable {
 
     public void extgroupchats() {
         groupchatsname.clear();
+        Sort_Group_Chats_with_time();
         int i;
         int cap = group_chats.size();
         if (cap != 0) {
             for (i = 0; i < cap; i++) {
-                groupchatsname.add(group_chats.get(i).getGroupName());
+                groupchatsname.add(group_chats.get(i).getGroupName()+"("+NumOf_noSee.get(i)+")");
             }
         }
     }
@@ -360,4 +361,5 @@ public class Chatscont implements Initializable {
     public void setGroup_chats(ArrayList<Group_Chat> group_chats) {
         this.group_chats = group_chats;
     }
+
 }
