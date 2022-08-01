@@ -1,5 +1,7 @@
 package com.example.try1.oop;
 
+import javafx.scene.image.Image;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +18,8 @@ public class Message implements Serializable {
 
     private LocalTime Creat_time_our ;
     private LocalDate Creat_time_date;
+    private String image ;
+
 
     private ArrayList<User> Viewrs = new ArrayList<>();
 
@@ -47,6 +51,16 @@ public class Message implements Serializable {
         Text = text;
     }
 
+    public Image getImage() {
+        if (this.image != null){
+        Image image = new Image(this.image);
+        return image;
+        }
+        return null;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public void Add_Viewers(User user){
 
@@ -73,11 +87,12 @@ public class Message implements Serializable {
         return false;
     }
 
-    public Message(User sender, String text, Message reply, User forwarded) {
+    public Message(User sender, String text, Message reply, User forwarded,String image) {
         Text = text;
         Sender = sender;
         this.reply = reply;
         this.forwarded = forwarded;
+        this.image =image;
         frwrded_gr = new ArrayList<>();
         frwrded_pv = new ArrayList<>();
         Creat_time_our = LocalTime.now();

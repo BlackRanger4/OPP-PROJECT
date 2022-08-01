@@ -109,7 +109,7 @@ public class newpvchatcont implements Initializable {
                 selected = dataBase.User_finder_U(selectedpv);
                 if (user.checkpvret(selected) == null){
                     created = user.createpvchat(selected);
-                    Message intro = new Message(user,"Chat created! " ,null,null);
+                    Message intro = new Message(user,"Chat created! " ,null,null,null);
                     created.getMessages().add(intro);
                     chatscont.setSelectedpv(created);
                     Back();

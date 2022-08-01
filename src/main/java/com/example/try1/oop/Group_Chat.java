@@ -1,5 +1,7 @@
 package com.example.try1.oop;
 
+
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class Group_Chat implements Serializable {
 
         int result = 0;
         for (Message message : Messages) {
-            if (message.User_See_Message(user)) {
+            if (!message.User_See_Message(user)) {
                 result++;
             }
         }
@@ -64,10 +66,10 @@ public class Group_Chat implements Serializable {
         this.data = data;
         CreateTime = LocalDate.now();
     }
-
-    public ArrayList<String> printchatmassage() {
+/*
+    public ArrayList<Object> printchatmassage() {
         String test = "";
-        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<Object> temp = new ArrayList<>();
         int i;
         int cap = this.getMessages().size();
         if (cap != 0) {
@@ -91,5 +93,5 @@ public class Group_Chat implements Serializable {
         }
         return temp;
     }
-
+*/
 }

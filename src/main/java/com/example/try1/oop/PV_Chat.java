@@ -35,7 +35,7 @@ public class PV_Chat implements Serializable {
 
         int result = 0;
         for (Message message : Messages) {
-            if (message.User_See_Message(user)) {
+            if (!message.User_See_Message(user)) {
                 result++;
             }
         }
@@ -48,10 +48,10 @@ public class PV_Chat implements Serializable {
         this.Second = second;
         this.data = data ;
     }
-
-    public ArrayList<String> printchatmassage() {
+/*
+    public ArrayList<Object> printchatmassage() {
         String test = "";
-        ArrayList<String> temp = new ArrayList<>();
+        ArrayList<Object> temp = new ArrayList<>();
         int i;
         int cap = this.getMessages().size();
         if (cap == 0){
@@ -59,24 +59,29 @@ public class PV_Chat implements Serializable {
         }
         else {
             for (i = 0; i < cap; i++) {
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() +
-                            " : " + this.getMessages().get(i).getText();
+                if (this.getMessages().get(i).getText() != null) {
+                    if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() == null) {
+                        test = this.getMessages().get(i).getSender().getUser_Name() +
+                                " : " + this.getMessages().get(i).getText();
+                    }
+                    if (this.getMessages().get(i).getForwarded() != null && this.getMessages().get(i).getReply() == null) {
+                        test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
+                                this.getMessages().get(i).getText() + " forwarded from " +
+                                this.getMessages().get(i).getForwarded().getUser_Name();
+                    }
+                    if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() != null) {
+                        test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
+                                this.getMessages().get(i).getText() + " replied to " +
+                                this.getMessages().get(i).getReply().getText();
+                    }
+                    temp.add(test);
                 }
-                if (this.getMessages().get(i).getForwarded() != null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " forwarded from " +
-                            this.getMessages().get(i).getForwarded().getUser_Name();
+                else {
+                    temp.add(this.getMessages().get(i).getImage());
                 }
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() != null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " replied to " +
-                            this.getMessages().get(i).getReply().getText();
-                }
-                temp.add(test);
             }
         }
         return temp;
     }
-
+*/
 }

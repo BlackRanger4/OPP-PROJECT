@@ -4,6 +4,7 @@ import com.example.try1.oop.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -11,9 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +27,7 @@ import java.util.ResourceBundle;
 public class Chatscont implements Initializable {
 
     public ListView<String> List;
-    public ListView<String> Listchat;
+    public ListView<Message> Listchat;
     public ChoiceBox<String> porg;
     public Button send;
     public TextField mssgtext;
@@ -157,9 +161,19 @@ public class Chatscont implements Initializable {
         if (cap != 0) {
             for (i = 0; i < cap; i++) {
                 if (user.getMy_Privete_Chat().get(i).getSecond().getUser_Name().equals(user.getUser_Name())) {
-                    pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name()+"("+NumOf_noSee.get(i)+")");
+                    if (NumOf_noSee.get(i)>0) {
+                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name() + "(" + NumOf_noSee.get(i) + ")");
+                    }
+                    else {
+                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
+                    }
                 } else {
+                    if (NumOf_noSee.get(i)>0) {
                     pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name()+"("+NumOf_noSee.get(i)+")");
+                    }
+                    else {
+                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
+                    }
                 }
             }
         }
@@ -172,7 +186,12 @@ public class Chatscont implements Initializable {
         int cap = group_chats.size();
         if (cap != 0) {
             for (i = 0; i < cap; i++) {
-                groupchatsname.add(group_chats.get(i).getGroupName()+"("+NumOf_noSee.get(i)+")");
+                if (NumOf_noSee.get(i)>0) {
+                    groupchatsname.add(group_chats.get(i).getGroupName() + "(" + NumOf_noSee.get(i) + ")");
+                }
+                else {
+                    groupchatsname.add(group_chats.get(i).getGroupName());
+                }
             }
         }
     }
@@ -216,18 +235,80 @@ public class Chatscont implements Initializable {
 
     public void sendmassage () {
         textmssg = mssgtext.getText();
-        Message temp = new Message(user,textmssg,null,null);
+        Message temp = new Message(user,textmssg,null,null,null);
         if (!pvorgr) {
             selectedpv.getMessages().add(temp);
-            Listchat.setItems(FXCollections.observableList(selectedpv.printchatmassage()));
+            Listchat.getItems().clear();
+            Listchat.getItems().addAll(selectedpv.getMessages());
             mssgtext.setText("");
         }
         else {
             selectedgr.getMessages().add(temp);
-            Listchat.setItems(FXCollections.observableList(selectedgr.printchatmassage()));
+            Listchat.getItems().clear();
+            Listchat.getItems().addAll(selectedgr.getMessages());
             mssgtext.setText("");
         }
     }
+    public void Add_Fig(MouseEvent mouseEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File","*.*"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if ( file != null) {
+            try {
+                Image image = new Image(file.toURI().toString());
+                Message message = new Message(user,null,null,null,file.toURI().toString());
+                if (!pvorgr) {
+                    selectedpv.getMessages().add(message);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedpv.getMessages());
+                    mssgtext.setText("");
+                }
+                else {
+                    selectedgr.getMessages().add(message);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedgr.getMessages());
+                    mssgtext.setText("");
+                }
+            }
+            catch (Exception e){}
+        }
+    }
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
+
+        getList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+
+                selectedchat = getList().getSelectionModel().getSelectedItem();
+                if (!pvorgr){
+                    indexof = pvchatsname.indexOf(selectedchat);
+                    selectedpv = pv_chats.get(indexof);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedpv.getMessages());
+                }
+                else {
+                    indexof = group_chats.indexOf(selectedchat);
+                    selectedgr = group_chats.get(indexof);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedgr.getMessages());
+                }
+            }
+        });
+
+    }
+
+
+
+
+
+
 
     public PV_Chat getSelectedpv() {
         return selectedpv;
@@ -246,42 +327,6 @@ public class Chatscont implements Initializable {
     }
 
 
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
-
-        getList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-
-                selectedchat = getList().getSelectionModel().getSelectedItem();
-                if (!pvorgr){
-                    indexof = pvchatsname.indexOf(selectedchat);
-                    selectedpv = pv_chats.get(indexof);
-                    Listchat.setItems(FXCollections.observableList(selectedpv.printchatmassage()));
-                }
-                else {
-                    indexof = group_chats.indexOf(selectedchat);
-                    selectedgr = group_chats.get(indexof);
-                    Listchat.setItems(FXCollections.observableList(selectedgr.printchatmassage()));
-                }
-
-            }
-        });
-
-    }
-
-
-
-
-
-
-
-
-
     public ListView<String> getList() {
         return List;
     }
@@ -290,13 +335,6 @@ public class Chatscont implements Initializable {
         List = list;
     }
 
-    public ListView<String> getListchat() {
-        return Listchat;
-    }
-
-    public void setListchat(ListView<String> listchat) {
-        Listchat = listchat;
-    }
 
     public ChoiceBox<String> getPorg() {
         return porg;
@@ -361,5 +399,6 @@ public class Chatscont implements Initializable {
     public void setGroup_chats(ArrayList<Group_Chat> group_chats) {
         this.group_chats = group_chats;
     }
+
 
 }
