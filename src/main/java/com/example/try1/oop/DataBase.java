@@ -98,7 +98,7 @@ public class DataBase implements Serializable {
     public Connection getConnection() throws Exception {
         String url = "jdbc:mysql://localhost:3306/daz";
         String username = "root";
-        String password = "1363344552Sad";
+        String password = "400101572";
         Connection conn = DriverManager.getConnection(url, username, password);
         return conn;
     }
