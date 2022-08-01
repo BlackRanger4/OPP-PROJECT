@@ -113,6 +113,9 @@ public class User implements Serializable {
         }
         return null;
     }
+    public void Block_user(User user){
+        Blocked_User.add(user);
+    }
 
     public void Remove_post(Post post){
         if (business){

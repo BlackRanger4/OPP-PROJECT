@@ -25,6 +25,7 @@ public class SearchSelected implements Serializable {
     public ListView<String> List;
     public Label Text;
     public Button Follow_Button;
+    public Button Block_button;
 
     private static Stage stage;
     private Scene scene;
@@ -60,6 +61,11 @@ public class SearchSelected implements Serializable {
         if (user_selected.Is_my_followers(user)){
             Follow_Button.setText("Unfollow");
         }
+
+        if (user.getUnblocked_user(user_selected.getUser_Name()) != null){
+            Block_button.setText("unBlock");
+        }
+
 
     }
 
@@ -155,5 +161,16 @@ public class SearchSelected implements Serializable {
         }
 
     }
-    
+
+    public void Block_unBlock(MouseEvent mouseEvent) {
+        if (user.getUnblocked_user(user_selected.getUser_Name()) == null){
+            user.Block_user(user_selected);
+            Block_button.setText("unBlock");
+        }
+        else {
+            user.Unblocked_User(user_selected);
+            Block_button.setText("Block");
+        }
+
+    }
 }
