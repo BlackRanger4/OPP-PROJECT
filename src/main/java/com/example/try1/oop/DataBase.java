@@ -3,6 +3,8 @@ package com.example.try1.oop;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import org.apache.commons.lang3.*;
 
 public class DataBase implements Serializable {
@@ -53,9 +55,11 @@ public class DataBase implements Serializable {
     public ArrayList<User> User_Search(String name){
         int Size = All_User.size();
         ArrayList<User> users = new ArrayList<>();
-        for (int i =0 ; i<Size ; i ++){
-            if (All_User.get(i).getUser_Name().contains(name) && All_User.get(i).getUser_Name().indexOf(name) == 0 ){
-                users.add(All_User.get(i));
+        if (!name.equals("")) {
+            for (int i = 0; i < Size; i++) {
+                if (All_User.get(i).getUser_Name().contains(name) && All_User.get(i).getUser_Name().indexOf(name) == 0) {
+                    users.add(All_User.get(i));
+                }
             }
         }
         return users;
@@ -94,7 +98,7 @@ public class DataBase implements Serializable {
     public Connection getConnection() throws Exception {
         String url = "jdbc:mysql://localhost:3306/daz";
         String username = "root";
-        String password = "1363344552Sad";
+        String password = "400101572";
         Connection conn = DriverManager.getConnection(url, username, password);
         return conn;
     }

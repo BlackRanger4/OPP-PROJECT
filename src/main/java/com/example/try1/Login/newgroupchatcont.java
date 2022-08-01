@@ -2,16 +2,22 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -51,6 +57,7 @@ public class newgroupchatcont implements Initializable, Serializable {
         members = false;
         name = false;
         groupnametext = "";
+        addedmemb = new ArrayList<>();
     }
 
 
@@ -179,7 +186,7 @@ public class newgroupchatcont implements Initializable, Serializable {
         this.users = users;
     }
 
-    public String getSelecteuser() {
+    public String getSelecteduser() {
         return selecteduser;
     }
 
@@ -211,53 +218,108 @@ public class newgroupchatcont implements Initializable, Serializable {
         this.addedmemb = addedmemb;
     }
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        results.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-
-                setSelecteduser(results.getSelectionModel().getSelectedItem());
-                indexof = results.getItems().indexOf(getSelecteuser());
-                selected = users.get(indexof);
-                if (user.checkblock(selected)){
-                    errorbox.setText("This user has blocked you!");
-                }
-                else {
-                    errorbox.setText("");
-                    getAddedmembers().getItems().add(getSelecteuser());
-                    getAddedmemb().add(selected);
-                }
-
-                if (getAddedmemb().size() == 0){
-                    members = false;
-                }
-                else {
-                    members = true;
-                }
-
-            }
-        });
-
-        addedmembers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                setSelecteduser(addedmembers.getSelectionModel().getSelectedItem());
-                indexof = addedmembers.getItems().indexOf(getSelecteuser());
-                selected = addedmemb.get(indexof);
-                getAddedmembers().getItems().remove(getSelecteuser());
-                getAddedmemb().remove(selected);
-
-                if (getAddedmemb().size() == 0){
-                    members = false;
-                }
-                else {
-                    members = true;
-                }
-
-            }
-        });
+        addedmembers.setCellFactory(new Add());
+        results.setCellFactory(new results());
 
     }
+
+
+
+    class Add implements Callback<ListView<String>, ListCell<String>> {
+        HBox hBox = new HBox();
+        Label label = new Label();
+        Pane pane = new Pane();
+        Button button = new Button();
+
+        public Add() {
+            super();
+            hBox.getChildren().addAll(label,pane,button);
+            HBox.setHgrow(pane,Priority.ALWAYS);
+            button.setText("x");
+        }
+
+
+        @Override
+        public ListCell<String> call(ListView<String> param) {
+
+            return new ListCell<String>(){
+                @Override
+                public void updateItem(String person, boolean empty) {
+                    super.updateItem(person, empty);
+                    if (empty || person == null) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        label.setText(person);
+                        setGraphic(hBox);
+                        button.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                getAddedmembers().getItems().remove(person);
+                            }
+                        });
+                    }
+                }
+            };
+        }
+    }
+
+    class results implements Callback<ListView<String>, ListCell<String>> {
+        HBox hBox = new HBox();
+        Label label = new Label();
+        Pane pane = new Pane();
+        Button button = new Button();
+
+        public results() {
+            super();
+            hBox.getChildren().addAll(label,pane,button);
+            HBox.setHgrow(pane,Priority.ALWAYS);
+            button.setText("+");
+        }
+
+
+        @Override
+        public ListCell<String> call(ListView<String> param) {
+
+            return new ListCell<String>(){
+                @Override
+                public void updateItem(String person, boolean empty) {
+                    super.updateItem(person, empty);
+                    if (empty || person == null) {
+                    } else {
+                        label.setText(person);
+                        setGraphic(hBox);
+                        button.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                setSelecteduser(person);
+                                selected = dataBase.User_finder_U(getSelecteduser());
+
+                                if (user.checkblock(selected)){
+                                    errorbox.setText("This user has blocked you!");
+                                }
+                                else {
+                                    errorbox.setText("");
+                                    getAddedmembers().getItems().add(getSelecteduser());
+                                    getAddedmemb().add(selected);
+                                }
+
+                                if (getAddedmemb().size() == 0){
+                                    members = false;
+                                }
+                                else {
+                                    members = true;
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+        }
+    }
 }
+
