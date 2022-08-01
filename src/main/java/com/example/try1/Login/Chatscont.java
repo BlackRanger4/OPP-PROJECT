@@ -62,14 +62,11 @@ public class Chatscont implements Initializable {
     public void Sort_Pv_Chats_with_time(){
 
         quickSort(pv_chats,0,pv_chats.size()-1);
-
         NumOf_noSee.clear();
         for (PV_Chat pv_chat : pv_chats) {
             NumOf_noSee.add(pv_chat.How_many_Message_not_see(user));
         }
-
     }
-
     public void swap(ArrayList<PV_Chat> PV, int i, int j) {
 
         PV_Chat temp = PV.get(i);
@@ -105,8 +102,8 @@ public class Chatscont implements Initializable {
 
     public void Sort_Group_Chats_with_time(){
 
-        quickSorT(group_chats,0,pv_chats.size()-1);
 
+        quickSorT(group_chats,0,group_chats.size()-1);
         NumOf_noSee.clear();
         for (Group_Chat group_chat : group_chats) {
             NumOf_noSee.add(group_chat.How_many_Message_not_see(user));
@@ -197,6 +194,7 @@ public class Chatscont implements Initializable {
                 else {
                     groupchatsname.add(group_chats.get(i).getGroupName());
                 }
+
             }
         }
     }

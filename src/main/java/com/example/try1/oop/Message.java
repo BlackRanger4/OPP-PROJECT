@@ -79,7 +79,7 @@ public class Message implements Serializable {
 
     public boolean IsAfter(Message message){
 
-        if (this.Creat_time_date.isAfter(message.getCreat_time_date())){
+        if (!this.Creat_time_date.isBefore(message.getCreat_time_date())){
             if (this.Creat_time_our.isAfter(message.getCreat_time_our())){
                 return true;
             }

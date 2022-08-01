@@ -3,7 +3,7 @@ package com.example.try1.oop;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 import org.apache.commons.lang3.*;
 
@@ -98,7 +98,7 @@ public class DataBase implements Serializable {
     public Connection getConnection() throws Exception {
         String url = "jdbc:mysql://localhost:3306/daz";
         String username = "root";
-        String password = "400101572";
+        String password = "1363344552Sad";
         Connection conn = DriverManager.getConnection(url, username, password);
         return conn;
     }
