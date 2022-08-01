@@ -2,6 +2,8 @@ package com.example.try1.oop;
 
 
 
+import javafx.scene.image.Image;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class Group_Chat implements Serializable {
     private DataBase data;
     private ArrayList<Message> Messages = new ArrayList<>();
     private LocalDate CreateTime ;
+    private String image;
 
     public ArrayList<User> getMembers() {
         return Members;
@@ -29,6 +32,13 @@ public class Group_Chat implements Serializable {
     }
     public LocalDate getCreateTime() {
         return CreateTime;
+    }
+    public Image getImage() {
+        Image image = new Image(this.image);
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public void Add_Message(Message message){
@@ -59,12 +69,13 @@ public class Group_Chat implements Serializable {
         return result;
     }
 
-    public Group_Chat(ArrayList<User> members, User admin, String groupName, DataBase data) {
+    public Group_Chat(ArrayList<User> members, User admin, String groupName, DataBase data ,String image) {
         Members = members;
         Admin = admin;
         GroupName = groupName;
         this.data = data;
         CreateTime = LocalDate.now();
+        this.image = image;
     }
 
     /*

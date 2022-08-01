@@ -214,7 +214,7 @@ public class User implements Serializable {
     }
 
     public void creategroup (String groupname , ArrayList<User> temp) {
-        Group_Chat test = new Group_Chat(temp,this,groupname,database);
+        Group_Chat test = new Group_Chat(temp,this,groupname,database,null);
         int i;
         int cap = temp.size();
         getMy_Group_Chat().add(test);

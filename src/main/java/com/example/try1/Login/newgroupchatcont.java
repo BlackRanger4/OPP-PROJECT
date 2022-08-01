@@ -2,10 +2,6 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -18,7 +14,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
@@ -39,7 +34,6 @@ public class newgroupchatcont implements Initializable, Serializable {
     private static Stage stage;
     private Scene scene;
 
-    public ArrayList<User> users;
     public ArrayList<User> addedmemb;
     public String selecteduser;
     public User selected;
@@ -63,11 +57,9 @@ public class newgroupchatcont implements Initializable, Serializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        if (users != null) {
-            users.clear();
-        }
         ArrayList<User> users = dataBase.User_Search(username.getText());
-        ArrayList<User> temp = new ArrayList<>();
+        users.remove(user);
+
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
         }
@@ -177,14 +169,6 @@ public class newgroupchatcont implements Initializable, Serializable {
 
     public void setScene(Scene scene) {
         this.scene = scene;
-    }
-
-    public ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
     }
 
     public String getSelecteduser() {

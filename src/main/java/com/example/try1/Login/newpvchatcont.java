@@ -12,7 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -28,7 +27,6 @@ public class newpvchatcont implements Initializable {
     private static Stage stage;
     private Scene scene;
 
-    public ArrayList<User> users;
     public String selectedpv;
     public User selected;
     public PV_Chat created;
@@ -37,10 +35,8 @@ public class newpvchatcont implements Initializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        if (users != null) {
-            users.clear();
-        }
         ArrayList<User> users = dataBase.User_Search(username.getText());
+        users.remove(user);
         for (User value : users) {
             results.getItems().add(value.getUser_Name());
         }

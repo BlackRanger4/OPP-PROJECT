@@ -18,9 +18,9 @@ public class Comment implements Serializable {
 
     public Comment(User user , String text){
         this.Sender = user ;
-        this.Text = user.getUser_Name()+":"+text+"\n"+CreatTime+" "+Creat_our ;
         CreatTime = LocalDate.now();
         Creat_our = LocalTime.now();
+        this.Text = user.getUser_Name()+":"+text+"\n"+CreatTime+" "+Creat_our ;
     }
 
 }

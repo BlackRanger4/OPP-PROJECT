@@ -33,12 +33,11 @@ public class RecommendUser implements Serializable {
             recommend_user.addAll(value.getMy_Following());
         }
 
-        int Size_R = recommend_user.size();
-        for (int i=0 ; i < Size_R ;){
 
-            if (user.Is_my_followers(recommend_user.get(i))){
+        for (int i=0 ; i < recommend_user.size() ;){
+
+            if (recommend_user.get(i).Is_my_followers(user)){
                 recommend_user.remove(i);
-                Size_R--;
 
             }else {
                 i++;
@@ -46,7 +45,7 @@ public class RecommendUser implements Serializable {
 
         }
 
-        Size_R = recommend_user.size();
+        int Size_R = recommend_user.size();
         ArrayList<Integer> score = new ArrayList<>() ;
         int scorei ;
         for (int i=0; i<Size_R ; i++){
@@ -60,15 +59,16 @@ public class RecommendUser implements Serializable {
             }
             score.add(scorei);
         }
-
+        recommend_user.remove(user);
         if (recommend_user.size() == 0){
             List.getItems().add(" sorry we cannot recommend a user to you for below reason.\n 1. you not follow a user " +
                     "\n 2. your followings not follow a user \n 3. you follow all of your following's followings  ");
         }
         else {
 
+
             int Max ;
-            for (int i =0 ; i < 10 ; i++){
+            for (int i =0 ; i < 10 && recommend_user.size()>0 ; i++){
 
                 Max = getIndexOfLargest(score);
                 if (Max == -1){
