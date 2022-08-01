@@ -38,7 +38,9 @@ public class SeePostOfUser implements Serializable {
             this.searchSelected = searchSelected;
             this.user = user;
             this.user_selected = user_selected;
-            Creater_prof.setImage(user_selected.getProfile_Image());
+            try {
+                Creater_prof.setImage(user_selected.getProfile_Image());
+            }catch (Exception e){}
             Creater.setText(user_selected.getUser_Name());
             Text.setText("");
             Error.setText("");
@@ -53,7 +55,9 @@ public class SeePostOfUser implements Serializable {
 
         try {
             Post post = user_selected.getMy_Posts().get(post_num);
-            Post_image.setImage(post.getImage());
+            try {
+                Post_image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
             Text.setText("");
             Views.setText("Views:" + post.getViews());
@@ -99,7 +103,7 @@ public class SeePostOfUser implements Serializable {
     public void Add_Comment(MouseEvent mouseEvent) {
 
         try {
-            if (Text.getText().equals("")) {
+            if (!Text.getText().equals("")) {
                 Comment comment = new Comment(user, Text.getText());
                 user_selected.getMy_Posts().get(post_num).Add_Comment(comment);
             } else {

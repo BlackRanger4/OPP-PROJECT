@@ -144,6 +144,7 @@ public class Home implements Serializable {
 
     public void Next_Post(MouseEvent mouseEvent) {
 
+        Clear();
         post_num--;
         if (post_num <= -1){
             post_num =0;
@@ -153,19 +154,24 @@ public class Home implements Serializable {
             Post post = posts.get(post_num);
 
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
         }
         catch (Exception e){}
     }
     public void Next_Post() {
 
+        Clear();
         post_num--;
         if (post_num <= -1){
             post_num =0;
@@ -175,20 +181,25 @@ public class Home implements Serializable {
             Post post = posts.get(post_num);
 
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
         }
         catch (Exception e){}
     }
 
     public void Last_Post(MouseEvent mouseEvent) {
 
+        Clear();
         post_num++;
         if (post_num >= posts.size()){
             post_num = posts.size()-1;
@@ -198,34 +209,46 @@ public class Home implements Serializable {
             Post post = posts.get(post_num);
 
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
         }
         catch (Exception e){}
     }
 
+
     public void My_Post(MouseEvent mouseEvent) {
 
+        Clear();
+        Followings_num.setText("Followings:"+user.getMy_Followings_num());
+        Followers_num.setText("Followers:"+user.getMy_Followers_num());
         posts = user.getMy_Posts();
         post_num = posts.size()-1;
         Me_Or_Myfollowing = true;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
             Followers_num.setText("Followers:"+user.getMy_Followers_num());
             Followings_num.setText("Followings:"+user.getMy_Followings_num());
         }
@@ -244,21 +267,28 @@ public class Home implements Serializable {
     }
     public void My_Post() {
 
+        Clear();
         posts = user.getMy_Posts();
+        Followings_num.setText("Followings:"+user.getMy_Followings_num());
+        Followers_num.setText("Followers:"+user.getMy_Followers_num());
         post_num = posts.size()-1;
         Me_Or_Myfollowing = true;
 
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
             Followers_num.setText("Followers:"+user.getMy_Followers_num());
             Followings_num.setText("Followings:"+user.getMy_Followings_num());
 
@@ -277,22 +307,30 @@ public class Home implements Serializable {
         Remove_post.setText("Remove");
     }
 
+
     public void My_Following_Post(MouseEvent mouseEvent) {
 
+        Clear();
         posts = users.get(user_num).getMy_Posts();
+        Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
+        Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
         post_num = posts.size()-1;
         Me_Or_Myfollowing = false;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
             Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
             Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
         }
@@ -310,20 +348,27 @@ public class Home implements Serializable {
     }
     public void My_Following_Post() {
 
+        Clear();
         posts = users.get(user_num).getMy_Posts();
+        Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
+        Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
         post_num = posts.size()-1;
         Me_Or_Myfollowing = false;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
-            Post_Create_time.setText(post.getText());
-            Post_Image.setImage(post.getImage());
+            Post_text.setText(post.getText());
+            try {
+                Post_Image.setImage(post.getImage());
+            }catch (Exception e){}
             List.getItems().clear();
-            Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            try {
+                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes" + (post.getLikes()));
+            Posr_Likes.setText("Likes:" + (post.getLikes()));
             Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
             Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
         }
@@ -338,6 +383,18 @@ public class Home implements Serializable {
         }
         Remove_post.setText("---------");
 
+    }
+
+    public void Clear(){
+        Text_field.setText("");
+        Post_text.setText("");
+        Post_Image.setImage(null);
+        List.getItems().clear();
+        Post_Creater_Image.setImage(null);
+        Post_Create_time.setText("");
+        Post_Creater_Name.setText("");
+        Post_Views.setText("");
+        Posr_Likes.setText("");
     }
 
     public void Post_Analyze_or_Nextuser(MouseEvent mouseEvent) throws IOException {

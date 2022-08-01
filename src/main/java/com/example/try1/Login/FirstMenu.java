@@ -137,7 +137,7 @@ public class FirstMenu implements Serializable {
         }
         quickSort(scores ,0 ,Size1-1, posts);
         this.posts =posts;
-        post_Num = posts.size()-1;
+        post_Num = 0;
     }
     public void swap(int[] arr, int i, int j,ArrayList<Post> b_posts) {
 
@@ -159,7 +159,7 @@ public class FirstMenu implements Serializable {
         {
 
 
-            if (arr[j] < pivot)
+            if (arr[j] > pivot)
             {
                 i++;
                 swap(arr, i, j,b_posts);
@@ -198,15 +198,19 @@ public class FirstMenu implements Serializable {
             Post post = posts.get(post_Num);
             post.Add_View(user);
 
-            Prof_image_of_ads.setImage(post.getCreater().getProfile_Image());
+            try {
+                Prof_image_of_ads.setImage(post.getCreater().getProfile_Image());
+            }catch (Exception e){}
             Creater_name_of_ads.setText(post.getCreater().getUser_Name());
             Create_time_of_ads.setText(post.getCreatTime() + "," + post.getCreat_our());
             Likes_of_ads.setText("Likes:" + post.getLikes());
             Views_of_ads.setText("Views:" + post.getViews());
             Text_of_ads.setText(post.getText());
-            Image_of_ads.setImage(post.getImage());
+            try {
+                Image_of_ads.setImage(post.getImage());
+            }catch (Exception e){}
             List_of_ads.getItems().clear();
-            TextField_of_ads.setText("");
+
             if (post.getCreater().Is_my_followers(user)) {
                 Follow_unFollow.setText("Unfollow");
             } else {
@@ -297,20 +301,22 @@ public class FirstMenu implements Serializable {
 
     public void Last_ads(MouseEvent mouseEvent) {
 
-        post_Num++;
-        if (post_Num >= posts.size()){
-            post_Num = posts.size()-1;
-            TextField_of_ads.setText("its first post");
-        }
-
-    }
-
-    public void Next_ads(MouseEvent mouseEvent) {
         post_Num--;
         if (post_Num <= -1){
             post_Num =0;
+            TextField_of_ads.setText("its first post");
+        }
+        Upload_ads();
+    }
+
+    public void Next_ads(MouseEvent mouseEvent) {
+
+        post_Num++;
+        if (post_Num >= posts.size()){
+            post_Num = posts.size()-1;
             TextField_of_ads.setText("its last post");
         }
+        Upload_ads();
     }
     
 

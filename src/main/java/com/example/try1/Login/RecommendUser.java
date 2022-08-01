@@ -67,6 +67,7 @@ public class RecommendUser implements Serializable {
         }
         else {
 
+            recommend_user.remove(user);
             int Max ;
             for (int i =0 ; i < 10 ; i++){
 
