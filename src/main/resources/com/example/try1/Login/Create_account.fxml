@@ -12,7 +12,7 @@
          </font>
       </Button>
       <TextField fx:id="Text" layoutX="260.0" layoutY="260.0" prefHeight="50.0" prefWidth="380.0" />
-      <Label fx:id="Question" layoutX="300.0" layoutY="180.0" prefHeight="30.0" prefWidth="300.0"  textAlignment="CENTER" />
+      <Label fx:id="Question" layoutX="211.0" layoutY="192.0" prefHeight="30.0" prefWidth="478.0" textAlignment="CENTER" />
       <Button fx:id="Next_B" layoutX="410.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#Next" prefHeight="40.0" prefWidth="80.0" text="Next" />
       <Label fx:id="Error" layoutX="300.0" layoutY="350.0" prefHeight="20.0" prefWidth="300.0" textAlignment="CENTER" textFill="RED" />
    </children>

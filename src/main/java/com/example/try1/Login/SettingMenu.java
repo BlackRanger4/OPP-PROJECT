@@ -22,6 +22,7 @@ public class SettingMenu implements Serializable {
     public Label Information;
     public javafx.scene.control.Button Button;
     public ImageView Profile_fig;
+    public Label User_Name;
 
 
     private FirstMenu firstMenu;
@@ -34,6 +35,7 @@ public class SettingMenu implements Serializable {
         this.user =user;
         this.dataBase =dataBase;
 
+        User_Name.setText(user.getUser_Name());
         Information.setText(" Select a button ");
         Error.setText("");
         List.getItems().clear();
@@ -214,6 +216,7 @@ public class SettingMenu implements Serializable {
             Information.setText(" UserName changed ");
             Button.setText(".");
             Text.setText("");
+            User_Name.setText(user.getUser_Name());
         }
         else {
             Error.setText(" a user exist with this name ");
