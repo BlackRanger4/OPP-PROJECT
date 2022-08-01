@@ -26,6 +26,8 @@ public class Home implements Serializable {
     private DataBase dataBase;
     private User user;
 
+    boolean Me_Or_Myfollowing = true;
+
     public void home(Stage stage ,Scene scene,FirstMenu firstMenu,DataBase dataBase,User user){
 
         this.stage =stage;
@@ -51,7 +53,10 @@ public class Home implements Serializable {
     public Button Post_Next_button;
     public Button Create_fuf_button;
     public Button Remove_post;
-
+    public Label Followers_num;
+    public Label Followings_num;
+    public Button Followers_see_button;
+    public Button Followings_see_button;
 
     private ArrayList<User> users ;
     private int user_num =0;
@@ -209,7 +214,7 @@ public class Home implements Serializable {
 
         posts = user.getMy_Posts();
         post_num = posts.size()-1;
-
+        Me_Or_Myfollowing = true;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
@@ -221,6 +226,8 @@ public class Home implements Serializable {
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
             Posr_Likes.setText("Likes" + (post.getLikes()));
+            Followers_num.setText("Followers:"+user.getMy_Followers_num());
+            Followings_num.setText("Followings:"+user.getMy_Followings_num());
         }
         catch (Exception e){}
         if (user.getBusiness()){
@@ -239,7 +246,7 @@ public class Home implements Serializable {
 
         posts = user.getMy_Posts();
         post_num = posts.size()-1;
-
+        Me_Or_Myfollowing = true;
 
         try {
             Post post = posts.get(post_num);
@@ -252,6 +259,9 @@ public class Home implements Serializable {
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
             Posr_Likes.setText("Likes" + (post.getLikes()));
+            Followers_num.setText("Followers:"+user.getMy_Followers_num());
+            Followings_num.setText("Followings:"+user.getMy_Followings_num());
+
         }
         catch (Exception e){}
         if (user.getBusiness()){
@@ -271,7 +281,7 @@ public class Home implements Serializable {
 
         posts = users.get(user_num).getMy_Posts();
         post_num = posts.size()-1;
-
+        Me_Or_Myfollowing = false;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
@@ -283,6 +293,8 @@ public class Home implements Serializable {
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
             Posr_Likes.setText("Likes" + (post.getLikes()));
+            Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
+            Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
         }
         catch (Exception e){}
         Page_last_button.setText("Last user");
@@ -300,7 +312,7 @@ public class Home implements Serializable {
 
         posts = users.get(user_num).getMy_Posts();
         post_num = posts.size()-1;
-
+        Me_Or_Myfollowing = false;
         try {
             Post post = posts.get(post_num);
             Text_field.setText("");
@@ -312,6 +324,8 @@ public class Home implements Serializable {
             Post_Creater_Name.setText(post.getCreater().getUser_Name());
             Post_Views.setText("Views:" + (post.getViews()));
             Posr_Likes.setText("Likes" + (post.getLikes()));
+            Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
+            Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
         }
         catch (Exception e){}
         Page_last_button.setText("Last user");
@@ -406,4 +420,47 @@ public class Home implements Serializable {
         }
     }
 
+    public void Follower_See(MouseEvent mouseEvent) {
+
+        if (Me_Or_Myfollowing){
+            try {
+                List.getItems().clear();
+                ArrayList<User> users = user.getMy_Followers();
+                for (User user:users){
+                    List.getItems().add(user.getUser_Name());
+                }
+            }catch (Exception e){}
+        }
+        else {
+            try {
+                List.getItems().clear();
+                ArrayList<User> users = this.users.get(user_num).getMy_Followers();
+                for (User user:users){
+                    List.getItems().add(user.getUser_Name());
+                }
+            }catch (Exception e){}
+        }
+    }
+
+    public void Following_See(MouseEvent mouseEvent) {
+
+        if (Me_Or_Myfollowing){
+            try {
+                List.getItems().clear();
+                ArrayList<User> users = user.getMy_Following();
+                for (User user:users){
+                    List.getItems().add(user.getUser_Name());
+                }
+            }catch (Exception e){}
+        }
+        else {
+            try {
+                List.getItems().clear();
+                ArrayList<User> users = this.users.get(user_num).getMy_Following();
+                for (User user:users){
+                    List.getItems().add(user.getUser_Name());
+                }
+            }catch (Exception e){}
+        }
+    }
 }

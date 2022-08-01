@@ -1,35 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Home">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Home">
    <children>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="30.0" prefWidth="60.0" text="back" />
-      <Button fx:id="Create_fuf_button" layoutX="14.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#CraetePost_or_Follow_UnFollow" prefHeight="26.0" prefWidth="150.0" text="Create_Post" />
-      <Button layoutX="753.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#Add_Like" prefHeight="30.0" prefWidth="41.0" text="Like" />
-      <Button layoutX="698.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#Add_Comment" prefHeight="30.0" prefWidth="42.0" text="&gt;" />
-      <TextField fx:id="Text_field" layoutX="218.0" layoutY="535.0" prefHeight="26.0" prefWidth="463.0" />
-      <Label fx:id="Post_text" alignment="CENTER" layoutX="218.0" layoutY="348.0" prefHeight="67.0" prefWidth="463.0" text="Post_Text" />
-      <ImageView fx:id="Post_Image" fitHeight="319.0" fitWidth="463.0" layoutX="218.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="List" layoutX="218.0" layoutY="415.0" prefHeight="106.0" prefWidth="463.0" />
-      <ImageView fx:id="Post_Creater_Image" fitHeight="129.0" fitWidth="150.0" layoutX="712.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="Post_Creater_Name" alignment="CENTER" layoutX="719.0" layoutY="179.0" prefHeight="18.0" prefWidth="150.0" text="Createer" />
-      <Label fx:id="Post_Create_time" alignment="CENTER" layoutX="719.0" layoutY="220.0" prefHeight="18.0" prefWidth="150.0" text="Time" />
-      <Label fx:id="Post_Views" alignment="CENTER" layoutX="719.0" layoutY="261.0" prefHeight="18.0" prefWidth="150.0" text="Views" />
-      <Label fx:id="Posr_Likes" alignment="CENTER" layoutX="719.0" layoutY="306.0" prefHeight="18.0" prefWidth="150.0" text="Likes" />
-      <Button layoutX="719.0" layoutY="348.0" mnemonicParsing="false" onMouseClicked="#See_Likers" prefHeight="26.0" prefWidth="150.0" text="Likers" />
-      <Button layoutX="719.0" layoutY="382.0" mnemonicParsing="false" onMouseClicked="#See_Viewers" prefHeight="26.0" prefWidth="150.0" text="Viewers" />
-      <Button layoutX="719.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#See_Comments" prefHeight="26.0" prefWidth="150.0" text="Comments" />
-      <Button layoutX="719.0" layoutY="455.0" mnemonicParsing="false" onMouseClicked="#Next_Post" prefHeight="26.0" prefWidth="150.0" text="Next" />
-      <Button layoutX="719.0" layoutY="488.0" mnemonicParsing="false" onMouseClicked="#Last_Post" prefHeight="26.0" prefWidth="150.0" text="Last" />
+      <Button fx:id="Create_fuf_button" layoutX="14.0" layoutY="257.0" mnemonicParsing="false" onMouseClicked="#CraetePost_or_Follow_UnFollow" prefHeight="26.0" prefWidth="150.0" text="Create_Post" />
+      <Button layoutX="268.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#Add_Like" prefHeight="48.0" prefWidth="42.0" text="Like" />
+      <Button layoutX="810.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#Add_Comment" prefHeight="30.0" prefWidth="34.0" text="&gt;" />
+      <TextField fx:id="Text_field" layoutX="634.0" layoutY="475.0" prefHeight="26.0" prefWidth="176.0" />
+      <Label fx:id="Post_text" alignment="CENTER" layoutX="309.0" layoutY="464.0" prefHeight="48.0" prefWidth="293.0" text="Post_Text" />
+      <ImageView fx:id="Post_Image" fitHeight="354.0" fitWidth="334.0" layoutX="268.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="List" layoutX="634.0" layoutY="119.0" prefHeight="348.0" prefWidth="207.0" />
+      <ImageView fx:id="Post_Creater_Image" fitHeight="73.0" fitWidth="83.0" layoutX="268.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="Post_Creater_Name" alignment="CENTER" layoutX="344.0" layoutY="44.0" prefHeight="18.0" prefWidth="248.0" text="Createer" />
+      <Label fx:id="Post_Create_time" alignment="CENTER" layoutX="344.0" layoutY="65.0" prefHeight="18.0" prefWidth="248.0" text="Time" />
+      <Label fx:id="Post_Views" alignment="CENTER" layoutX="351.0" layoutY="92.0" prefHeight="18.0" prefWidth="118.0" text="Views" />
+      <Label fx:id="Posr_Likes" alignment="CENTER" layoutX="469.0" layoutY="92.0" prefHeight="18.0" prefWidth="126.0" text="Likes" />
+      <Button layoutX="268.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#See_Likers" prefHeight="26.0" prefWidth="111.0" text="Likers" />
+      <Button layoutX="490.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#See_Viewers" prefHeight="26.0" prefWidth="111.0" text="Viewers" />
+      <Button layoutX="379.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#See_Comments" prefHeight="26.0" prefWidth="111.0" text="Comments" />
+      <Button layoutX="451.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#Next_Post" prefHeight="26.0" prefWidth="150.0" text="Next" />
+      <Button layoutX="268.0" layoutY="559.0" mnemonicParsing="false" onMouseClicked="#Last_Post" prefHeight="26.0" prefWidth="150.0" text="Last" />
       <Button layoutX="14.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#My_Post" prefHeight="26.0" prefWidth="150.0" text="My Posts" />
       <Button layoutX="14.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#My_Following_Post" prefHeight="26.0" prefWidth="150.0" text="My Following posts" />
-      <Button fx:id="Post_Next_button" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#Post_Analyze_or_Nextuser" prefHeight="26.0" prefWidth="150.0" text="Post_Analyze" />
-      <Button fx:id="Page_last_button" layoutX="14.0" layoutY="279.0" mnemonicParsing="false" onMouseClicked="#Page_Analyze_or_Pastuser" prefHeight="26.0" prefWidth="150.0" text="Page_Analyze" />
-      <Button layoutX="14.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Remove_Post"
-      fx:id="Remove_post" onMouseClicked="#Remove_post"
+      <Button fx:id="Post_Next_button" layoutX="14.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#Post_Analyze_or_Nextuser" prefHeight="26.0" prefWidth="150.0" text="Post_Analyze" />
+      <Button fx:id="Page_last_button" layoutX="14.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#Page_Analyze_or_Pastuser" prefHeight="26.0" prefWidth="150.0" text="Page_Analyze" />
+      <Button fx:id="Remove_post" layoutX="14.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#Remove_post" prefHeight="26.0" prefWidth="150.0" text="Remove_Post" />
+      <Label alignment="CENTER" layoutX="634.0" layoutY="31.0" prefHeight="26.0" prefWidth="165.0" text="Followers"
+      fx:id="Followers_num"
+      />
+      <Label alignment="CENTER" layoutX="634.0" layoutY="61.0" prefHeight="26.0" prefWidth="166.0" text="Followings"
+      fx:id="Followings_num"
+      />
+      <Button layoutX="798.0" layoutY="31.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="see"
+      fx:id="Followers_see_button" onMouseClicked="#Follower_See"
+      />
+      <Button layoutX="798.0" layoutY="61.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="see"
+              fx:id="Followings_see_button" onMouseClicked="#Following_See"
       />
    </children>
 </AnchorPane>
