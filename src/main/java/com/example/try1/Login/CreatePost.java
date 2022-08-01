@@ -35,10 +35,16 @@ public class CreatePost implements Serializable {
         if (!Text.getText().equals("") || image.getImage() != null) {
 
             try {
-                Post post = new Post(user,Text.getText(),file.toURI().toString());
-                user.Add_post(post);
+                if (file != null) {
+                    Post post = new Post(user, Text.getText(), file.toURI().toString());
+                    user.Add_post(post);
+                }
+                else {
+                    Post post = new Post( Text.getText(),user);
+                    user.Add_post(post);
+                }
+                home.back();
             }catch (Exception e){}
-            home.back();
         }
         else {
             Text.setText(" enter a text or add a fig ");
