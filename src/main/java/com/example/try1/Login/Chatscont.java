@@ -30,11 +30,13 @@ import java.util.ResourceBundle;
 
 public class Chatscont implements Initializable {
 
+    public Label PV_GROUP_NAME;
     public ListView<String> List;
     public ListView<Message> Listchat;
     public ChoiceBox<String> porg;
     public Button send;
     public TextArea mssgtext;
+    public ImageView PV_GROUP_image;
 
     private DataBase dataBase;
     private User user;
@@ -261,7 +263,7 @@ public class Chatscont implements Initializable {
         if ( file != null) {
             try {
                 Image image = new Image(file.toURI().toString());
-                Message message = new Message(user,null,null,null,file.toURI().toString());
+                Message message = new Message(user,mssgtext.getText(),null,null,file.toURI().toString());
                 if (!pvorgr) {
                     selectedpv.getMessages().add(message);
                     Listchat.getItems().clear();
@@ -274,6 +276,7 @@ public class Chatscont implements Initializable {
                     Listchat.getItems().addAll(selectedgr.getMessages());
                     mssgtext.setText("");
                 }
+
             }
             catch (Exception e){}
         }
@@ -283,6 +286,7 @@ public class Chatscont implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         Listchat.setCellFactory(new Callback<ListView<Message>, ListCell<Message>>() {
             @Override
@@ -301,12 +305,30 @@ public class Chatscont implements Initializable {
                 if (!pvorgr){
                     indexof = pvchatsname.indexOf(selectedchat);
                     selectedpv = pv_chats.get(indexof);
+
+                    if (!selectedpv.getFirst().equals(user)) {
+                        PV_GROUP_NAME.setText(selectedpv.getFirst().getUser_Name());
+                        try {
+                            PV_GROUP_image.setImage(selectedpv.getFirst().getProfile_Image());
+                        }catch (Exception e){}
+                    }
+                    else {
+                        PV_GROUP_NAME.setText(selectedpv.getSecond().getUser_Name());
+                        try {
+                            PV_GROUP_image.setImage(selectedpv.getSecond().getProfile_Image());
+                        }catch (Exception e){}
+                    }
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedpv.getMessages());
                 }
                 else {
                     indexof = groupchatsname.indexOf(selectedchat);
                     selectedgr = group_chats.get(indexof);
+                    PV_GROUP_NAME.setText(selectedgr.getGroupName());
+                    try {
+                        PV_GROUP_image.setImage(selectedgr.getImage());
+                    }catch (Exception e){}
+
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedgr.getMessages());
                 }
@@ -433,22 +455,26 @@ public class Chatscont implements Initializable {
                 if (mssg.getImage() == null && mssg.getText() == null) {
                     setText(null);
                     setGraphic(null);
+                    System.out.println("1111");
                 } else if (mssg.getText() != null && mssg.getImage() == null) {
                     label.setText(mssg.getText());
                     setGraphic(hbox);
+                    System.out.println("2222");
                 } else if (mssg.getText() == null && mssg.getImage() != null) {
                     imgview.setImage(mssg.getImage());
                     double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
                     imgview.setFitWidth(300);
-                    imgview.setFitHeight(300*cons);
+                    imgview.setFitHeight(300.0*cons);
                     setGraphic(hbox);
+                    System.out.println("3333");
                 } else {
                     label.setText(mssg.getText());
                     imgview.setImage(mssg.getImage());
                     double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
                     imgview.setFitWidth(300);
-                    imgview.setFitHeight(300*cons);
+                    imgview.setFitHeight(300.0*cons);
                     setGraphic(hbox);
+                    System.out.println("4444");
                 }
             }
         }
