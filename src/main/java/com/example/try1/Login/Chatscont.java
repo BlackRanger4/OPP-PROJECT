@@ -59,6 +59,7 @@ public class Chatscont implements Initializable {
     public int indexof;
     boolean pvorgr;
     public String textmssg;
+    boolean editing;
 
 
     public void Sort_Pv_Chats_with_time(){
@@ -135,6 +136,7 @@ public class Chatscont implements Initializable {
         swaP(PV, i + 1, high);
         return (i + 1);
     }
+
     public void quickSorT(ArrayList<Group_Chat> PV, int low, int high) {
         if (low < high)
         {
@@ -155,6 +157,7 @@ public class Chatscont implements Initializable {
         this.group_chats = user.getMy_Group_Chat();
         this.pvchatsname = new ArrayList<>();
         this.groupchatsname = new ArrayList<>();
+        editing = false;
     }
 
     public void extpvchats() {
@@ -204,7 +207,7 @@ public class Chatscont implements Initializable {
     public void Back(MouseEvent mouseEvent) {
         firstMenu.Back();
     }
-    public void back(){
+    public void back() {
         stage.setScene(scene);
     }
 
@@ -239,21 +242,30 @@ public class Chatscont implements Initializable {
     }
 
     public void sendmassage () {
+
+        if (editing) {
+
+        }
+
+
         textmssg = mssgtext.getText();
-        Message temp = new Message(user,textmssg,null,null,null);
-        if (!pvorgr) {
-            selectedpv.getMessages().add(temp);
-            Listchat.getItems().clear();
-            Listchat.getItems().addAll(selectedpv.getMessages());
-            mssgtext.setText("");
+        if (!textmssg.equals("")) {
+            Message temp = new Message(user, textmssg, null, null, null);
+            if (!pvorgr) {
+                selectedpv.getMessages().add(temp);
+                Listchat.getItems().clear();
+                Listchat.getItems().addAll(selectedpv.getMessages());
+                mssgtext.setText("");
+            } else {
+                selectedgr.getMessages().add(temp);
+                Listchat.getItems().clear();
+                Listchat.getItems().addAll(selectedgr.getMessages());
+                mssgtext.setText("");
+            }
         }
-        else {
-            selectedgr.getMessages().add(temp);
-            Listchat.getItems().clear();
-            Listchat.getItems().addAll(selectedgr.getMessages());
-            mssgtext.setText("");
-        }
+
     }
+
     public void Add_Fig(MouseEvent mouseEvent) {
 
         FileChooser fileChooser = new FileChooser();
@@ -295,6 +307,7 @@ public class Chatscont implements Initializable {
             }
         });
 
+
         porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
 
         getList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -302,7 +315,7 @@ public class Chatscont implements Initializable {
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
 
                 selectedchat = getList().getSelectionModel().getSelectedItem();
-                if (!pvorgr){
+                if (!pvorgr) {
                     indexof = pvchatsname.indexOf(selectedchat);
                     selectedpv = pv_chats.get(indexof);
 
@@ -320,8 +333,7 @@ public class Chatscont implements Initializable {
                     }
                     Listchat.getItems().clear();
                     Listchat.getItems().addAll(selectedpv.getMessages());
-                }
-                else {
+                } else {
                     indexof = groupchatsname.indexOf(selectedchat);
                     selectedgr = group_chats.get(indexof);
                     PV_GROUP_NAME.setText(selectedgr.getGroupName());
@@ -334,14 +346,7 @@ public class Chatscont implements Initializable {
                 }
             }
         });
-
     }
-
-
-
-
-
-
 
     public PV_Chat getSelectedpv() {
         return selectedpv;
@@ -434,10 +439,18 @@ public class Chatscont implements Initializable {
     }
 
     class chatshow extends ListCell<Message> {
+
+
         HBox hbox = new HBox();
         ImageView imgview = new ImageView();
         Pane pane = new Pane();
         Label label = new Label();
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem edit = new MenuItem();
+        MenuItem delete = new MenuItem();
+        MenuItem reply = new MenuItem();
+        MenuItem forward = new MenuItem();
+
 
         public chatshow() {
             super();
@@ -445,28 +458,28 @@ public class Chatscont implements Initializable {
             HBox.setHgrow(pane, Priority.ALWAYS);
         }
 
+
         @Override
         public void updateItem(Message mssg , boolean empty) {
+
+
             super.updateItem(mssg, empty);
-            if (mssg == null) {
+            if ( empty || mssg == null ) {
+                setText(null);
                 setGraphic(null);
             }
             else {
                 if (mssg.getImage() == null && mssg.getText() == null) {
                     setText(null);
                     setGraphic(null);
-                    System.out.println("1111");
                 } else if (mssg.getText() != null && mssg.getImage() == null) {
-                    label.setText(mssg.getText());
-                    setGraphic(hbox);
-                    System.out.println("2222");
+                    setText(mssg.getText());
                 } else if (mssg.getText() == null && mssg.getImage() != null) {
                     imgview.setImage(mssg.getImage());
                     double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
                     imgview.setFitWidth(300);
                     imgview.setFitHeight(300.0*cons);
                     setGraphic(hbox);
-                    System.out.println("3333");
                 } else {
                     label.setText(mssg.getText());
                     imgview.setImage(mssg.getImage());
@@ -474,9 +487,10 @@ public class Chatscont implements Initializable {
                     imgview.setFitWidth(300);
                     imgview.setFitHeight(300.0*cons);
                     setGraphic(hbox);
-                    System.out.println("4444");
                 }
             }
+
+
         }
 
     }
