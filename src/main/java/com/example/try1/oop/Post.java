@@ -87,7 +87,6 @@ public class Post implements Serializable {
 
         if (!Viwer.contains(user)){
             Viwer.add(user);
-            //Views++;
 
             if (business){
                 Add_view_b();

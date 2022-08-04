@@ -25,7 +25,7 @@ public class FirstMenu implements Serializable {
     private Scene scene;
 
 
-    //////nk//////
+    //////ok//////
     public void Home(MouseEvent mouseEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
@@ -102,13 +102,7 @@ public class FirstMenu implements Serializable {
     }
     public void ads_recomment(){
 
-        ArrayList<User> following_user = user.getMy_Following();
-
-        ArrayList<Post> posts = new ArrayList<>();
-
-        for (User item : following_user) {
-            posts.addAll(item.getMy_B_Posts_like());
-        }
+        ArrayList<Post> posts = get_B_post();
 
         int Size1 = posts.size();
 
@@ -122,15 +116,15 @@ public class FirstMenu implements Serializable {
             }
         }
 
+        ArrayList<User> users = get_B_liked_post_user(posts);
+
         Size1 = posts.size();
         int[] scores = new int[Size1] ;
 
         for (int i =0 ; i< Size1 ; i++){
             scores[i] = 0 ;
-            for (User value : following_user) {
-
+            for (User value : users) {
                 if (value.Is_B_Post_liked(posts.get(i))) {
-
                     scores[i]++;
                 }
             }
@@ -138,6 +132,42 @@ public class FirstMenu implements Serializable {
         quickSort(scores ,0 ,Size1-1, posts);
         this.posts =posts;
         post_Num = 0;
+    }
+    public ArrayList<Post> get_B_post(){
+
+        ArrayList<Post> posts = new ArrayList<>();
+        ArrayList<Post> B_post_liked = user.getMy_B_Posts_like();
+
+        for (Post post : B_post_liked) {
+            ArrayList<User> users = post.getLikers();
+            users.remove(this.user);
+            for (User user : users) {
+                ArrayList<Post> temp = user.getMy_B_Posts_like();
+                for (Post post1 : temp){
+                    if (!posts.contains(post1)){
+                        posts.add(post1);
+                    }
+                }
+            }
+        }
+
+        return posts;
+    }
+    public ArrayList<User> get_B_liked_post_user(ArrayList<Post> posts){
+
+        ArrayList<User> users = new ArrayList<>();
+
+        for (Post post :posts){
+            ArrayList<User> users1 = post.getLikers();
+            for (User user :users1){
+                if (!users.contains(user)){
+                    users.add(user);
+                }
+            }
+        }
+
+        users.remove(this.user);
+        return users;
     }
     public void swap(int[] arr, int i, int j,ArrayList<Post> b_posts) {
 

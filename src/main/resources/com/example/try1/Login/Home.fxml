@@ -32,17 +32,10 @@
       <Button fx:id="Post_Next_button" layoutX="14.0" layoutY="197.0" mnemonicParsing="false" onMouseClicked="#Post_Analyze_or_Nextuser" prefHeight="26.0" prefWidth="150.0" text="Post_Analyze" />
       <Button fx:id="Page_last_button" layoutX="14.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#Page_Analyze_or_Pastuser" prefHeight="26.0" prefWidth="150.0" text="Page_Analyze" />
       <Button fx:id="Remove_post" layoutX="14.0" layoutY="287.0" mnemonicParsing="false" onMouseClicked="#Remove_post" prefHeight="26.0" prefWidth="150.0" text="Remove_Post" />
-      <Label alignment="CENTER" layoutX="634.0" layoutY="31.0" prefHeight="26.0" prefWidth="165.0" text="Followers"
-      fx:id="Followers_num"
-      />
-      <Label alignment="CENTER" layoutX="634.0" layoutY="61.0" prefHeight="26.0" prefWidth="166.0" text="Followings"
-      fx:id="Followings_num"
-      />
-      <Button layoutX="798.0" layoutY="31.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="see"
-      fx:id="Followers_see_button" onMouseClicked="#Follower_See"
-      />
-      <Button layoutX="798.0" layoutY="61.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="see"
-              fx:id="Followings_see_button" onMouseClicked="#Following_See"
-      />
+      <Label fx:id="Followers_num" alignment="CENTER" layoutX="634.0" layoutY="31.0" prefHeight="26.0" prefWidth="165.0" text="Followers" />
+      <Label fx:id="Followings_num" alignment="CENTER" layoutX="634.0" layoutY="61.0" prefHeight="26.0" prefWidth="166.0" text="Followings" />
+      <Button fx:id="Followers_see_button" layoutX="798.0" layoutY="31.0" mnemonicParsing="false" onMouseClicked="#Follower_See" prefHeight="26.0" prefWidth="42.0" text="see" />
+      <Button fx:id="Followings_see_button" layoutX="798.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#Following_See" prefHeight="26.0" prefWidth="42.0" text="see" />
+      <Label fx:id="owner_name" alignment="CENTER" layoutX="634.0" layoutY="4.0" prefHeight="18.0" prefWidth="207.0" text="page owner" />
    </children>
 </AnchorPane>

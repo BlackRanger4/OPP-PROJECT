@@ -24,6 +24,26 @@ public class RecommendUser implements Serializable {
         User_recommend();
     }
 
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list) {
+
+        // Create a new ArrayList
+        ArrayList<T> newList = new ArrayList<T>();
+
+        // Traverse through the first list
+        for (T element : list) {
+
+            // If this element is not present in newList
+            // then add it
+            if (!newList.contains(element)) {
+
+                newList.add(element);
+            }
+        }
+
+        // return the new list
+        return newList;
+    }
+
     public void User_recommend(){
 
         ArrayList<User> following_user = user.getMy_Following();
@@ -44,6 +64,8 @@ public class RecommendUser implements Serializable {
             }
 
         }
+
+        recommend_user = removeDuplicates(recommend_user);
 
         int Size_R = recommend_user.size();
         ArrayList<Integer> score = new ArrayList<>() ;
@@ -75,6 +97,7 @@ public class RecommendUser implements Serializable {
                     break;
                 }
                 List.getItems().add(recommend_user.get(Max).getUser_Name());
+
                 score.remove(Max);
                 recommend_user.remove(Max);
 

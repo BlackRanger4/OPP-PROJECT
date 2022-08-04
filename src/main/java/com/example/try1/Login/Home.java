@@ -57,6 +57,7 @@ public class Home implements Serializable {
     public Label Followings_num;
     public Button Followers_see_button;
     public Button Followings_see_button;
+    public Label owner_name;
 
     private ArrayList<User> users ;
     private int user_num =0;
@@ -152,6 +153,7 @@ public class Home implements Serializable {
 
         try {
             Post post = posts.get(post_num);
+            post.Add_View(user);
 
             Text_field.setText("");
             Post_text.setText(post.getText());
@@ -179,6 +181,7 @@ public class Home implements Serializable {
 
         try {
             Post post = posts.get(post_num);
+            post.Add_View(user);
 
             Text_field.setText("");
             Post_text.setText(post.getText());
@@ -207,6 +210,7 @@ public class Home implements Serializable {
 
         try {
             Post post = posts.get(post_num);
+            post.Add_View(user);
 
             Text_field.setText("");
             Post_text.setText(post.getText());
@@ -229,6 +233,7 @@ public class Home implements Serializable {
     public void My_Post(MouseEvent mouseEvent) {
 
         Clear();
+        owner_name.setText(user.getUser_Name());
         Followings_num.setText("Followings:"+user.getMy_Followings_num());
         Followers_num.setText("Followers:"+user.getMy_Followers_num());
         posts = user.getMy_Posts();
@@ -269,6 +274,7 @@ public class Home implements Serializable {
 
         Clear();
         posts = user.getMy_Posts();
+        owner_name.setText(user.getUser_Name());
         Followings_num.setText("Followings:"+user.getMy_Followings_num());
         Followers_num.setText("Followers:"+user.getMy_Followers_num());
         post_num = posts.size()-1;
@@ -311,76 +317,92 @@ public class Home implements Serializable {
     public void My_Following_Post(MouseEvent mouseEvent) {
 
         Clear();
-        posts = users.get(user_num).getMy_Posts();
-        Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
-        Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
-        post_num = posts.size()-1;
-        Me_Or_Myfollowing = false;
         try {
-            Post post = posts.get(post_num);
-            Text_field.setText("");
-            Post_text.setText(post.getText());
+            posts = users.get(user_num).getMy_Posts();
+            owner_name.setText(users.get(user_num).getUser_Name());
+            Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());
+            Followers_num.setText("Followers:" + users.get(user_num).getMy_Followers_num());
+            post_num = posts.size() - 1;
+            Me_Or_Myfollowing = false;
             try {
-                Post_Image.setImage(post.getImage());
-            }catch (Exception e){}
-            List.getItems().clear();
-            try {
-                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-            }catch (Exception e){}
-            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
-            Post_Creater_Name.setText(post.getCreater().getUser_Name());
-            Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes:" + (post.getLikes()));
-            Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
-            Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
+                Post post = posts.get(post_num);
+                post.Add_View(user);
+                Text_field.setText("");
+                Post_text.setText(post.getText());
+                try {
+                    Post_Image.setImage(post.getImage());
+                } catch (Exception e) {
+                }
+                List.getItems().clear();
+                try {
+                    Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+                } catch (Exception e) {
+                }
+                Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+                Post_Creater_Name.setText(post.getCreater().getUser_Name());
+                Post_Views.setText("Views:" + (post.getViews()));
+                Posr_Likes.setText("Likes:" + (post.getLikes()));
+                Followers_num.setText("Followers:" + users.get(user_num).getMy_Followers_num());
+                Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());
+            } catch (Exception e) {}
+
+            if (users.get(user_num).Is_my_followers(user)) {
+                Create_fuf_button.setText("unFollow");
+            }
+            else {
+                Create_fuf_button.setText("Follow");
+            }
+
+        }catch (Exception e){
+            owner_name.setText("you are not following a user");
         }
-        catch (Exception e){}
         Page_last_button.setText("Last user");
         Post_Next_button.setText("Next user");
-        if (users.get(user_num).Is_my_followers(user)) {
-            Create_fuf_button.setText("unFollow");
-        }
-        else {
-            Create_fuf_button.setText("Follow");
-        }
         Remove_post.setText("---------");
 
     }
     public void My_Following_Post() {
 
         Clear();
-        posts = users.get(user_num).getMy_Posts();
-        Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
-        Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
-        post_num = posts.size()-1;
-        Me_Or_Myfollowing = false;
         try {
-            Post post = posts.get(post_num);
-            Text_field.setText("");
-            Post_text.setText(post.getText());
+            posts = users.get(user_num).getMy_Posts();
+            owner_name.setText(users.get(user_num).getUser_Name());
+            Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());
+            Followers_num.setText("Followers:" + users.get(user_num).getMy_Followers_num());
+            post_num = posts.size() - 1;
+            Me_Or_Myfollowing = false;
             try {
-                Post_Image.setImage(post.getImage());
-            }catch (Exception e){}
-            List.getItems().clear();
-            try {
-                Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
-            }catch (Exception e){}
-            Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
-            Post_Creater_Name.setText(post.getCreater().getUser_Name());
-            Post_Views.setText("Views:" + (post.getViews()));
-            Posr_Likes.setText("Likes:" + (post.getLikes()));
-            Followers_num.setText("Followers:"+users.get(user_num).getMy_Followers_num());
-            Followings_num.setText("Followings:"+users.get(user_num).getMy_Followings_num());
+                Post post = posts.get(post_num);
+                post.Add_View(user);
+                Text_field.setText("");
+                Post_text.setText(post.getText());
+                try {
+                    Post_Image.setImage(post.getImage());
+                } catch (Exception e) {
+                }
+                List.getItems().clear();
+                try {
+                    Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
+                } catch (Exception e) {
+                }
+                Post_Create_time.setText(post.getCreatTime() + "," + post.getCreat_our());
+                Post_Creater_Name.setText(post.getCreater().getUser_Name());
+                Post_Views.setText("Views:" + (post.getViews()));
+                Posr_Likes.setText("Likes:" + (post.getLikes()));
+                Followers_num.setText("Followers:" + users.get(user_num).getMy_Followers_num());
+                Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());
+            } catch (Exception e) {}
+            if (users.get(user_num).Is_my_followers(user)) {
+                Create_fuf_button.setText("unFollow");
+            }
+            else {
+                Create_fuf_button.setText("Follow");
+            }
+        }catch (Exception e){
+            owner_name.setText("you are not following a user");
         }
-        catch (Exception e){}
         Page_last_button.setText("Last user");
         Post_Next_button.setText("Next user");
-        if (users.get(user_num).Is_my_followers(user)) {
-            Create_fuf_button.setText("unFollow");
-        }
-        else {
-            Create_fuf_button.setText("Follow");
-        }
         Remove_post.setText("---------");
 
     }
@@ -520,4 +542,5 @@ public class Home implements Serializable {
             }catch (Exception e){}
         }
     }
+
 }
