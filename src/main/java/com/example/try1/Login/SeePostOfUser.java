@@ -61,7 +61,7 @@ public class SeePostOfUser implements Serializable {
             List.getItems().clear();
             Text.setText("");
             Views.setText("Views:" + post.getViews());
-            Likes.setText("Likes" + post.getLikes());
+            Likes.setText("Likes:" + post.getLikes());
             Create_day.setText(String.valueOf(post.getCreatTime()));
             Create_time.setText(String.valueOf(post.getCreat_our()));
             Post_text.setText(post.getText());
@@ -120,7 +120,7 @@ public class SeePostOfUser implements Serializable {
             Text.setText("");
             List.getItems().clear();
             Error.setText("");
-            Likes.setText("Likes" + user_selected.getMy_Posts().get(post_num).getLikes());
+            Likes.setText("Likes:" + user_selected.getMy_Posts().get(post_num).getLikes());
         }catch (Exception e){}
     }
 

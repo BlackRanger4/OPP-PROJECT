@@ -318,6 +318,9 @@ public class Home implements Serializable {
 
         Clear();
         try {
+            if (users.get(user_num).getBusiness()) {
+                users.get(user_num).add_view_page();
+            }
             posts = users.get(user_num).getMy_Posts();
             owner_name.setText(users.get(user_num).getUser_Name());
             Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());
@@ -365,6 +368,9 @@ public class Home implements Serializable {
 
         Clear();
         try {
+            if (users.get(user_num).getBusiness()) {
+                users.get(user_num).add_view_page();
+            }
             posts = users.get(user_num).getMy_Posts();
             owner_name.setText(users.get(user_num).getUser_Name());
             Followings_num.setText("Followings:" + users.get(user_num).getMy_Followings_num());

@@ -44,7 +44,9 @@ public class FirstPage implements Serializable {
         stage.setScene(scene);
     }
 
-    public void Exit(MouseEvent mouseEvent) throws SQLException {Store_Data_Base();}
+    public void Exit(MouseEvent mouseEvent) throws SQLException {
+        Store_Data_Base();
+    }
 
     public void Read_Data_Base() throws Exception {
         DataBase test = new DataBase();

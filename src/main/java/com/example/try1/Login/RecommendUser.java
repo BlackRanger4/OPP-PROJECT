@@ -53,7 +53,8 @@ public class RecommendUser implements Serializable {
             recommend_user.addAll(value.getMy_Following());
         }
 
-
+        recommend_user = removeDuplicates(recommend_user);
+        recommend_user.remove(user);
         for (int i=0 ; i < recommend_user.size() ;){
 
             if (recommend_user.get(i).Is_my_followers(user)){
@@ -64,8 +65,6 @@ public class RecommendUser implements Serializable {
             }
 
         }
-
-        recommend_user = removeDuplicates(recommend_user);
 
         int Size_R = recommend_user.size();
         ArrayList<Integer> score = new ArrayList<>() ;
@@ -81,7 +80,7 @@ public class RecommendUser implements Serializable {
             }
             score.add(scorei);
         }
-        recommend_user.remove(user);
+
         if (recommend_user.size() == 0){
             List.getItems().add(" sorry we cannot recommend a user to you for below reason.\n 1. you not follow a user " +
                     "\n 2. your followings not follow a user \n 3. you follow all of your following's followings  ");

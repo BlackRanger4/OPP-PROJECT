@@ -24,14 +24,14 @@ public class PostAnalyze implements Serializable {
 
         ArrayList<Day_Information> day_informations = post.getDay_informations();
         XYChart.Series series = new XYChart.Series<>();
+        XYChart.Series series1 = new XYChart.Series<>();
+
         for (Day_Information day_information : day_informations) {
             series.getData().add(new XYChart.Data(String.valueOf(day_information.getLocalDate()), day_information.getViews()));
-        }
-        Chart.getData().add(series);
-        XYChart.Series series1 = new XYChart.Series<>();
-        for (Day_Information day_information : day_informations) {
             series1.getData().add(new XYChart.Data(String.valueOf(day_information.getLocalDate()), day_information.getLikes()));
         }
+
+        Chart.getData().add(series);
         Chart.getData().add(series1);
 
     }
