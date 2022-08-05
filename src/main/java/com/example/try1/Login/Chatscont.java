@@ -17,10 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -49,6 +46,7 @@ public class Chatscont implements Initializable {
     public Button cancelreply;
     public Text replymassage;
     public Rectangle rect;
+    public AnchorPane Anchorpane;
 
 
     private DataBase dataBase;
@@ -56,6 +54,7 @@ public class Chatscont implements Initializable {
     private FirstMenu firstMenu;
     private static Stage stage;
     private Scene scene;
+    private boolean Dark_Mod;
 
     private ArrayList<PV_Chat> pv_chats;
     private ArrayList<Group_Chat> group_chats;
@@ -190,7 +189,7 @@ public class Chatscont implements Initializable {
     }
 
 
-    public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage) {
+    public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage , boolean Dark_Mod) {
         Chatscont.stage = stage;
         this.dataBase = dataBase;
         this.user = user;
@@ -199,6 +198,13 @@ public class Chatscont implements Initializable {
         editbutton.setVisible(false);
         popdown();
         replyrun = false;
+        this.Dark_Mod = Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
     }
 
 
@@ -381,6 +387,8 @@ public class Chatscont implements Initializable {
         List1.getItems().clear();
         List2.getItems().clear();
         try {
+            Sort_Group_Chats_with_time();
+            Sort_Pv_Chats_with_time();
             List1.getItems().addAll(user.getMy_Privete_Chat());
             List2.getItems().addAll(user.getMy_Group_Chat());
         }
@@ -485,33 +493,7 @@ public class Chatscont implements Initializable {
         });
     }
 
-    public PV_Chat getSelectedpv() {
-        return selectedpv;
-    }
 
-
-
-    public void setSelectedpv(PV_Chat selectedpv) {
-        this.selectedpv = selectedpv;
-    }
-
-    public Group_Chat getSelectedgr() {
-        return selectedgr;
-    }
-
-    public void setSelectedgr(Group_Chat selectedgr) {
-        this.selectedgr = selectedgr;
-    }
-
-
-
-    public ChoiceBox<String> getPorg() {
-        return porg;
-    }
-
-    public void setPorg(ChoiceBox<String> porg) {
-        this.porg = porg;
-    }
 
     public DataBase getDataBase() {
         return dataBase;
@@ -529,13 +511,6 @@ public class Chatscont implements Initializable {
         this.user = user;
     }
 
-    public FirstMenu getFirstMenu() {
-        return firstMenu;
-    }
-
-    public void setFirstMenu(FirstMenu firstMenu) {
-        this.firstMenu = firstMenu;
-    }
 
     public static Stage getStage() {
         return stage;
@@ -553,23 +528,7 @@ public class Chatscont implements Initializable {
         this.scene = scene;
     }
 
-    public ArrayList<PV_Chat> getPv_chats() {
-        return pv_chats;
-    }
 
-    public void setPv_chats(ArrayList<PV_Chat> pv_chats) {
-        this.pv_chats = pv_chats;
-    }
-
-    public ArrayList<Group_Chat> getGroup_chats() {
-        return group_chats;
-    }
-
-
-
-    public void setGroup_chats(ArrayList<Group_Chat> group_chats) {
-        this.group_chats = group_chats;
-    }
 
     public Message getSelmessage() {
         return selmessage;

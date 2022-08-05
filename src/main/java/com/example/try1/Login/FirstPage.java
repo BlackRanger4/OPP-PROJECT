@@ -4,6 +4,7 @@ import com.example.try1.oop.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,9 +17,11 @@ public class FirstPage implements Serializable {
     //version 1.0.0.0
 
     private static Stage stage;
+    public AnchorPane Anchorpane;
     private Scene scene;
     private  DataBase dataBase;
     public Connection conn;
+
 
 
     public void Login(MouseEvent mouseEvent) throws IOException {
@@ -41,6 +44,7 @@ public class FirstPage implements Serializable {
     }
 
     public void Back(){
+
         stage.setScene(scene);
     }
 
@@ -97,6 +101,7 @@ public class FirstPage implements Serializable {
         FirstPage.stage = stage;
         this.scene = scene;
         Read_Data_Base();
+        Anchorpane.setStyle("-fx-background-color: #767676;");
     }
 
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,19 +26,28 @@ public class SeePostOfUser implements Serializable {
     public Label Create_time;
     public Label Post_text;
     public Label Error;
+    public AnchorPane Anchorpane;
 
     private SearchSelected searchSelected;
     private User user;
     private User user_selected;
+    private boolean Dark_Mod;
 
     private int post_num ;
 
-    public void seepostofuser(SearchSelected searchSelected,User user,User user_selected){
+    public void seepostofuser(SearchSelected searchSelected,User user,User user_selected , boolean Dark_Mod){
 
         try {
             this.searchSelected = searchSelected;
             this.user = user;
             this.user_selected = user_selected;
+            this.Dark_Mod =Dark_Mod;
+            if (Dark_Mod) {
+                Anchorpane.setStyle("-fx-background-color: #767676;");
+            }
+            else {
+                Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            }
             try {
                 Creater_prof.setImage(user_selected.getProfile_Image());
             }catch (Exception e){}

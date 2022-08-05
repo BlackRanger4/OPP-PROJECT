@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -17,12 +18,14 @@ import java.util.ArrayList;
 public class FirstMenu implements Serializable {
 
 
+    public AnchorPane Anchorpane;
     private LoginToAccount loginToAccount;
     private DataBase dataBase ;
     private User user ;
 
     private static Stage stage;
     private Scene scene;
+    private boolean Dark_Mod;
 
 
     //////ok//////
@@ -31,7 +34,7 @@ public class FirstMenu implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         Home home = fxmlLoader.getController();
-        home.home(stage,scene,this,dataBase,user);
+        home.home(stage,scene,this,dataBase,user,Dark_Mod);
         stage.setScene(scene);
 
     }
@@ -41,7 +44,7 @@ public class FirstMenu implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Chats.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         Chatscont Chatscont = fxmlLoader.getController();
-        Chatscont.Chatscont(dataBase,user,this,scene,stage);
+        Chatscont.Chatscont(dataBase,user,this,scene,stage,Dark_Mod);
         stage.setScene(scene);
     }
 
@@ -51,7 +54,7 @@ public class FirstMenu implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Search.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         Search search = fxmlLoader.getController();
-        search.search(stage,scene,this,user,dataBase);
+        search.search(stage,scene,this,user,dataBase,Dark_Mod);
         stage.setScene(scene);
 
     }
@@ -62,7 +65,7 @@ public class FirstMenu implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Recommend_User.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         RecommendUser recommendUser = fxmlLoader.getController();
-        recommendUser.recommenduser(this,user,dataBase);
+        recommendUser.recommenduser(this,user,dataBase,Dark_Mod);
         stage.setScene(scene);
 
     }
@@ -73,7 +76,7 @@ public class FirstMenu implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SettingMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900 ,600);
         SettingMenu settingMenu = fxmlLoader.getController();
-        settingMenu.settingmenu(this,user,dataBase);
+        settingMenu.settingmenu(this,user,dataBase,Dark_Mod);
         stage.setScene(scene);
 
     }
@@ -85,17 +88,43 @@ public class FirstMenu implements Serializable {
 
     //////ok//////
     public void Back(){
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
+
+        stage.setScene(scene);
+    }
+    public void Back(boolean Dark_Mod){
+        this.Dark_Mod = Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
+        System.out.println(Dark_Mod);
         stage.setScene(scene);
     }
 
     //////ok//////
-    public void firstmenu(Stage stage,Scene scene,LoginToAccount loginToAccount,DataBase dataBase ,User user){
+    public void firstmenu(Stage stage,Scene scene,LoginToAccount loginToAccount,DataBase dataBase ,User user , boolean Dark_Mod){
 
         this.loginToAccount =loginToAccount;
         this.dataBase = dataBase;
         this.scene =scene;
         this.user = user;
         this.stage = stage;
+
+        this.Dark_Mod = Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
 
         ads_recomment();
         Upload_ads();

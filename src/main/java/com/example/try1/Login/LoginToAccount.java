@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,18 +23,21 @@ public class LoginToAccount implements Serializable {
 
 
     private static Stage stage;
+    public AnchorPane Anchorpane;
     private Scene scene;
     private FirstPage firstPage;
     private DataBase dataBase;
 
-    private String userName ;
+    private String userName;
 
-    public void logintoaccount(Stage stage , Scene scene , FirstPage firstPage ,DataBase dataBase){
+    public void logintoaccount(Stage stage , Scene scene , FirstPage firstPage ,DataBase dataBase ){
 
         this.stage = stage;
         this.scene = scene;
         this.firstPage = firstPage;
         this.dataBase = dataBase;
+
+
         Q1.setText("User Name");
         Q2.setText("Password");
         Error.setText("");
@@ -43,6 +47,7 @@ public class LoginToAccount implements Serializable {
         firstPage.Back();
     }
     public void back(){
+
         stage.setScene(scene);
         Q1.setText("User Name");
         Q2.setText("Password");
@@ -107,7 +112,7 @@ public class LoginToAccount implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FirstMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         FirstMenu firstMenu = fxmlLoader.getController();
-        firstMenu.firstmenu(stage,scene,this,dataBase,user);
+        firstMenu.firstmenu(stage,scene,this,dataBase,user,true);
         stage.setScene(scene);
     }
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.PostAnalyze">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.PostAnalyze">
     <children>
         <Button layoutX="29.0" layoutY="25.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="back"
                 onMouseClicked="#Back"

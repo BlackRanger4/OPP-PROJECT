@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.Serializable;
@@ -22,17 +23,27 @@ public class SettingMenu implements Serializable {
     public javafx.scene.control.Button Button;
     public ImageView Profile_fig;
     public Label User_Name;
+    public AnchorPane Anchrpane;
 
 
+    private boolean Dark_Mod;
     private FirstMenu firstMenu;
     private User user;
     private DataBase dataBase;
 
 
-    public void settingmenu(FirstMenu firstMenu , User user, DataBase dataBase){
+    public void settingmenu(FirstMenu firstMenu , User user, DataBase dataBase , boolean Dark_Mod){
         this.firstMenu =firstMenu;
         this.user =user;
         this.dataBase =dataBase;
+        this.Dark_Mod = Dark_Mod;
+
+        if (Dark_Mod) {
+            Anchrpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchrpane.setStyle("-fx-background-color: #ffffff;");
+        }
 
         User_Name.setText(user.getUser_Name());
         Information.setText(" Select a button ");
@@ -47,7 +58,7 @@ public class SettingMenu implements Serializable {
     }
 
     public void Back(MouseEvent mouseEvent) {
-        firstMenu.Back();
+        firstMenu.Back(Dark_Mod);
     }
 
     public void Change_Name(MouseEvent mouseEvent) {
@@ -89,6 +100,18 @@ public class SettingMenu implements Serializable {
     }
 
     public void Change_Theme(MouseEvent mouseEvent) {
+        if (Dark_Mod){
+            Dark_Mod = false;
+        }
+        else {
+            Dark_Mod = true;
+        }
+        if (Dark_Mod) {
+            Anchrpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchrpane.setStyle("-fx-background-color: #ffffff;");
+        }
     }
 
     public void First_A(MouseEvent mouseEvent) {

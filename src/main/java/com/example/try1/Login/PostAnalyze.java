@@ -7,6 +7,7 @@ import com.example.try1.oop.Post;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,13 +15,22 @@ import java.util.ArrayList;
 public class PostAnalyze implements Serializable {
 
     public LineChart Chart;
-    private Home home;
-    private Post post;
+    public AnchorPane Anchorpane;
 
-    public void postanalyze(Home home , Post post){
+    private Home home;
+
+
+    public void postanalyze(Home home , Post post , boolean Dark_Mod){
 
         this.home =home;
-        this.post =post;
+
+
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
 
         ArrayList<Day_Information> day_informations = post.getDay_informations();
         XYChart.Series series = new XYChart.Series<>();

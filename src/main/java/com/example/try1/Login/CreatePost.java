@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -16,14 +17,23 @@ public class CreatePost implements Serializable {
 
     public TextField Text;
     public ImageView image;
+    public AnchorPane Anchorpane;
+
 
     private File file;
     private Home home;
     private User user;
 
-    public void createpost(Home home,User user){
+    public void createpost(Home home,User user,boolean Dark_Mod){
         this.user =user;
         this.home =home;
+
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
     }
 
     public void Cancel(MouseEvent mouseEvent) {

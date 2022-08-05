@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 public class Home implements Serializable {
 
 
+    public AnchorPane Anchorpane;
+    private Boolean Dark_Mod;
     private FirstMenu firstMenu;
     private static Stage stage;
     private Scene scene;
@@ -28,7 +31,7 @@ public class Home implements Serializable {
 
     boolean Me_Or_Myfollowing = true;
 
-    public void home(Stage stage ,Scene scene,FirstMenu firstMenu,DataBase dataBase,User user){
+    public void home(Stage stage ,Scene scene,FirstMenu firstMenu,DataBase dataBase,User user,boolean Dark_Mod){
 
         this.stage =stage;
         this.scene =scene;
@@ -36,6 +39,13 @@ public class Home implements Serializable {
         this.dataBase =dataBase;
         this.user =user;
         this.users = user.getMy_Following();
+        this.Dark_Mod = Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
         My_Post();
     }
 
@@ -434,7 +444,7 @@ public class Home implements Serializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PostAnalyze.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 900, 600);
                 PostAnalyze postAnalyze = fxmlLoader.getController();
-                postAnalyze.postanalyze(this, post);
+                postAnalyze.postanalyze(this, post,Dark_Mod);
                 stage.setScene(scene);
             }catch (Exception e){}
         }
@@ -454,7 +464,7 @@ public class Home implements Serializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PageAnalyze.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),900,600);
             PageAnalyze pageAnalyze = fxmlLoader.getController();
-            pageAnalyze.pageanalyze(this,user);
+            pageAnalyze.pageanalyze(this,user,Dark_Mod);
             stage.setScene(scene);
 
         }
@@ -474,7 +484,7 @@ public class Home implements Serializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("CreatePost.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),900,600);
             CreatePost createPost = fxmlLoader.getController();
-            createPost.createpost(this,user);
+            createPost.createpost(this,user,Dark_Mod);
             stage.setScene(scene);
 
         }

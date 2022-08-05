@@ -9,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,20 +22,29 @@ public class Search implements Serializable {
     public ListView<String> List;
     public TextField Text;
     public Label Error;
+    public AnchorPane Anchorpane;
 
     private DataBase dataBase;
     private User user;
     private FirstMenu firstMenu;
     private static Stage stage;
     private Scene scene;
+    private boolean Dark_Mod;
 
-    public void search(Stage stage ,Scene scene,FirstMenu firstMenu,User user ,DataBase dataBase){
+    public void search(Stage stage ,Scene scene,FirstMenu firstMenu,User user ,DataBase dataBase ,boolean Dark_Mod ){
 
         this.stage = stage;
         this.scene =scene;
         this.firstMenu =firstMenu;
         this.user =user;
         this.dataBase =dataBase;
+        this.Dark_Mod =Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
 
     }
 
@@ -60,7 +70,7 @@ public class Search implements Serializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Search_Selected.fxml"));
             Scene scene = new Scene(fxmlLoader.load() , 900,600);
             SearchSelected searchSelected = fxmlLoader.getController();
-            searchSelected.searchselected(stage,scene,this,this.user,user,dataBase);
+            searchSelected.searchselected(stage,scene,this,this.user,user,dataBase,Dark_Mod);
             stage.setScene(scene);
 
         }

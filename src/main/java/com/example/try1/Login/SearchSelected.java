@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -27,14 +28,16 @@ public class SearchSelected implements Serializable {
     public Button Block_button;
 
     private static Stage stage;
+    public AnchorPane Anchorpane;
     private Scene scene;
     private Search search;
     private User user;
     private User user_selected;
     private DataBase dataBase;
+    private boolean Dark_Mod;
 
 
-    public void searchselected(Stage stage,Scene scene,Search search,User user,User user_selected,DataBase dataBase){
+    public void searchselected(Stage stage,Scene scene,Search search,User user,User user_selected,DataBase dataBase , boolean Dark_Mod){
 
         this.stage =stage;
         this.scene =scene;
@@ -42,6 +45,13 @@ public class SearchSelected implements Serializable {
         this.user =user;
         this.user_selected =user_selected;
         this.dataBase =dataBase;
+        this.Dark_Mod =Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
 
         try {
             this.Prof.setImage(user_selected.getProfile_Image());
@@ -80,7 +90,7 @@ public class SearchSelected implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("See_Post_of_user.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         SeePostOfUser seePostOfUser = fxmlLoader.getController();
-        seePostOfUser.seepostofuser(this,user,user_selected);
+        seePostOfUser.seepostofuser(this,user,user_selected,Dark_Mod);
         stage.setScene(scene);
     }
 

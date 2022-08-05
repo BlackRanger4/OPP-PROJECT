@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.SettingMenu">
+<AnchorPane fx:id="Anchrpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.SettingMenu">
    <children>
       <Button layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="52.0" text="back" />
       <Button layoutX="55.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#Change_Name" prefHeight="26.0" prefWidth="254.0" text="Change user name" />

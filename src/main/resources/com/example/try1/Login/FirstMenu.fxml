@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.FirstMenu">
+<AnchorPane  fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.FirstMenu">
    <children>
       <Button layoutX="30.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#Home" prefHeight="60.0" prefWidth="120.0" text="Home" />
       <Button layoutX="30.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#Chats" prefHeight="60.0" prefWidth="120.0" text="Chats" />

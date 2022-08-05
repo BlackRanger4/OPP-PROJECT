@@ -4,6 +4,7 @@ import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,16 +12,25 @@ import java.util.ArrayList;
 public class RecommendUser implements Serializable {
 
     public ListView<String> List;
+    public AnchorPane Anchorpane;
+
 
     private FirstMenu firstMenu;
     private User user;
-    private DataBase dataBase;
 
-    public void recommenduser(FirstMenu firstMenu,User user ,DataBase dataBase){
+
+    public void recommenduser(FirstMenu firstMenu,User user ,DataBase dataBase,boolean Dark_Mod){
 
         this.firstMenu =firstMenu;
         this.user =user;
-        this.dataBase =dataBase;
+
+
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #767676;");
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
         User_recommend();
     }
 

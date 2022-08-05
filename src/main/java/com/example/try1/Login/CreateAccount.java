@@ -2,12 +2,11 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.Serializable;
 
@@ -17,10 +16,10 @@ public class CreateAccount implements Serializable {
     public Label Question;
     public Label Error;
     public Button Next_B;
+    public AnchorPane Anchorpane;
 
     private FirstPage firstPage;
     private DataBase dataBase;
-
     private String Name ="";
     private String Pass ="";
     private boolean Business ;
@@ -174,6 +173,7 @@ public class CreateAccount implements Serializable {
 
         A[1] = text;
         Text.setText("");
+        Next_B.setText("...");
         User_Create();
     }
     private void User_Create(){
@@ -183,15 +183,16 @@ public class CreateAccount implements Serializable {
         Q[1] = " What was your favorite food as a child? ";
 
         User user = new User(Name,Pass,Business,dataBase, Q ,A);
-        user.setProfile_Image("C:\\Users\\Taha\\IdeaProjects\\1.0.0.0\\src\\main\\resources\\defpic.png");
+        user.setProfile_Image(String.valueOf(getClass().getResource("prof.jpg")));
         dataBase.Add_User_to_datas(user);
-        Question.setText(Name + " , your account created successfully , click on back to go first menu .");
+        Question.setText(Name + " , your account created successfully , click on back to go first menu.");
 
     }
 
-    public void Loading(FirstPage firstPage , DataBase dataBase){
+    public void Loading(FirstPage firstPage , DataBase dataBase ){
         this.firstPage =firstPage;
         this.dataBase = dataBase;
+
         Question.setText(" Enter User Name ");
     }
 
