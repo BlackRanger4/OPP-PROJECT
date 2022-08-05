@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,9 +13,9 @@
       <ChoiceBox fx:id="choose" layoutX="375.0" layoutY="26.0" onAction="#recogchoose" prefWidth="150.0" />
       <ListView fx:id="List1" layoutX="350.0" layoutY="140.0" prefHeight="427.0" prefWidth="200.0" />
       <TextField fx:id="searchingbox" layoutX="327.0" layoutY="86.0" onKeyTyped="#searchbox" prefHeight="26.0" prefWidth="246.0" />
-      <Text layoutX="367.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write username or group name:" />
       <Text layoutX="433.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results" />
       <Button fx:id="cancel" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#cancelfor" text="Cancel" />
       <ListView fx:id="List2" layoutX="350.0" layoutY="140.0" prefHeight="427.0" prefWidth="200.0" />
+      <Label fx:id="searchtext" layoutX="365.0" layoutY="68.0" text="Write username or group name:" />
    </children>
 </AnchorPane>

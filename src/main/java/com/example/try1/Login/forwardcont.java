@@ -5,11 +5,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -32,6 +35,7 @@ public class forwardcont implements Initializable, Serializable {
     public TextField searchingbox;
     public ListView<User> List1;
     public ListView<Group_Chat> List2;
+    public Label searchtext;
 
     static String[] choice = {"PV chats","Group chats"};
     public String textmssg;
@@ -124,46 +128,60 @@ public class forwardcont implements Initializable, Serializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         choose.getItems().addAll(choice);
         choose.setValue("PV chats");
 
+        List1.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+            @Override
+            public ListCell<User> call(ListView<User> pv_chatListView) {
+                return new List3();
+            }
+        });
+
+        List2.setCellFactory(new Callback<ListView<Group_Chat>, ListCell<Group_Chat>>() {
+            @Override
+            public ListCell<Group_Chat> call(ListView<Group_Chat> group_chatListView) {
+                return new List2show();
+            }
+        });
+
         List1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
             @Override
-            public void changed(ObservableValue<? extends User> observableValue, User user, User t1) {
+            public void changed(ObservableValue<? extends User> observableValue, User user1, User t1) {
 
                 selecteduser = List1.getSelectionModel().getSelectedItem();
 
-                if (user.checkpvret(selecteduser) != null){
+                if (user.checkpvret(selecteduser) != null) {
                     user.checkpvret(selecteduser).getMessages().add(message);
-                }
-                else {
+                } else {
                     user.createpvchat(selecteduser);
                     Message temp = null;
-                    if (message.getImage() != null && message.getForwarded()==null) {
+                    if (message.getImage() != null && message.getForwarded() == null) {
                         temp = new Message(user, message.getText(), null,
                                 message.getSender(), message.getImage().getUrl());
                     }
-                    if (message.getImage() != null && message.getForwarded()!=null){
+                    if (message.getImage() != null && message.getForwarded() != null) {
                         temp = new Message(user, message.getText(), null,
                                 message.getForwarded(), message.getImage().getUrl());
                     }
-                   if (message.getImage() == null && message.getForwarded()==null) {
+                    if (message.getImage() == null && message.getForwarded() == null) {
                         temp = new Message(user, message.getText(), null,
-                                message.getSender(), message.getImage().getUrl());
+                                message.getSender(), null);
                     }
-                   if (message.getImage() == null && message.getForwarded()!=null){
-                       temp = new Message(user, message.getText(), null,
-                               message.getForwarded(), message.getImage().getUrl());
-                   }
+                    if (message.getImage() == null && message.getForwarded() != null) {
+                        temp = new Message(user, message.getText(), null,
+                                message.getForwarded(), null);
+                    }
                     user.checkpvret(selecteduser).getMessages().add(temp);
                 }
-
+                chatscont.back();
             }
         });
 
         List2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group_Chat>() {
             @Override
-            public void changed(ObservableValue<? extends Group_Chat> observableValue, Group_Chat group_chat, Group_Chat t1) {
+            public void changed(ObservableValue<? extends Group_Chat> observableValue, Group_Chat group_chat1, Group_Chat t1) {
 
                 selectedgr = List2.getSelectionModel().getSelectedItem();
 
@@ -178,14 +196,14 @@ public class forwardcont implements Initializable, Serializable {
                 }
                 if (message.getImage() == null && message.getForwarded()==null) {
                     temp = new Message(user, message.getText(), null,
-                            message.getSender(), message.getImage().getUrl());
+                            message.getSender(), null);
                 }
                 if (message.getImage() == null && message.getForwarded()!=null){
                     temp = new Message(user, message.getText(), null,
-                            message.getForwarded(), message.getImage().getUrl());
+                            message.getForwarded(),null);
                 }
                 selectedgr.getMessages().add(temp);
-
+                chatscont.back();
             }
         });
 
@@ -198,25 +216,98 @@ public class forwardcont implements Initializable, Serializable {
             List1.getItems().clear();
             List1.getItems().addAll(getResultpvchat());
         }
-        else {
-            setResultgrchat(user.getMy_Group_Chat());;
-            List2.getItems().clear();
-            List2.getItems().addAll(getResultgrchat());
-        }
     }
 
     public void recogchoose () {
         pvorgr = !choose.getValue().equals("PV chats");
         if (!pvorgr) {
+            searchingbox.setVisible(true);
+            searchtext.setVisible(true);
             List1.setVisible(true);
             List2.setVisible(false);
         }
         else {
+            searchtext.setVisible(false);
+            searchingbox.setVisible(false);
             List2.setVisible(true);
             List1.setVisible(false);
+            List2.getItems().clear();
+            List2.getItems().addAll(user.getMy_Group_Chat());
         }
     }
 
+
+    class List3 extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public List3() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(user.getUser_Name());
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+
+        }
+    }
+
+    class List2show extends ListCell<Group_Chat> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public List2show() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane,Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(Group_Chat gr, boolean empty) {
+
+            super.updateItem(gr, empty);
+
+            if (empty || gr == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(gr.getGroupName());
+                imgview.setImage(gr.getImage());
+                setGraphic(hBox);
+            }
+        }
+
+    }
 
 
 }

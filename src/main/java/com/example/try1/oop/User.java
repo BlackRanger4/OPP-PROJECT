@@ -226,6 +226,7 @@ public class User implements Serializable {
 
     public void creategroup (String groupname , ArrayList<User> temp) {
         Group_Chat test = new Group_Chat(temp,this,groupname,database,null);
+        test.setImage("C:\\Users\\Taha\\IdeaProjects\\1.0.0.0\\src\\main\\resources\\defgroup.png");
         int i;
         int cap = temp.size();
         getMy_Group_Chat().add(test);
