@@ -105,4 +105,16 @@ public class Message implements Serializable {
         Creat_time_our = LocalTime.now();
         Creat_time_date = LocalDate.now();
     }
+
+    public void setSender(User sender) {
+        Sender = sender;
+    }
+
+    public void setReply(Message reply) {
+        this.reply = reply;
+    }
+
+    public void setForwarded(User forwarded) {
+        this.forwarded = forwarded;
+    }
 }

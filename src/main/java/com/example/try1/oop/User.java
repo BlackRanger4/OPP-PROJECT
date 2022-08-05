@@ -194,6 +194,15 @@ public class User implements Serializable {
         this.CreateTime = LocalDate.now();
     }
 
+    public User oppuser (PV_Chat x) {
+        if (x.getFirst() == this){
+            return x.getSecond();
+        }
+        else {
+            return x.getFirst();
+        }
+    }
+
     public PV_Chat checkpvret (User y)  {
         int i;
         int cap = this.getMy_Privete_Chat().size();
@@ -208,6 +217,8 @@ public class User implements Serializable {
 
     public PV_Chat createpvchat(User y) {
         PV_Chat temp = new PV_Chat(this,y,null,database);
+        Message intro = new Message(this,"Chat created! " ,null,null,null);
+        temp.getMessages().add(intro);
         y.getMy_Privete_Chat().add(temp);
         getMy_Privete_Chat().add(temp);
         return temp;
@@ -223,6 +234,32 @@ public class User implements Serializable {
         }
         Message first  = new Message(this,this.User_Name+ " has created the group!",null,null,null);
         test.getMessages().add(first);
+    }
+
+
+    public ArrayList<User> searchfromfollow (String name){
+        int Size = getMy_Followers().size();
+        ArrayList<User> users = new ArrayList<>();
+        if (!name.equals("")) {
+            for (int i = 0; i < Size; i++) {
+                if (getMy_Followers().get(i).getUser_Name().contains(name) &&
+                        getMy_Followers().get(i).getUser_Name().indexOf(name) == 0) {
+                    users.add(getMy_Followers().get(i));
+                }
+            }
+        }
+        return users;
+    }
+
+    public Group_Chat groupret (String x) {
+        int i ;
+        int cap = getMy_Group_Chat().size();
+        for (i=0;i<cap ; i++){
+            if (getMy_Group_Chat().get(i).getGroupName().equals(x)){
+                return getMy_Group_Chat().get(i);
+            }
+        }
+        return null;
     }
 
     public boolean checkblock(User x) {

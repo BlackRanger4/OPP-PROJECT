@@ -1,25 +1,30 @@
 package com.example.try1.Login;
 
-import com.example.try1.oop.DataBase;
-import com.example.try1.oop.Message;
-import com.example.try1.oop.PV_Chat;
-import com.example.try1.oop.User;
+import com.example.try1.oop.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class newpvchatcont implements Initializable {
 
     public TextField username;
-    public ListView<String> results;
+    public ListView<User> results;
 
     private DataBase dataBase;
     private User user;
@@ -27,19 +32,14 @@ public class newpvchatcont implements Initializable {
     private static Stage stage;
     private Scene scene;
 
-    public String selectedpv;
-    public User selected;
+    public User selecteduser;
     public PV_Chat created;
     public int indexof;
 
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        ArrayList<User> users = dataBase.User_Search(username.getText());
-        users.remove(user);
-        for (User value : users) {
-            results.getItems().add(value.getUser_Name());
-        }
+        results.getItems().addAll(user.searchfromfollow(username.getText()));
     }
 
     public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage) {
@@ -97,27 +97,71 @@ public class newpvchatcont implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        results.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+        results.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
             @Override
-            public void changed(ObservableValue observableValue, Object o, Object t1) {
+            public ListCell<User> call(ListView<User> userListView) {
+                return new List3();
+            }
+        });
 
-                selectedpv = results.getSelectionModel().getSelectedItem();
-                selected = dataBase.User_finder_U(selectedpv);
-                if (user.checkpvret(selected) == null){
-                    created = user.createpvchat(selected);
-                    Message intro = new Message(user,"Chat created! " ,null,null,null);
-                    created.getMessages().add(intro);
-                    chatscont.setSelectedpv(created);
-                    Back();
+        results.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
+            @Override
+            public void changed(ObservableValue<? extends User> observableValue, User user1, User t1) {
+
+
+                selecteduser = results.getSelectionModel().getSelectedItem();
+
+                if (user.checkpvret(selecteduser) != null) {
+                    chatscont.porg.setValue("pv chats");
+                    chatscont.List1.getSelectionModel().select(user.checkpvret(selecteduser));
+                    chatscont.back();
                 }
-
                 else {
-                    chatscont.setSelectedpv(user.checkpvret(selected));
-                    Back();
+                    chatscont.porg.setValue("pv chats");
+                    created = user.createpvchat(selecteduser);
+                    chatscont.List1.getItems().add(created);
+                    chatscont.List1.getSelectionModel().select(created);
+                    chatscont.back();
                 }
 
             }
         });
+    }
 
+
+    class List3 extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public List3() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(user.getUser_Name());
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+
+        }
     }
 }

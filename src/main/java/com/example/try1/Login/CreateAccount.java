@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 import java.io.Serializable;
@@ -182,6 +183,7 @@ public class CreateAccount implements Serializable {
         Q[1] = " What was your favorite food as a child? ";
 
         User user = new User(Name,Pass,Business,dataBase, Q ,A);
+        user.setProfile_Image("C:\\Users\\Taha\\IdeaProjects\\1.0.0.0\\src\\main\\resources\\defpic.png");
         dataBase.Add_User_to_datas(user);
         Question.setText(Name + " , your account created successfully , click on back to go first menu .");
 

@@ -1,6 +1,7 @@
 package com.example.try1.Login;
 
 import com.example.try1.oop.*;
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -9,14 +10,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -26,17 +32,24 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Chatscont implements Initializable {
 
     public Label PV_GROUP_NAME;
-    public ListView<String> List;
+    public ListView<PV_Chat> List1;
+    public ListView<Group_Chat> List2;
     public ListView<Message> Listchat;
     public ChoiceBox<String> porg;
     public Button send;
     public TextArea mssgtext;
     public ImageView PV_GROUP_image;
+    public Button editbutton;
+    public Button cancelreply;
+    public Text replymassage;
+    public Rectangle rect;
+
 
     private DataBase dataBase;
     private User user;
@@ -48,18 +61,22 @@ public class Chatscont implements Initializable {
     private ArrayList<Group_Chat> group_chats;
     private ArrayList<Integer> NumOf_noSee = new ArrayList<>();
     private final String[] pvorgroup = { "pv chats" , "group chats"};
-    private ArrayList<String> pvchatsname;
-    private ArrayList<String> groupchatsname;
     private PV_Chat selectedpv;
     private Group_Chat selectedgr;
 
 
     public String choice;
-    public String selectedchat;
     public int indexof;
     boolean pvorgr;
+    boolean replyrun;
     public String textmssg;
-    boolean editing;
+    public Message selmessage;
+
+    ContextMenu contextMenu = new ContextMenu();
+    MenuItem edit = new MenuItem();
+    MenuItem delete = new MenuItem();
+    MenuItem reply = new MenuItem();
+    MenuItem forward = new MenuItem();
 
 
     public void Sort_Pv_Chats_with_time(){
@@ -102,6 +119,32 @@ public class Chatscont implements Initializable {
             quickSort(PV, pi + 1, high);
         }
     }
+
+    public void popup () {
+        rect.setVisible(true);
+        cancelreply.setVisible(true);
+        replymassage.setVisible(true);
+    }
+
+    public void popdown () {
+        rect.setVisible(false);
+        cancelreply.setVisible(false);
+        replymassage.setVisible(false);
+    }
+
+    public void choose () {
+        if (porg.getValue().equals("pv chats")){
+            pvorgr = false;
+            List1.setVisible(true);
+            List2.setVisible(false);
+        }
+        else {
+            pvorgr = true;
+            List2.setVisible(true);
+            List1.setVisible(false);
+        }
+    }
+
 
     public void Sort_Group_Chats_with_time(){
 
@@ -153,77 +196,12 @@ public class Chatscont implements Initializable {
         this.user = user;
         this.firstMenu = firstMenu;
         this.scene = scene;
-        this.pv_chats = user.getMy_Privete_Chat();
-        this.group_chats = user.getMy_Group_Chat();
-        this.pvchatsname = new ArrayList<>();
-        this.groupchatsname = new ArrayList<>();
-        editing = false;
+        editbutton.setVisible(false);
+        popdown();
+        replyrun = false;
     }
 
-    public void extpvchats() {
-        pvchatsname.clear();
-        Sort_Pv_Chats_with_time();
-        int i;
-        int cap = pv_chats.size();
-        if (cap != 0) {
-            for (i = 0; i < cap; i++) {
-                if (user.getMy_Privete_Chat().get(i).getSecond().getUser_Name().equals(user.getUser_Name())) {
-                    if (NumOf_noSee.get(i)>0) {
-                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name() + "(" + NumOf_noSee.get(i) + ")");
-                    }
-                    else {
-                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
-                    }
-                } else {
-                    if (NumOf_noSee.get(i)>0) {
-                    pvchatsname.add(pv_chats.get(i).getSecond().getUser_Name()+"("+NumOf_noSee.get(i)+")");
-                    }
-                    else {
-                        pvchatsname.add(pv_chats.get(i).getFirst().getUser_Name());
-                    }
-                }
-            }
-        }
-    }
 
-    public void extgroupchats() {
-        groupchatsname.clear();
-        Sort_Group_Chats_with_time();
-        int i;
-        int cap = group_chats.size();
-        if (cap != 0) {
-            for (i = 0; i < cap; i++) {
-                if (NumOf_noSee.get(i)>0) {
-                    groupchatsname.add(group_chats.get(i).getGroupName() + "(" + NumOf_noSee.get(i) + ")");
-                }
-                else {
-                    groupchatsname.add(group_chats.get(i).getGroupName());
-                }
-
-            }
-        }
-    }
-
-    public void Back(MouseEvent mouseEvent) {
-        firstMenu.Back();
-    }
-    public void back() {
-        stage.setScene(scene);
-    }
-
-    public void choose() {
-        choice = porg.getValue();
-        if (choice.equals("pv chats")){
-            extpvchats();
-            getList().setItems(FXCollections.observableList(pvchatsname));
-            pvorgr = false;
-        }
-        else {
-            extgroupchats();
-            getList().setItems(FXCollections.observableList(groupchatsname));
-            pvorgr = true;
-        }
-    }
 
     public void createnewpv() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newpvchat.fxml"));
@@ -243,62 +221,207 @@ public class Chatscont implements Initializable {
 
     public void sendmassage () {
 
-        if (editing) {
-
+        if (replyrun) {
+            textmssg = textmssg + mssgtext.getText();
+            if (!textmssg.equals("")) {
+                Message temp = new Message(user, textmssg, selmessage, null, null);
+                if (!pvorgr) {
+                    selectedpv.getMessages().add(temp);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedpv.getMessages());
+                    mssgtext.setText("");
+                } else {
+                    selectedgr.getMessages().add(temp);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedgr.getMessages());
+                    mssgtext.setText("");
+                }
+            }
+            popdown();
+            setSelmessage(null);
+            replyrun = false;
         }
-
-
-        textmssg = mssgtext.getText();
-        if (!textmssg.equals("")) {
-            Message temp = new Message(user, textmssg, null, null, null);
-            if (!pvorgr) {
-                selectedpv.getMessages().add(temp);
-                Listchat.getItems().clear();
-                Listchat.getItems().addAll(selectedpv.getMessages());
-                mssgtext.setText("");
-            } else {
-                selectedgr.getMessages().add(temp);
-                Listchat.getItems().clear();
-                Listchat.getItems().addAll(selectedgr.getMessages());
-                mssgtext.setText("");
+        else {
+            textmssg = mssgtext.getText();
+            if (!textmssg.equals("")) {
+                Message temp = new Message(user, textmssg, null, null, null);
+                if (!pvorgr) {
+                    selectedpv.getMessages().add(temp);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedpv.getMessages());
+                    mssgtext.setText("");
+                } else {
+                    selectedgr.getMessages().add(temp);
+                    Listchat.getItems().clear();
+                    Listchat.getItems().addAll(selectedgr.getMessages());
+                    mssgtext.setText("");
+                }
             }
         }
+
+
 
     }
 
     public void Add_Fig(MouseEvent mouseEvent) {
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File","*.*"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.*"));
         File file = fileChooser.showOpenDialog(null);
 
-        if ( file != null) {
-            try {
-                Image image = new Image(file.toURI().toString());
-                Message message = new Message(user,mssgtext.getText(),null,null,file.toURI().toString());
-                if (!pvorgr) {
-                    selectedpv.getMessages().add(message);
-                    Listchat.getItems().clear();
-                    Listchat.getItems().addAll(selectedpv.getMessages());
-                    mssgtext.setText("");
-                }
-                else {
-                    selectedgr.getMessages().add(message);
-                    Listchat.getItems().clear();
-                    Listchat.getItems().addAll(selectedgr.getMessages());
-                    mssgtext.setText("");
-                }
+        if (!replyrun) {
 
+            if (file != null) {
+                try {
+                    Image image = new Image(file.toURI().toString());
+                    Message message = new Message(user, mssgtext.getText(), null, null, file.toURI().toString());
+                    if (!pvorgr) {
+                        selectedpv.getMessages().add(message);
+                        Listchat.getItems().clear();
+                        Listchat.getItems().addAll(selectedpv.getMessages());
+                        mssgtext.setText("");
+                    } else {
+                        selectedgr.getMessages().add(message);
+                        Listchat.getItems().clear();
+                        Listchat.getItems().addAll(selectedgr.getMessages());
+                        mssgtext.setText("");
+                    }
+                    textmssg = "";
+                } catch (Exception ignored) {}
             }
-            catch (Exception e){}
         }
+        else {
+            if (file != null) {
+                try {
+                    Image image = new Image(file.toURI().toString());
+                    Message message = new Message(user, textmssg , selmessage, null, file.toURI().toString());
+                    if (!pvorgr) {
+                        selectedpv.getMessages().add(message);
+                        Listchat.getItems().clear();
+                        Listchat.getItems().addAll(selectedpv.getMessages());
+                        mssgtext.setText("");
+                    } else {
+                        selectedgr.getMessages().add(message);
+                        Listchat.getItems().clear();
+                        Listchat.getItems().addAll(selectedgr.getMessages());
+                        mssgtext.setText("");
+                    }
+                    textmssg = "";
+                    setSelmessage(null);
+                    popdown();
+
+
+                } catch (Exception ignored) {}
+            }
+        }
+    }
+
+    public void edit(Message x){
+        mssgtext.setText(x.getText());
+        send.setVisible(false);
+        editbutton.setVisible(true);
+    }
+
+    public void editsend(){
+        Message x = getSelmessage();
+        textmssg = mssgtext.getText();
+        x.setText(textmssg);
+        Listchat.refresh();
+        editbutton.setVisible(false);
+        send.setVisible(true);
+        mssgtext.setText("");
+    }
+
+    public void delete(Message x){
+        if (!pvorgr){
+            selectedpv.getMessages().remove(x);
+        }
+        else {
+            selectedgr.getMessages().remove(x);
+        }
+        Listchat.getItems().remove(x);
+    }
+
+    public void replyselect (Message x){
+        String temp;
+        if (x.getText().length() > 10) {
+            temp = "| Reply to : ";
+            temp = temp + x.getText().substring(0, 10);
+            temp = temp + "...";
+            replymassage.setText(temp);
+        }
+        else {
+            temp = "| Reply to : ";
+            temp = temp + x.getText();
+            replymassage.setText(temp);
+        }
+        textmssg = temp + "\n";
+        popup();
+        replyrun = true;
+    }
+
+    public void cancelreply() {
+        Listchat.getSelectionModel().clearSelection();
+        popdown();
+        replyrun = false;
+    }
+
+    public void forwardmssg (Message x) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("forward.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),900,600);
+        stage.setScene(scene);
+        forwardcont forwardcont = fxmlLoader.getController();
+        forwardcont.forwardcont(dataBase,user,this,scene,x,stage);
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        List1.getItems().clear();
+        List2.getItems().clear();
+        try {
+            List1.getItems().addAll(user.getMy_Privete_Chat());
+            List2.getItems().addAll(user.getMy_Group_Chat());
+        }
+        catch (NullPointerException ignored){};
+        edit.setText("Edit/Caption");
+        edit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                edit(Listchat.getSelectionModel().getSelectedItem());
+            }
+        });
 
+        delete.setText("Delete");
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                delete(Listchat.getSelectionModel().getSelectedItem());
+            }
+        });
+        reply.setText("Reply");
+        reply.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                replyselect(Listchat.getSelectionModel().getSelectedItem());
+            }
+        });
+
+        forward.setText("Forward");
+        forward.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    forwardmssg(Listchat.getSelectionModel().getSelectedItem());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        contextMenu.getItems().addAll(edit,delete,reply,forward);
 
         Listchat.setCellFactory(new Callback<ListView<Message>, ListCell<Message>>() {
             @Override
@@ -307,43 +430,57 @@ public class Chatscont implements Initializable {
             }
         });
 
+        List1.setCellFactory(new Callback<ListView<PV_Chat>, ListCell<PV_Chat>>() {
+            @Override
+            public ListCell<PV_Chat> call(ListView<PV_Chat> pv_chatListView) {
+                return new List1show();
+            }
+        });
+
+        List2.setCellFactory(new Callback<ListView<Group_Chat>, ListCell<Group_Chat>>() {
+            @Override
+            public ListCell<Group_Chat> call(ListView<Group_Chat> group_chatListView) {
+                return new List2show();
+            }
+        });
+
 
         porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
 
-        getList().getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+        List1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PV_Chat>() {
             @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+            public void changed(ObservableValue<? extends PV_Chat> observableValue, PV_Chat pv_chat, PV_Chat t1) {
 
-                selectedchat = getList().getSelectionModel().getSelectedItem();
-                if (!pvorgr) {
-                    indexof = pvchatsname.indexOf(selectedchat);
-                    selectedpv = pv_chats.get(indexof);
+                selectedpv = List1.getSelectionModel().getSelectedItem();
+                Listchat.getItems().clear();
+                Listchat.getItems().addAll(selectedpv.getMessages());
 
-                    if (!selectedpv.getFirst().equals(user)) {
-                        PV_GROUP_NAME.setText(selectedpv.getFirst().getUser_Name());
-                        try {
-                            PV_GROUP_image.setImage(selectedpv.getFirst().getProfile_Image());
-                        }catch (Exception e){}
+            }
+        });
+
+        List2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Group_Chat>() {
+            @Override
+            public void changed(ObservableValue<? extends Group_Chat> observableValue, Group_Chat group_chat, Group_Chat t1) {
+                selectedgr = List2.getSelectionModel().getSelectedItem();
+                Listchat.getItems().clear();
+                Listchat.getItems().addAll(selectedgr.getMessages());
+            }
+        });
+
+        Listchat.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Message> observableValue, Message message, Message t1) {
+
+                setSelmessage(Listchat.getSelectionModel().getSelectedItem());
+
+                Listchat.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
+                    @Override
+                    public void handle(ContextMenuEvent event) {
+                        contextMenu.show(Listchat.getScene().getWindow(),event.getScreenX(),event.getScreenY());
+                        Listchat.getSelectionModel().getSelectedIndices().clear();
                     }
-                    else {
-                        PV_GROUP_NAME.setText(selectedpv.getSecond().getUser_Name());
-                        try {
-                            PV_GROUP_image.setImage(selectedpv.getSecond().getProfile_Image());
-                        }catch (Exception e){}
-                    }
-                    Listchat.getItems().clear();
-                    Listchat.getItems().addAll(selectedpv.getMessages());
-                } else {
-                    indexof = groupchatsname.indexOf(selectedchat);
-                    selectedgr = group_chats.get(indexof);
-                    PV_GROUP_NAME.setText(selectedgr.getGroupName());
-                    try {
-                        PV_GROUP_image.setImage(selectedgr.getImage());
-                    }catch (Exception e){}
-
-                    Listchat.getItems().clear();
-                    Listchat.getItems().addAll(selectedgr.getMessages());
-                }
+                });
             }
         });
     }
@@ -351,6 +488,8 @@ public class Chatscont implements Initializable {
     public PV_Chat getSelectedpv() {
         return selectedpv;
     }
+
+
 
     public void setSelectedpv(PV_Chat selectedpv) {
         this.selectedpv = selectedpv;
@@ -364,14 +503,6 @@ public class Chatscont implements Initializable {
         this.selectedgr = selectedgr;
     }
 
-
-    public ListView<String> getList() {
-        return List;
-    }
-
-    public void setList(ListView<String> list) {
-        List = list;
-    }
 
 
     public ChoiceBox<String> getPorg() {
@@ -434,65 +565,137 @@ public class Chatscont implements Initializable {
         return group_chats;
     }
 
+
+
     public void setGroup_chats(ArrayList<Group_Chat> group_chats) {
         this.group_chats = group_chats;
     }
 
+    public Message getSelmessage() {
+        return selmessage;
+    }
+
+    public void setSelmessage(Message selmessage) {
+        this.selmessage = selmessage;
+    }
+
+    public void Back() {
+        firstMenu.Back();
+    }
+
+    public void back() {
+        stage.setScene(scene);
+    }
+
     class chatshow extends ListCell<Message> {
 
+    VBox vbox = new VBox();
+    ImageView imgview = new ImageView();
+    Label label = new Label();
+    Pane pane = new Pane();
 
-        HBox hbox = new HBox();
+
+
+    public chatshow() {
+        super();
+        VBox.setVgrow(pane,Priority.ALWAYS);
+        vbox.getChildren().addAll(imgview,label,pane);
+    }
+
+
+    @Override
+    public void updateItem(Message mssg , boolean empty) {
+
+        super.updateItem(mssg, empty);
+
+        label.setText(null);
+        imgview.setImage(null);
+        setText(null);
+        setGraphic(null);
+
+       if (!empty && mssg != null) {
+            setText(null);
+            label.setText(mssg.getText());
+            imgview.setImage(mssg.getImage());
+            if (mssg.getImage() != null) {
+                double cons = (mssg.getImage().getHeight() / mssg.getImage().getWidth());
+                imgview.setFitWidth(300);
+                imgview.setFitHeight(300.0 * cons);
+            }
+            setGraphic(vbox);
+       }
+    }
+}
+
+    class List1show extends ListCell<PV_Chat> {
+
+        HBox hBox = new HBox();
         ImageView imgview = new ImageView();
         Pane pane = new Pane();
-        Label label = new Label();
-        ContextMenu contextMenu = new ContextMenu();
-        MenuItem edit = new MenuItem();
-        MenuItem delete = new MenuItem();
-        MenuItem reply = new MenuItem();
-        MenuItem forward = new MenuItem();
 
 
-        public chatshow() {
+
+        public List1show() {
             super();
-            hbox.getChildren().addAll(imgview,label,pane);
-            HBox.setHgrow(pane, Priority.ALWAYS);
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane,Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
         }
 
 
         @Override
-        public void updateItem(Message mssg , boolean empty) {
+        public void updateItem(PV_Chat pv , boolean empty) {
 
+            super.updateItem(pv, empty);
 
-            super.updateItem(mssg, empty);
-            if ( empty || mssg == null ) {
+            if (empty || pv == null){
                 setText(null);
                 setGraphic(null);
             }
+
             else {
-                if (mssg.getImage() == null && mssg.getText() == null) {
-                    setText(null);
-                    setGraphic(null);
-                } else if (mssg.getText() != null && mssg.getImage() == null) {
-                    setText(mssg.getText());
-                } else if (mssg.getText() == null && mssg.getImage() != null) {
-                    imgview.setImage(mssg.getImage());
-                    double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
-                    imgview.setFitWidth(300);
-                    imgview.setFitHeight(300.0*cons);
-                    setGraphic(hbox);
-                } else {
-                    label.setText(mssg.getText());
-                    imgview.setImage(mssg.getImage());
-                    double cons = (mssg.getImage().getHeight()/mssg.getImage().getWidth());
-                    imgview.setFitWidth(300);
-                    imgview.setFitHeight(300.0*cons);
-                    setGraphic(hbox);
-                }
+                setText(user.oppuser(pv).getUser_Name());
+                imgview.setImage(user.oppuser(pv).getProfile_Image());
+                setGraphic(hBox);
             }
 
-
         }
-
     }
 
+    class List2show extends ListCell<Group_Chat> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public List2show() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane,Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(Group_Chat gr, boolean empty) {
+
+            super.updateItem(gr, empty);
+
+            if (empty || gr == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(gr.getGroupName());
+                imgview.setImage(gr.getImage());
+                setGraphic(hBox);
+            }
+
+        }
+    }
 }
