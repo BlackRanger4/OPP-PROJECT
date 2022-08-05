@@ -1,13 +1,11 @@
 package com.example.try1.Login;
 
-import com.example.try1.oop.DataBase;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.sql.Connection;
 
 public class Main extends Application {
 
@@ -15,7 +13,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FirstPage.fxml"));
-        System.out.println(Main.class.getResource("FirstPage.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         FirstPage firstPage = fxmlLoader.getController();
         firstPage.firstPage(stage,scene);
