@@ -134,13 +134,19 @@ public class Chatscont implements Initializable {
     public void choose () {
         if (porg.getValue().equals("pv chats")){
             pvorgr = false;
+            List1.getItems().clear();
+            List1.getItems().addAll(user.getMy_Privete_Chat());
             List1.setVisible(true);
             List2.setVisible(false);
+            Listchat.getItems().clear();
         }
         else {
             pvorgr = true;
+            List2.getItems().clear();
+            List2.getItems().addAll(user.getMy_Group_Chat());
             List2.setVisible(true);
             List1.setVisible(false);
+            Listchat.getItems().clear();
         }
     }
 
@@ -384,15 +390,6 @@ public class Chatscont implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List1.getItems().clear();
-        List2.getItems().clear();
-        try {
-            Sort_Group_Chats_with_time();
-            Sort_Pv_Chats_with_time();
-            List1.getItems().addAll(user.getMy_Privete_Chat());
-            List2.getItems().addAll(user.getMy_Group_Chat());
-        }
-        catch (NullPointerException ignored){};
         edit.setText("Edit/Caption");
         edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -461,7 +458,9 @@ public class Chatscont implements Initializable {
 
                 selectedpv = List1.getSelectionModel().getSelectedItem();
                 Listchat.getItems().clear();
-                Listchat.getItems().addAll(selectedpv.getMessages());
+                if (selectedpv != null) {
+                    Listchat.getItems().addAll(selectedpv.getMessages());
+                }
 
             }
         });
@@ -471,7 +470,9 @@ public class Chatscont implements Initializable {
             public void changed(ObservableValue<? extends Group_Chat> observableValue, Group_Chat group_chat, Group_Chat t1) {
                 selectedgr = List2.getSelectionModel().getSelectedItem();
                 Listchat.getItems().clear();
-                Listchat.getItems().addAll(selectedgr.getMessages());
+                if (selectedgr != null) {
+                    Listchat.getItems().addAll(selectedgr.getMessages());
+                }
             }
         });
 
