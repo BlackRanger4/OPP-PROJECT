@@ -101,7 +101,6 @@ public class FirstPage implements Serializable {
         FirstPage.stage = stage;
         this.scene = scene;
         Read_Data_Base();
-        Anchorpane.setStyle("-fx-background-color: #767676;");
     }
 
 }

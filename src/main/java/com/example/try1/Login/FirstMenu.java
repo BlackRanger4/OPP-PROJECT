@@ -105,7 +105,6 @@ public class FirstMenu implements Serializable {
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");
         }
-        System.out.println(Dark_Mod);
         stage.setScene(scene);
     }
 
