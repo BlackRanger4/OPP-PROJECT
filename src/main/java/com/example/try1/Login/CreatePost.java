@@ -2,11 +2,13 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.Post;
 import com.example.try1.oop.User;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -18,6 +20,9 @@ public class CreatePost implements Serializable {
     public TextField Text;
     public ImageView image;
     public AnchorPane Anchorpane;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.control.Button Button1;
+    public javafx.scene.control.Button Button2;
 
 
     private File file;
@@ -29,7 +34,14 @@ public class CreatePost implements Serializable {
         this.home =home;
 
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Text.setStyle("-fx-background-color: #E7717D;");
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");

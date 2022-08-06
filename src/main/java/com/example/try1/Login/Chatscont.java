@@ -21,6 +21,7 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -50,6 +51,49 @@ public class Chatscont implements Initializable {
     public Text replymassage;
     public Rectangle rect;
     public AnchorPane Anchorpane;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.control.Button Button1;
+    public javafx.scene.control.Button newpv;
+    public javafx.scene.control.Button newgroup;
+
+    public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage , boolean Dark_Mod) {
+        Chatscont.stage = stage;
+        this.dataBase = dataBase;
+        this.user = user;
+        this.firstMenu = firstMenu;
+        this.scene = scene;
+        editbutton.setVisible(false);
+        popdown();
+        replyrun = false;
+        this.Dark_Mod = Dark_Mod;
+        if (Dark_Mod) {
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            send.setStyle("-fx-background-color: #6F2232;");
+            send.setTextFill(Paint.valueOf("WHITE"));
+            editbutton.setStyle("-fx-background-color: #6F2232;");
+            editbutton.setTextFill(Paint.valueOf("WHITE"));
+            cancelreply.setStyle("-fx-background-color: #6F2232;");
+            cancelreply.setTextFill(Paint.valueOf("WHITE"));
+            newpv.setStyle("-fx-background-color: #6F2232;");
+            newpv.setTextFill(Paint.valueOf("WHITE"));
+            newgroup.setStyle("-fx-background-color: #6F2232;");
+            newgroup.setTextFill(Paint.valueOf("WHITE"));
+            Listchat.setStyle("-fx-background-color: #E7717D;");
+            List1.setStyle("-fx-background-color: #E7717D;");
+            List2.setStyle("-fx-background-color: #E7717D;");
+            porg.setStyle("-fx-background-color: #E7717D;");
+            mssgtext.setStyle("-fx-background-color: #950740;");
+            replymassage.setStyle("-fx-background-color: #950740;");
+            PV_GROUP_NAME.setTextFill(Paint.valueOf("#950740"));
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+        }
+    }
 
 
     private DataBase dataBase;
@@ -82,7 +126,6 @@ public class Chatscont implements Initializable {
 
     final String replypart = "Reply to : ";
     final String forwardedpart = " ( Forwarded from ";
-
 
     public void Sort_Pv_Chats_with_time(){
 
@@ -201,23 +244,6 @@ public class Chatscont implements Initializable {
     }
 
 
-    public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage , boolean Dark_Mod) {
-        Chatscont.stage = stage;
-        this.dataBase = dataBase;
-        this.user = user;
-        this.firstMenu = firstMenu;
-        this.scene = scene;
-        editbutton.setVisible(false);
-        popdown();
-        replyrun = false;
-        this.Dark_Mod = Dark_Mod;
-        if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
-        }
-        else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
-        }
-    }
 
 
 

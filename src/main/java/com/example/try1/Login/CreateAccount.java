@@ -183,7 +183,7 @@ public class CreateAccount implements Serializable {
         Q[1] = " What was your favorite food as a child? ";
 
         User user = new User(Name,Pass,Business,dataBase, Q ,A);
-        user.setProfile_Image(String.valueOf(getClass().getResource("prof.jpg")));
+        user.setProfile_Image(String.valueOf(getClass().getResource("defpic.png")));
         dataBase.Add_User_to_datas(user);
         Question.setText(Name + " , your account created successfully , click on back to go first menu.");
 

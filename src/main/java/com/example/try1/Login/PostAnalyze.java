@@ -6,8 +6,10 @@ import com.example.try1.oop.Day_Information;
 import com.example.try1.oop.Post;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class PostAnalyze implements Serializable {
 
     public LineChart Chart;
     public AnchorPane Anchorpane;
+    public javafx.scene.control.Button Button;
 
     private Home home;
 
@@ -26,7 +29,9 @@ public class PostAnalyze implements Serializable {
 
 
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");

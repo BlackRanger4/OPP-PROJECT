@@ -18,11 +18,11 @@
             <ChoiceBox fx:id="porg" layoutX="81.0" layoutY="14.0" onAction="#choose" prefWidth="150.0" value="Select one" />
             <ListView fx:id="List1" layoutX="14.0" layoutY="47.0" prefHeight="467.0" prefWidth="218.0" />
             <ListView fx:id="Listchat" layoutX="247.0" layoutY="89.0" prefHeight="450.0" prefWidth="586.0" />
-            <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
+            <Button fx:id="Button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
             <Button fx:id="newpv" layoutX="14.0" layoutY="523.0" mnemonicParsing="false" onAction="#createnewpv" prefHeight="26.0" prefWidth="218.0" text="Create new pv chat" />
             <Button fx:id="newgroup" layoutX="14.0" layoutY="557.0" mnemonicParsing="false" onAction="#createnewgr" prefHeight="26.0" prefWidth="218.0" text="Create new group chat" />
             <Button fx:id="send" layoutX="695.0" layoutY="545.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="38.0" prefWidth="55.0" text="&gt;" />
-            <Button layoutX="756.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="77.0" text="Add fig" />
+            <Button fx:id="Button1" layoutX="756.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="77.0" text="Add fig" />
             <TextArea fx:id="mssgtext" layoutX="247.0" layoutY="545.0" prefHeight="38.0" prefWidth="442.0" />
             <ImageView fx:id="PV_GROUP_image" fitHeight="70.0" fitWidth="78.0" layoutX="247.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="PV_GROUP_NAME" layoutX="332.0" layoutY="19.0" prefHeight="58.0" prefWidth="49.0" text="Name">
