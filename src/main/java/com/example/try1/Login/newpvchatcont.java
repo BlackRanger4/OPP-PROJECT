@@ -29,8 +29,6 @@ public class newpvchatcont implements Initializable {
 
     public TextField username;
     public ListView<User> results;
-    public javafx.scene.text.Text Text;
-    public javafx.scene.text.Text Text1;
     public javafx.scene.control.Button Button;
     public AnchorPane Anchorpane;
 
@@ -63,8 +61,6 @@ public class newpvchatcont implements Initializable {
             Button.setTextFill(Paint.valueOf("WHITE"));
             username.setStyle("-fx-background-color: #E7717D;");
             results.setStyle("-fx-background-color: #E7717D;");
-            Text.setStyle("-fx-background-color: #E7717D;");
-            Text1.setStyle("-fx-background-color: #E7717D;");
         }
         else {
 

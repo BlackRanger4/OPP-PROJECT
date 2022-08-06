@@ -10,12 +10,12 @@
 <AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.newpvchatcont">
    <children>
       <TextField fx:id="username" layoutX="345.0" layoutY="62.0" onKeyTyped="#search_user" prefHeight="26.0" prefWidth="209.0" />
-      <Text fx:id="Text" layoutX="365.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a username to search">
+      <Text fill="#950740" layoutX="365.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a username to search">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="Text1" layoutX="427.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results">
+      <Text fill="#950740" layoutX="427.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results">
          <font>
             <Font size="14.0" />
          </font>

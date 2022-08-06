@@ -34,6 +34,7 @@ public class newgroupchatcont implements Initializable, Serializable {
     public javafx.scene.control.Button Button;
     public javafx.scene.text.Text Text2;
     public AnchorPane Anchorpane;
+    public javafx.scene.text.Text Text4;
 
     private DataBase dataBase;
     private User user;
@@ -66,9 +67,10 @@ public class newgroupchatcont implements Initializable, Serializable {
             Button.setTextFill(Paint.valueOf("WHITE"));
             username.setStyle("-fx-background-color: #E7717D;");
             results.setStyle("-fx-background-color: #E7717D;");
-            Text.setStyle("-fx-background-color: #E7717D;");
-            Text1.setStyle("-fx-background-color: #E7717D;");
-            Text2.setStyle("-fx-background-color: #E7717D;");
+            Text.setFill(Paint.valueOf("#950740"));
+            Text1.setFill(Paint.valueOf("#950740"));
+            Text2.setFill(Paint.valueOf("#950740"));
+            Text4.setFill(Paint.valueOf("#950740"));
             create.setStyle("-fx-background-color: #6F2232;");
             create.setTextFill(Paint.valueOf("WHITE"));
             addedmembers.setStyle("-fx-background-color: #E7717D;");
@@ -335,4 +337,3 @@ public class newgroupchatcont implements Initializable, Serializable {
                 }
     }
 }
-

@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class forwardcont implements Initializable, Serializable {
 
+
     private DataBase dataBase;
     private User user;
     private Chatscont chatscont;
@@ -38,7 +39,7 @@ public class forwardcont implements Initializable, Serializable {
     public ListView<User> List1;
     public ListView<Group_Chat> List2;
     public Label searchtext;
-    public javafx.scene.text.Text Text;
+    public Label Text;
 
     static String[] choice = {"PV chats","Group chats"};
     public String textmssg;
@@ -64,8 +65,8 @@ public class forwardcont implements Initializable, Serializable {
             cancel.setStyle("-fx-background-color: #6F2232;");
             cancel.setTextFill(Paint.valueOf("WHITE"));
             searchingbox.setStyle("-fx-background-color: #E7717D;");
-            searchtext.setStyle("-fx-background-color: #E7717D;");
-            Text.setStyle("-fx-background-color: #E7717D;");
+            searchtext.setTextFill(Paint.valueOf("#950740"));
+            Text.setTextFill(Paint.valueOf("#950740"));
             List1.setStyle("-fx-background-color: #E7717D;");
             List2.setStyle("-fx-background-color: #E7717D;");
             choose.setStyle("-fx-background-color: #E7717D;");
