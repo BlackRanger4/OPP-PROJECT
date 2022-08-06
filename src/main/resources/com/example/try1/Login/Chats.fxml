@@ -1,35 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
+<AnchorPane fx:id="Anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="600.0" prefWidth="900.0">
          <children>
+            <ImageView fitHeight="601.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@background.png" />
+               </image>
+            </ImageView>
             <ChoiceBox fx:id="porg" layoutX="81.0" layoutY="14.0" onAction="#choose" prefWidth="150.0" value="Select one" />
             <ListView fx:id="List1" layoutX="14.0" layoutY="47.0" prefHeight="467.0" prefWidth="218.0" />
-            <ListView fx:id="Listchat" layoutX="247.0" layoutY="89.0" prefHeight="450.0" prefWidth="586.0" />
+            <ListView fx:id="Listchat" layoutX="247.0" layoutY="14.0" prefHeight="526.0" prefWidth="637.0" />
             <Button fx:id="Button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="58.0" text="Back" />
             <Button fx:id="newpv" layoutX="14.0" layoutY="523.0" mnemonicParsing="false" onAction="#createnewpv" prefHeight="26.0" prefWidth="218.0" text="Create new pv chat" />
             <Button fx:id="newgroup" layoutX="14.0" layoutY="557.0" mnemonicParsing="false" onAction="#createnewgr" prefHeight="26.0" prefWidth="218.0" text="Create new group chat" />
-            <Button fx:id="send" layoutX="695.0" layoutY="545.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="38.0" prefWidth="55.0" text="&gt;" />
-            <Button fx:id="Button1" layoutX="756.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="77.0" text="Add fig" />
-            <TextArea fx:id="mssgtext" layoutX="247.0" layoutY="545.0" prefHeight="38.0" prefWidth="442.0" />
-            <ImageView fx:id="PV_GROUP_image" fitHeight="70.0" fitWidth="78.0" layoutX="247.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="PV_GROUP_NAME" layoutX="332.0" layoutY="19.0" prefHeight="58.0" prefWidth="499.0" text="Name">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button fx:id="editbutton" layoutX="695.0" layoutY="545.0" mnemonicParsing="false" onAction="#editsend" prefHeight="38.0" prefWidth="55.0" text="OK" />
-            <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#f5af00" height="26.0" layoutX="247.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="442.0" />
+            <Button fx:id="send" layoutX="672.0" layoutY="545.0" mnemonicParsing="false" onAction="#sendmassage" prefHeight="38.0" prefWidth="86.0" text="&gt;" />
+            <Button fx:id="Button1" layoutX="765.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="120.0" text="Add fig" />
+            <TextArea fx:id="mssgtext" layoutX="247.0" layoutY="545.0" prefHeight="39.0" prefWidth="375.0" />
+            <Button fx:id="editbutton" layoutX="673.0" layoutY="545.0" mnemonicParsing="false" onAction="#editsend" prefHeight="38.0" prefWidth="85.0" text="OK" />
+            <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" fill="#f5af00" height="26.0" layoutX="247.0" layoutY="518.0" stroke="BLACK" strokeType="INSIDE" width="375.0" />
             <Text fx:id="replymassage" layoutX="255.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Button fx:id="cancelreply" layoutX="667.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelreply" prefHeight="17.0" prefWidth="22.0" text="x" />
+            <Button fx:id="cancelreply" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onAction="#cancelreply" prefHeight="17.0" prefWidth="22.0" text="x" />
             <ListView fx:id="List2" layoutX="14.0" layoutY="47.0" prefHeight="467.0" prefWidth="218.0" />
+            <ImageView fitHeight="7.0" fitWidth="38.0" layoutX="634.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+               <image>
+                  <Image url="@dots.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="settbutton" layoutX="629.0" layoutY="545.0" mnemonicParsing="false" onAction="#gotosetting" prefHeight="38.0" prefWidth="34.0" />
          </children>
       </AnchorPane>
    </children>

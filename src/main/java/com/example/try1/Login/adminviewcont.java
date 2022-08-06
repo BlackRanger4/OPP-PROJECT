@@ -52,7 +52,7 @@ public class adminviewcont implements Initializable, Serializable {
         this.dataBase = dataBase;
         this.user = user;
         this.scene = scene;
-        group = gr1;
+        this.group = gr1;
         this.chatscont = chatscont;
         adminviewcont.stage = stage;
         Dark_Mod = dark_Mod;
@@ -142,5 +142,7 @@ public class adminviewcont implements Initializable, Serializable {
     public void back() {
         chatscont.back();
     }
+
+
 
 }
