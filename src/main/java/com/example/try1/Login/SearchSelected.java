@@ -75,7 +75,26 @@ public class SearchSelected implements Serializable {
             Text.setTextFill(Paint.valueOf("#950740"));
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Button3.setStyle("-fx-background-color: #EDC7B7;");
+            Button3.setTextFill(Paint.valueOf("#AC3B61"));
+            Button4.setStyle("-fx-background-color: #EDC7B7;");
+            Button4.setTextFill(Paint.valueOf("#AC3B61"));
+            Block_button.setStyle("-fx-background-color: #EDC7B7;");
+            Block_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Follow_Button.setStyle("-fx-background-color: #EDC7B7;");
+            Follow_Button.setTextFill(Paint.valueOf("#AC3B61"));
+            List.setStyle("-fx-background-color: #E7717D;");
+            Followers_num.setTextFill(Paint.valueOf("#AC3B61"));
+            Followings_num.setTextFill(Paint.valueOf("#AC3B61"));
+            UserName.setTextFill(Paint.valueOf("#AC3B61"));
+            Text.setTextFill(Paint.valueOf("#AC3B61"));
         }
 
         try {

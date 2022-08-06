@@ -33,7 +33,9 @@ public class PageAnalyze implements Serializable {
             Button.setTextFill(Paint.valueOf("WHITE"));
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
         }
 
         ArrayList<Day_Information> day_informations = user.getDay_informations();

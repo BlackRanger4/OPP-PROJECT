@@ -53,7 +53,13 @@ public class Search implements Serializable {
             List.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Text.setStyle("-fx-background-color: #AC3B61;");
+            List.setStyle("-fx-background-color: #E7717D;");
         }
 
     }

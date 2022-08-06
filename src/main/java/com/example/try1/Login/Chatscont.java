@@ -95,7 +95,28 @@ public class Chatscont implements Initializable {
             PV_GROUP_NAME.setTextFill(Paint.valueOf("#950740"));
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            send.setStyle("-fx-background-color: #EDC7B7;");
+            send.setTextFill(Paint.valueOf("#AC3B61"));
+            editbutton.setStyle("-fx-background-color: #EDC7B7;");
+            editbutton.setTextFill(Paint.valueOf("#AC3B61"));
+            cancelreply.setStyle("-fx-background-color: #EDC7B7;");
+            cancelreply.setTextFill(Paint.valueOf("#AC3B61"));
+            newpv.setStyle("-fx-background-color: #EDC7B7;");
+            newpv.setTextFill(Paint.valueOf("#AC3B61"));
+            newgroup.setStyle("-fx-background-color: #EDC7B7;");
+            newgroup.setTextFill(Paint.valueOf("#AC3B61"));
+            Listchat.setStyle("-fx-background-color: #E7717D;");
+            List1.setStyle("-fx-background-color: #E7717D;");
+            List2.setStyle("-fx-background-color: #E7717D;");
+            porg.setStyle("-fx-background-color: #E7717D;");
+            mssgtext.setStyle("-fx-background-color: #950740;");
+            replymassage.setStyle("-fx-background-color: #950740;");
+            PV_GROUP_NAME.setTextFill(Paint.valueOf("#AC3B61"));
         }
     }
 

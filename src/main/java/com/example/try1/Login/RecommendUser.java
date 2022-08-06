@@ -38,7 +38,11 @@ public class RecommendUser implements Serializable {
             Label.setTextFill(Paint.valueOf("#950740"));
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            List.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Label.setTextFill(Paint.valueOf("#AC3B61"));
         }
         User_recommend();
     }

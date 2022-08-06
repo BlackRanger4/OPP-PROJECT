@@ -145,7 +145,45 @@ public class FirstMenu implements Serializable {
             List_of_ads.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Button3.setStyle("-fx-background-color:#EDC7B7;");
+            Button3.setTextFill(Paint.valueOf("#AC3B61"));
+            Button4.setStyle("-fx-background-color: #EDC7B7;");
+            Button4.setTextFill(Paint.valueOf("#AC3B61"));
+            Button5.setStyle("-fx-background-color: #EDC7B7;");
+            Button5.setTextFill(Paint.valueOf("#AC3B61"));
+            Button6.setStyle("-fx-background-color:#EDC7B7;");
+            Button6.setTextFill(Paint.valueOf("#AC3B61"));
+            Button7.setStyle("-fx-background-color: #EDC7B7;");
+            Button7.setTextFill(Paint.valueOf("#AC3B61"));
+            Button8.setStyle("-fx-background-color: #EDC7B7;");
+            Button8.setTextFill(Paint.valueOf("#AC3B61"));
+            Button9.setStyle("-fx-background-color: #EDC7B7;");
+            Button9.setTextFill(Paint.valueOf("#AC3B61"));
+            Button10.setStyle("-fx-background-color: #EDC7B7;");
+            Button10.setTextFill(Paint.valueOf("#AC3B61"));
+            Button11.setStyle("-fx-background-color: #EDC7B7;");
+            Button11.setTextFill(Paint.valueOf("#AC3B61"));
+            Button12.setStyle("-fx-background-color: #EDC7B7;");
+            Button12.setTextFill(Paint.valueOf("#AC3B61"));
+            Label.setTextFill(Paint.valueOf("#AC3B61"));
+            Follow_unFollow.setStyle("-fx-background-color: #EDC7B7;");
+            Follow_unFollow.setTextFill(Paint.valueOf("#AC3B61"));
+            Create_time_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
+            Creater_name_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
+            Likes_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
+            Views_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
+            Text_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
+            TextField_of_ads.setStyle("-fx-background-color: #C38D9E;");
+            List_of_ads.setStyle("-fx-background-color: #C38D9E;");
+
         }
 
         stage.setScene(scene);

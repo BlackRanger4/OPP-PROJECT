@@ -44,7 +44,14 @@ public class CreatePost implements Serializable {
             Text.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Text.setStyle("-fx-background-color: #E7717D;");
         }
     }
 

@@ -63,7 +63,11 @@ public class newpvchatcont implements Initializable {
             results.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            username.setStyle("-fx-background-color: #AC3B61;");
+            results.setStyle("-fx-background-color: #AC3B61;");
         }
 
 

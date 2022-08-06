@@ -86,7 +86,49 @@ public class Home implements Serializable {
             owner_name.setTextFill(Paint.valueOf("#950740"));
         }
         else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Button3.setStyle("-fx-background-color: #EDC7B7;");
+            Button3.setTextFill(Paint.valueOf("#AC3B61"));
+            Button4.setStyle("-fx-background-color: #EDC7B7;");
+            Button4.setTextFill(Paint.valueOf("#AC3B61"));
+            Button5.setStyle("-fx-background-color: #EDC7B7;");
+            Button5.setTextFill(Paint.valueOf("#AC3B61"));
+            Button6.setStyle("-fx-background-color: #EDC7B7;");
+            Button6.setTextFill(Paint.valueOf("#AC3B61"));
+            Button7.setStyle("-fx-background-color: #EDC7B7;");
+            Button7.setTextFill(Paint.valueOf("#AC3B61"));
+            Button8.setStyle("-fx-background-color: #EDC7B7;");
+            Button8.setTextFill(Paint.valueOf("#AC3B61"));
+            Button9.setStyle("-fx-background-color: #EDC7B7;");
+            Button9.setTextFill(Paint.valueOf("#AC3B61"));
+            Page_last_button.setStyle("-fx-background-color: #EDC7B7;");
+            Page_last_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Post_Next_button.setStyle("-fx-background-color: #EDC7B7;");
+            Post_Next_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Create_fuf_button.setStyle("-fx-background-color: #EDC7B7;");
+            Create_fuf_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Remove_post.setStyle("-fx-background-color: #EDC7B7;");
+            Remove_post.setTextFill(Paint.valueOf("#AC3B61"));
+            Followers_see_button.setStyle("-fx-background-color: #EDC7B7;");
+            Followers_see_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Followings_see_button.setStyle("-fx-background-color: #EDC7B7;");
+            Followings_see_button.setTextFill(Paint.valueOf("#AC3B61"));
+            Text_field.setStyle("-fx-background-color: #E7717D;");
+            List.setStyle("-fx-background-color: #E7717D;");
+            Post_text.setTextFill(Paint.valueOf("#AC3B61"));
+            Post_Creater_Name.setTextFill(Paint.valueOf("#AC3B61"));
+            Post_Create_time.setTextFill(Paint.valueOf("#AC3B61"));
+            Post_Views.setTextFill(Paint.valueOf("#AC3B61"));
+            Posr_Likes.setTextFill(Paint.valueOf("#AC3B61"));
+            Followers_num.setTextFill(Paint.valueOf("#AC3B61"));
+            Followings_num.setTextFill(Paint.valueOf("#AC3B61"));
+            owner_name.setTextFill(Paint.valueOf("#AC3B61"));
         }
         My_Post();
     }

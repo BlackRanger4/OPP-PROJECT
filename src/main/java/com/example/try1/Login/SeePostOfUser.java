@@ -41,7 +41,7 @@ public class SeePostOfUser implements Serializable {
     private SearchSelected searchSelected;
     private User user;
     private User user_selected;
-    private boolean Dark_Mod;
+
 
     private int post_num ;
 
@@ -51,7 +51,6 @@ public class SeePostOfUser implements Serializable {
             this.searchSelected = searchSelected;
             this.user = user;
             this.user_selected = user_selected;
-            this.Dark_Mod =Dark_Mod;
             if (Dark_Mod) {
                 Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
                 Button.setStyle("-fx-background-color: #6F2232;");
@@ -80,7 +79,31 @@ public class SeePostOfUser implements Serializable {
                 Post_text.setTextFill(Paint.valueOf("#950740"));
             }
             else {
-                Anchorpane.setStyle("-fx-background-color: #ffffff;");
+                Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+                Button.setStyle("-fx-background-color: #EDC7B7;");
+                Button.setTextFill(Paint.valueOf("#AC3B61"));
+                Button1.setStyle("-fx-background-color: #EDC7B7;");
+                Button1.setTextFill(Paint.valueOf("#AC3B61"));
+                Button2.setStyle("-fx-background-color: #EDC7B7;");
+                Button2.setTextFill(Paint.valueOf("#AC3B61"));
+                Button3.setStyle("-fx-background-color: #EDC7B7;");
+                Button3.setTextFill(Paint.valueOf("#AC3B61"));
+                Button4.setStyle("-fx-background-color: #EDC7B7;");
+                Button4.setTextFill(Paint.valueOf("#AC3B61"));
+                Button5.setStyle("-fx-background-color: #EDC7B7;");
+                Button5.setTextFill(Paint.valueOf("#AC3B61"));
+                Button6.setStyle("-fx-background-color: #EDC7B7;");
+                Button6.setTextFill(Paint.valueOf("#AC3B61"));
+                Button7.setStyle("-fx-background-color: #EDC7B7;");
+                Button7.setTextFill(Paint.valueOf("#AC3B61"));
+                List.setStyle("-fx-background-color: #E7717D;");
+                Text.setStyle("-fx-background-color: #E7717D;");
+                Views.setTextFill(Paint.valueOf("#AC3B61"));
+                Create_time.setTextFill(Paint.valueOf("#AC3B61"));
+                Create_day.setTextFill(Paint.valueOf("#AC3B61"));
+                Creater.setTextFill(Paint.valueOf("#AC3B61"));
+                Likes.setTextFill(Paint.valueOf("#AC3B61"));
+                Post_text.setTextFill(Paint.valueOf("#AC3B61"));
             }
             try {
                 Creater_prof.setImage(user_selected.getProfile_Image());

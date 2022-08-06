@@ -72,7 +72,15 @@ public class forwardcont implements Initializable, Serializable {
             choose.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            cancel.setStyle("-fx-background-color: #EDC7B7;");
+            cancel.setTextFill(Paint.valueOf("#AC3B61"));
+            searchingbox.setStyle("-fx-background-color: #EDC7B7;");
+            searchtext.setTextFill(Paint.valueOf("#AC3B61"));
+            Text.setTextFill(Paint.valueOf("#AC3B61"));
+            List1.setStyle("-fx-background-color: #E7717D;");
+            List2.setStyle("-fx-background-color: #E7717D;");
+            choose.setStyle("-fx-background-color: #E7717D;");
         }
     }
 

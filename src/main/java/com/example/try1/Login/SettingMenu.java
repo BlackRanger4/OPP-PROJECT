@@ -74,7 +74,29 @@ public class SettingMenu implements Serializable {
             Text.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-            Anchrpane.setStyle("-fx-background-color: #ffffff;");
+            Anchrpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Button3.setStyle("-fx-background-color: #EDC7B7;");
+            Button3.setTextFill(Paint.valueOf("#AC3B61"));
+            Button4.setStyle("-fx-background-color: #EDC7B7;");
+            Button4.setTextFill(Paint.valueOf("#AC3B61"));
+            Button5.setStyle("-fx-background-color: #EDC7B7;");
+            Button5.setTextFill(Paint.valueOf("#AC3B61"));
+            Button6.setStyle("-fx-background-color: #EDC7B7;");
+            Button6.setTextFill(Paint.valueOf("#AC3B61"));
+            Button7.setStyle("-fx-background-color: #EDC7B7;");
+            Button7.setTextFill(Paint.valueOf("#AC3B61"));
+            Button8.setStyle("-fx-background-color: #EDC7B7;");
+            Button8.setTextFill(Paint.valueOf("#AC3B61"));
+            User_Name.setTextFill(Paint.valueOf("#AC3B61"));
+            Information.setTextFill(Paint.valueOf("#AC3B61"));
+            List.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
         }
 
         User_Name.setText(user.getUser_Name());
@@ -164,7 +186,29 @@ public class SettingMenu implements Serializable {
 
         }
         else {
-            Anchrpane.setStyle("-fx-background-color: #ffffff;");
+            Anchrpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            Button2.setStyle("-fx-background-color: #EDC7B7;");
+            Button2.setTextFill(Paint.valueOf("#AC3B61"));
+            Button3.setStyle("-fx-background-color: #EDC7B7;");
+            Button3.setTextFill(Paint.valueOf("#AC3B61"));
+            Button4.setStyle("-fx-background-color: #EDC7B7;");
+            Button4.setTextFill(Paint.valueOf("#AC3B61"));
+            Button5.setStyle("-fx-background-color: #EDC7B7;");
+            Button5.setTextFill(Paint.valueOf("#AC3B61"));
+            Button6.setStyle("-fx-background-color: #EDC7B7;");
+            Button6.setTextFill(Paint.valueOf("#AC3B61"));
+            Button7.setStyle("-fx-background-color: #EDC7B7;");
+            Button7.setTextFill(Paint.valueOf("#AC3B61"));
+            Button8.setStyle("-fx-background-color: #EDC7B7;");
+            Button8.setTextFill(Paint.valueOf("#AC3B61"));
+            User_Name.setTextFill(Paint.valueOf("#AC3B61"));
+            Information.setTextFill(Paint.valueOf("#AC3B61"));
+            List.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
         }
     }
 

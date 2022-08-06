@@ -77,7 +77,19 @@ public class newgroupchatcont implements Initializable, Serializable {
             groupname.setStyle("-fx-background-color: #E7717D;");
         }
         else {
-
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            username.setStyle("-fx-background-color: #EDC7B7;");
+            results.setStyle("-fx-background-color: #EDC7B7;");
+            Text.setFill(Paint.valueOf("#AC3B61"));
+            Text1.setFill(Paint.valueOf("#AC3B61"));
+            Text2.setFill(Paint.valueOf("#AC3B61"));
+            Text4.setFill(Paint.valueOf("#AC3B61"));
+            create.setStyle("-fx-background-color: #EDC7B7;");
+            create.setTextFill(Paint.valueOf("#AC3B61"));
+            addedmembers.setStyle("-fx-background-color: #E7717D;");
+            groupname.setStyle("-fx-background-color: #E7717D;");
         }
 
     }
