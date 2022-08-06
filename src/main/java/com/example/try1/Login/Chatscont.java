@@ -38,14 +38,12 @@ import java.util.ResourceBundle;
 
 public class Chatscont implements Initializable {
 
-    public Label PV_GROUP_NAME;
     public ListView<PV_Chat> List1;
     public ListView<Group_Chat> List2;
     public ListView<Message> Listchat;
     public ChoiceBox<String> porg;
     public Button send;
     public TextArea mssgtext;
-    public ImageView PV_GROUP_image;
     public Button editbutton;
     public Button cancelreply;
     public Text replymassage;
@@ -55,6 +53,7 @@ public class Chatscont implements Initializable {
     public javafx.scene.control.Button Button1;
     public javafx.scene.control.Button newpv;
     public javafx.scene.control.Button newgroup;
+    public Button settbutton;
 
     public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage , boolean Dark_Mod) {
         Chatscont.stage = stage;
@@ -86,13 +85,19 @@ public class Chatscont implements Initializable {
             newpv.setTextFill(Paint.valueOf("WHITE"));
             newgroup.setStyle("-fx-background-color: #6F2232;");
             newgroup.setTextFill(Paint.valueOf("WHITE"));
-            Listchat.setStyle("-fx-background-color: #E7717D;");
-            List1.setStyle("-fx-background-color: #E7717D;");
-            List2.setStyle("-fx-background-color: #E7717D;");
+            Listchat.setStyle("-fx-background-color: transparent ;\n"+
+                    "-fx-background-radius: 5; \n " +
+                    "-fx-border-radius: 5; \n"+
+                    "-fx-border-color: #ffffff;");
+            List1.setStyle("-fx-background-color: #E9E9EB ;\n" +
+                    "-fx-background-radius: 5; \n " +
+                    "-fx-border-radius: 5; \n" +
+                    "-fx-border-color: #ffffff;");
+            List2.setStyle("-fx-background-color: #E9E9EB;");
             porg.setStyle("-fx-background-color: #E7717D;");
             mssgtext.setStyle("-fx-background-color: #950740;");
             replymassage.setStyle("-fx-background-color: #950740;");
-            PV_GROUP_NAME.setTextFill(Paint.valueOf("#950740"));
+            settbutton.setStyle("-fx-background-color: transparent; \n");
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
@@ -116,7 +121,6 @@ public class Chatscont implements Initializable {
             porg.setStyle("-fx-background-color: #E7717D;");
             mssgtext.setStyle("-fx-background-color: #950740;");
             replymassage.setStyle("-fx-background-color: #950740;");
-            PV_GROUP_NAME.setTextFill(Paint.valueOf("#AC3B61"));
         }
     }
 
@@ -128,8 +132,8 @@ public class Chatscont implements Initializable {
     private Scene scene;
     private boolean Dark_Mod;
 
-    private ArrayList<PV_Chat> pv_chats;
-    private ArrayList<Group_Chat> group_chats;
+    private ArrayList<PV_Chat> pv_chats ;
+    private ArrayList<Group_Chat> group_chats ;
     private final String[] pvorgroup = { "pv chats" , "group chats"};
     private PV_Chat selectedpv;
     private Group_Chat selectedgr;
@@ -210,6 +214,7 @@ public class Chatscont implements Initializable {
             List1.setVisible(true);
             List2.setVisible(false);
             Listchat.getItems().clear();
+            settbutton.setVisible(false);
         }
         else {
             pvorgr = true;
@@ -219,6 +224,7 @@ public class Chatscont implements Initializable {
             List2.setVisible(true);
             List1.setVisible(false);
             Listchat.getItems().clear();
+            settbutton.setVisible(true);
         }
     }
 
@@ -262,10 +268,26 @@ public class Chatscont implements Initializable {
     }
 
 
+    public void gotosetting () throws IOException {
+        if (user == selectedgr.getAdmin()) {
+            System.out.println("zart");
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminview.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),900,600);
+            stage.setScene(scene);
+            adminviewcont adminviewcont = new adminviewcont();
+            adminviewcont.adminviewcont(dataBase,user,scene,Dark_Mod,selectedgr,this,stage);
+        }
+        else {
+
+        }
+    }
+
+
 
 
 
     public void createnewpv() throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newpvchat.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         stage.setScene(scene);
@@ -438,7 +460,6 @@ public class Chatscont implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-
         edit.setText("Edit/Caption");
         edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -508,8 +529,6 @@ public class Chatscont implements Initializable {
                 Listchat.getItems().clear();
                 if (selectedpv != null) {
                     Listchat.getItems().addAll(selectedpv.getMessages());
-                    PV_GROUP_NAME.setText(user.oppuser(selectedpv).getUser_Name());
-                    PV_GROUP_image.setImage(user.oppuser(selectedpv).getProfile_Image());
                     selectedpv.Seen_ALl(user);
                 }
 
@@ -523,8 +542,6 @@ public class Chatscont implements Initializable {
                 Listchat.getItems().clear();
                 if (selectedgr != null) {
                     Listchat.getItems().addAll(selectedgr.getMessages());
-                    PV_GROUP_NAME.setText(selectedgr.getGroupName()+"("+(selectedgr.getMembers().size()+1)+" members)");
-                    PV_GROUP_image.setImage(selectedgr.getImage());
                     selectedgr.Seen_ALl(user);
                 }
             }
@@ -625,6 +642,7 @@ public class Chatscont implements Initializable {
         sender.setTextFill(Color.WHITE);
         HBox.setHgrow(pane1,Priority.ALWAYS);
         hBox.setSpacing(4);
+        this.setStyle("-fx-background-color: transparent; \n");
     }
 
 
@@ -724,6 +742,7 @@ public class Chatscont implements Initializable {
             HBox.setHgrow(pane,Priority.ALWAYS);
             imgview.setFitHeight(50);
             imgview.setFitWidth(50);
+            this.setStyle("-fx-background-color: transparent;");
         }
 
 
@@ -747,6 +766,7 @@ public class Chatscont implements Initializable {
                 imgview.setImage(user.oppuser(pv).getProfile_Image());
                 setGraphic(hBox);
             }
+
 
         }
     }
@@ -775,6 +795,7 @@ public class Chatscont implements Initializable {
 
             if (empty || gr == null){
                 setText(null);
+                imgview.setImage(null);
                 setGraphic(null);
             }
 

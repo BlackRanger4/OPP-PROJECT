@@ -1,5 +1,6 @@
 package com.example.try1.oop;
 
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -266,4 +267,9 @@ public class User implements Serializable {
     public boolean checkblock(User x) {
         return x.getBlocked_User().contains(this);
     }
+
+    public void banning (User x , Group_Chat y) {
+
+    }
+
 }
