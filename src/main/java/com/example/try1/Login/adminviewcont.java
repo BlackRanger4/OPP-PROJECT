@@ -28,7 +28,7 @@ public class adminviewcont implements Initializable, Serializable {
     private static Stage stage;
     private Scene scene;
     private boolean Dark_Mod;
-    public Group_Chat group;
+    private Group_Chat group;
     private Chatscont chatscont;
 
     public Button applychanges;
@@ -57,8 +57,8 @@ public class adminviewcont implements Initializable, Serializable {
         adminviewcont.stage = stage;
         Dark_Mod = dark_Mod;
         members.getItems().addAll(gr1.getMembers());
-        grname.setText(gr1.getGroupName());
-        grouppicview.setImage(gr1.getImage());
+        grname.setText(group.getGroupName());
+        grouppicview.setImage(group.getImage());
         removeuser.setText("Remove");
         banuser.setText("Ban");
         unbanuser.setText("Unban");
@@ -67,6 +67,7 @@ public class adminviewcont implements Initializable, Serializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
 
         removeuser.setOnAction(new EventHandler<ActionEvent>() {
