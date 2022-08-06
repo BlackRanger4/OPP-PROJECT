@@ -49,10 +49,13 @@ public class DataBase implements Serializable {
 
         return null;
     }
+
     public void Add_User_to_datas(User user){
 
         All_User.add(user);
     }
+
+
     public ArrayList<User> User_Search(String name){
         int Size = All_User.size();
         ArrayList<User> users = new ArrayList<>();
@@ -99,7 +102,7 @@ public class DataBase implements Serializable {
     public Connection getConnection() throws Exception {
         String url = "jdbc:mysql://localhost:3306/daz";
         String username = "root";
-        String password = "1363344552Sad";
+        String password = "400101572";
         Connection conn = DriverManager.getConnection(url, username, password);
         return conn;
     }
