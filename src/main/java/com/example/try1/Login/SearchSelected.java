@@ -1,6 +1,7 @@
 package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
+import com.example.try1.oop.Message;
 import com.example.try1.oop.PV_Chat;
 import com.example.try1.oop.User;
 import javafx.fxml.FXMLLoader;
@@ -155,6 +156,8 @@ public class SearchSelected implements Serializable {
             }
             else {
                 PV_Chat test = new PV_Chat(this.user, user_selected, null, dataBase);
+                Message message = new Message(user,"Chat created!!",null,null,null);
+                test.getMessages().add(message);
                 this.user.getMy_Privete_Chat().add(test);
                 user_selected.getMy_Privete_Chat().add(test);
                 dataBase.Add_PV_Chat(test);

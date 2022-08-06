@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class SeePostOfUser implements Serializable {
 
+
     public ImageView Creater_prof;
     public ImageView Post_image;
     public ListView<String> List;
@@ -41,9 +42,8 @@ public class SeePostOfUser implements Serializable {
     private SearchSelected searchSelected;
     private User user;
     private User user_selected;
-
-
     private int post_num ;
+
 
     public void seepostofuser(SearchSelected searchSelected,User user,User user_selected , boolean Dark_Mod){
 
