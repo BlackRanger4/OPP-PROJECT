@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="Anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
+<AnchorPane fx:id="Anchorpane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.Chatscont">
    <children>
       <AnchorPane layoutY="1.0" prefHeight="600.0" prefWidth="900.0">
          <children>
@@ -25,7 +20,7 @@
             <Button fx:id="Button1" layoutX="756.0" layoutY="545.0" mnemonicParsing="false" onMouseClicked="#Add_Fig" prefHeight="38.0" prefWidth="77.0" text="Add fig" />
             <TextArea fx:id="mssgtext" layoutX="247.0" layoutY="545.0" prefHeight="38.0" prefWidth="442.0" />
             <ImageView fx:id="PV_GROUP_image" fitHeight="70.0" fitWidth="78.0" layoutX="247.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="PV_GROUP_NAME" layoutX="332.0" layoutY="19.0" prefHeight="58.0" prefWidth="49.0" text="Name">
+            <Label fx:id="PV_GROUP_NAME" layoutX="332.0" layoutY="19.0" prefHeight="58.0" prefWidth="499.0" text="Name">
                <font>
                   <Font size="18.0" />
                </font>

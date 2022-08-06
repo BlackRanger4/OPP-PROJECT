@@ -523,7 +523,7 @@ public class Chatscont implements Initializable {
                 Listchat.getItems().clear();
                 if (selectedgr != null) {
                     Listchat.getItems().addAll(selectedgr.getMessages());
-                    PV_GROUP_NAME.setText(selectedgr.getGroupName());
+                    PV_GROUP_NAME.setText(selectedgr.getGroupName()+"("+(selectedgr.getMembers().size()+1)+" members)");
                     PV_GROUP_image.setImage(selectedgr.getImage());
                     selectedgr.Seen_ALl(user);
                 }
