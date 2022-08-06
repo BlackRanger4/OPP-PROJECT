@@ -424,8 +424,8 @@ public class FirstMenu implements Serializable {
 
     public void Follow_of_ads_creater(MouseEvent mouseEvent) {
 
-        Post post = posts.get(post_Num);
         try {
+            Post post = posts.get(post_Num);
             this.user.unfollowing_following_me(post.getCreater());
             if (post.getCreater().Is_my_followers(user)) {
                 Follow_unFollow.setText("Unfollow");
