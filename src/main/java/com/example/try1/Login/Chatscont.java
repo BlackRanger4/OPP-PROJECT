@@ -64,6 +64,10 @@ public class Chatscont implements Initializable {
         this.scene = scene;
         editbutton.setVisible(false);
         popdown();
+
+        this.pv_chats = user.getMy_Privete_Chat();
+        this.group_chats = user.getMy_Group_Chat();
+
         replyrun = false;
         this.Dark_Mod = Dark_Mod;
         if (Dark_Mod) {
@@ -184,7 +188,8 @@ public class Chatscont implements Initializable {
         if (porg.getValue().equals("pv chats")){
             pvorgr = false;
             List1.getItems().clear();
-            List1.getItems().addAll(user.getMy_Privete_Chat());
+            Sort_Pv_Chats_with_time();
+            List1.getItems().addAll(pv_chats);
             List1.setVisible(true);
             List2.setVisible(false);
             Listchat.getItems().clear();
@@ -192,7 +197,8 @@ public class Chatscont implements Initializable {
         else {
             pvorgr = true;
             List2.getItems().clear();
-            List2.getItems().addAll(user.getMy_Group_Chat());
+            Sort_Group_Chats_with_time();
+            List2.getItems().addAll(group_chats);
             List2.setVisible(true);
             List1.setVisible(false);
             Listchat.getItems().clear();
@@ -233,7 +239,6 @@ public class Chatscont implements Initializable {
         swaP(PV, i + 1, high);
         return (i + 1);
     }
-
     public void quickSorT(ArrayList<Group_Chat> PV, int low, int high) {
         if (low < high)
         {
@@ -757,4 +762,5 @@ public class Chatscont implements Initializable {
 
         }
     }
+
 }
