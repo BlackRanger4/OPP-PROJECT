@@ -232,7 +232,7 @@ public class Home implements Serializable {
             ArrayList<Comment> comments = posts.get(post_num).getComments();
 
             for (Comment value : comments) {
-                List.getItems().add(value.getText());
+                List.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }
@@ -242,7 +242,7 @@ public class Home implements Serializable {
             ArrayList<Comment> comments = posts.get(post_num).getComments();
 
             for (Comment value : comments) {
-                List.getItems().add(value.getText());
+                List.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }

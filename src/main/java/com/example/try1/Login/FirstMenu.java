@@ -104,6 +104,10 @@ public class FirstMenu implements Serializable {
 
     //////ok//////
     public void Back(){
+        stage.setScene(scene);
+    }
+    public void Back(boolean Dark_Mod){
+        this.Dark_Mod = Dark_Mod;
         if (Dark_Mod) {
 
             Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
@@ -185,12 +189,7 @@ public class FirstMenu implements Serializable {
             List_of_ads.setStyle("-fx-background-color: #C38D9E;");
 
         }
-
         stage.setScene(scene);
-    }
-    public void Back(boolean Dark_Mod){
-        this.Dark_Mod = Dark_Mod;
-       Back();
     }
 
     //////ok//////
@@ -203,7 +202,7 @@ public class FirstMenu implements Serializable {
         this.stage = stage;
 
         this.Dark_Mod = Dark_Mod;
-        Back();
+        Back(Dark_Mod);
         ads_recomment();
         Upload_ads();
     }
@@ -407,7 +406,7 @@ public class FirstMenu implements Serializable {
             List_of_ads.getItems().clear();
             ArrayList<Comment> comments = post.getComments();
             for (Comment value : comments) {
-                List_of_ads.getItems().add(value.getText());
+                List_of_ads.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }
@@ -418,7 +417,7 @@ public class FirstMenu implements Serializable {
             List_of_ads.getItems().clear();
             ArrayList<Comment> comments = post.getComments();
             for (Comment value : comments) {
-                List_of_ads.getItems().add(value.getText());
+                List_of_ads.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }

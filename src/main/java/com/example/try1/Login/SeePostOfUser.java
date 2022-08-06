@@ -214,7 +214,7 @@ public class SeePostOfUser implements Serializable {
             Error.setText("");
 
             for (Comment value : comments) {
-                List.getItems().add(value.getText());
+                List.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }
@@ -227,7 +227,7 @@ public class SeePostOfUser implements Serializable {
             Error.setText("");
 
             for (Comment value : comments) {
-                List.getItems().add(value.getText());
+                List.getItems().add(value.comment_info()+"\n"+value.getText());
             }
         }catch (Exception e){}
     }
