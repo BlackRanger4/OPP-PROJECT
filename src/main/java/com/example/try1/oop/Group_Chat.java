@@ -34,8 +34,11 @@ public class Group_Chat implements Serializable {
         return CreateTime;
     }
     public Image getImage() {
-        Image image = new Image(this.image);
-        return image;
+        try {
+            Image image = new Image(this.image);
+            return image;
+        }catch (Exception e){}
+        return null;
     }
     public void setImage(String image) {
         this.image = image;
