@@ -97,7 +97,7 @@ public class newgroupchatcont implements Initializable, Serializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        ArrayList<User> users = dataBase.User_Search(username.getText());
+        ArrayList<User> users = user.searchfromfollow(username.getText());
         users.remove(user);
 
         for (User value : users) {

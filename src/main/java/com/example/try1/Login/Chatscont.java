@@ -130,7 +130,6 @@ public class Chatscont implements Initializable {
 
     private ArrayList<PV_Chat> pv_chats;
     private ArrayList<Group_Chat> group_chats;
-    private ArrayList<Integer> NumOf_noSee = new ArrayList<>();
     private final String[] pvorgroup = { "pv chats" , "group chats"};
     private PV_Chat selectedpv;
     private Group_Chat selectedgr;
@@ -155,10 +154,7 @@ public class Chatscont implements Initializable {
     public void Sort_Pv_Chats_with_time(){
 
         quickSort(pv_chats,0,pv_chats.size()-1);
-        NumOf_noSee.clear();
-        for (PV_Chat pv_chat : pv_chats) {
-            NumOf_noSee.add(pv_chat.How_many_Message_not_see(user));
-        }
+
     }
     public void swap(ArrayList<PV_Chat> PV, int i, int j) {
 
@@ -229,12 +225,8 @@ public class Chatscont implements Initializable {
 
     public void Sort_Group_Chats_with_time(){
 
-
         quickSorT(group_chats,0,group_chats.size()-1);
-        NumOf_noSee.clear();
-        for (Group_Chat group_chat : group_chats) {
-            NumOf_noSee.add(group_chat.How_many_Message_not_see(user));
-        }
+
     }
     public void swaP(ArrayList<Group_Chat> PV, int i, int j) {
 
@@ -462,6 +454,7 @@ public class Chatscont implements Initializable {
                 delete(Listchat.getSelectionModel().getSelectedItem());
             }
         });
+
         reply.setText("Reply");
         reply.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -481,7 +474,6 @@ public class Chatscont implements Initializable {
                 }
             }
         });
-
 
         contextMenu.getItems().addAll(edit,delete,reply,forward);
 
@@ -506,7 +498,6 @@ public class Chatscont implements Initializable {
             }
         });
 
-
         porg.setItems(FXCollections.observableList(Arrays.stream(pvorgroup).toList()));
 
         List1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PV_Chat>() {
@@ -517,6 +508,9 @@ public class Chatscont implements Initializable {
                 Listchat.getItems().clear();
                 if (selectedpv != null) {
                     Listchat.getItems().addAll(selectedpv.getMessages());
+                    PV_GROUP_NAME.setText(user.oppuser(selectedpv).getUser_Name());
+                    PV_GROUP_image.setImage(user.oppuser(selectedpv).getProfile_Image());
+                    selectedpv.Seen_ALl(user);
                 }
 
             }
@@ -529,6 +523,9 @@ public class Chatscont implements Initializable {
                 Listchat.getItems().clear();
                 if (selectedgr != null) {
                     Listchat.getItems().addAll(selectedgr.getMessages());
+                    PV_GROUP_NAME.setText(selectedgr.getGroupName());
+                    PV_GROUP_image.setImage(selectedgr.getImage());
+                    selectedgr.Seen_ALl(user);
                 }
             }
         });
@@ -549,6 +546,7 @@ public class Chatscont implements Initializable {
                 });
             }
         });
+
     }
 
 
@@ -740,7 +738,12 @@ public class Chatscont implements Initializable {
             }
 
             else {
-                setText(user.oppuser(pv).getUser_Name());
+                if (pv.How_many_Message_not_see(user)!=0) {
+                    setText(user.oppuser(pv).getUser_Name() + "(" + pv.How_many_Message_not_see(user) + ")");
+                }
+                else {
+                    setText(user.oppuser(pv).getUser_Name());
+                }
                 imgview.setImage(user.oppuser(pv).getProfile_Image());
                 setGraphic(hBox);
             }
@@ -776,7 +779,12 @@ public class Chatscont implements Initializable {
             }
 
             else {
-                setText(gr.getGroupName());
+                if (gr.How_many_Message_not_see(user)!=0) {
+                    setText(gr.getGroupName() + "(" + gr.How_many_Message_not_see(user) + ")");
+                }
+                else {
+                    setText(gr.getGroupName());
+                }
                 imgview.setImage(gr.getImage());
                 setGraphic(hBox);
             }

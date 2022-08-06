@@ -45,7 +45,7 @@ public class newpvchatcont implements Initializable {
 
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
-        results.getItems().addAll(user.searchfromfollow(username.getText()));
+        results.getItems().addAll(dataBase.User_Search(username.getText()));
     }
 
     public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage , boolean Dark_Mod) {

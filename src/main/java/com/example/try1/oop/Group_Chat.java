@@ -71,6 +71,11 @@ public class Group_Chat implements Serializable {
         }
         return result;
     }
+    public void Seen_ALl(User user){
+        for (Message message : Messages){
+            message.Add_Viewers(user);
+        }
+    }
 
     public Group_Chat(ArrayList<User> members, User admin, String groupName, DataBase data ,String image) {
         Members = members;
@@ -81,32 +86,5 @@ public class Group_Chat implements Serializable {
         this.image = image;
     }
 
-    /*
-    public ArrayList<Object> printchatmassage() {
-        String test = "";
-        ArrayList<Object> temp = new ArrayList<>();
-        int i;
-        int cap = this.getMessages().size();
-        if (cap != 0) {
-            for (i = 0; i < cap; i++) {
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() +
-                            " : " + this.getMessages().get(i).getText();
-                }
-                if (this.getMessages().get(i).getForwarded() != null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " forwarded from " +
-                            this.getMessages().get(i).getForwarded().getUser_Name();
-                }
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() != null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " replied to " +
-                            this.getMessages().get(i).getReply().getText();
-                }
-                temp.add(test);
-            }
-        }
-        return temp;
-    }
-     */
+
 }
