@@ -4,12 +4,14 @@ import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +25,8 @@ public class Search implements Serializable {
     public TextField Text;
     public Label Error;
     public AnchorPane Anchorpane;
+    public Button Button;
+    public Button Button2;
 
     private DataBase dataBase;
     private User user;
@@ -40,7 +44,13 @@ public class Search implements Serializable {
         this.dataBase =dataBase;
         this.Dark_Mod =Dark_Mod;
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Text.setStyle("-fx-background-color: #E7717D;");
+            List.setStyle("-fx-background-color: #E7717D;");
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");

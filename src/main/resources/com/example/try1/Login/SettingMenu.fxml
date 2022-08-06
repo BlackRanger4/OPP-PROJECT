@@ -6,20 +6,20 @@
 
 <AnchorPane fx:id="Anchrpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.SettingMenu">
    <children>
-      <Button layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="52.0" text="back" />
-      <Button layoutX="55.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#Change_Name" prefHeight="26.0" prefWidth="254.0" text="Change user name" />
-      <Button layoutX="55.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#Change_Pass" prefHeight="26.0" prefWidth="254.0" text="Change password" />
-      <Button layoutX="55.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#Blocked_User" prefHeight="26.0" prefWidth="254.0" text="Blocked users" />
-      <Button layoutX="55.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#Change_Theme" prefHeight="26.0" prefWidth="254.0" text="Change theme" />
+      <Button fx:id="Button1" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="52.0" text="back" />
+      <Button fx:id="Button2" layoutX="55.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#Change_Name" prefHeight="26.0" prefWidth="254.0" text="Change user name" />
+      <Button fx:id="Button3" layoutX="55.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#Change_Pass" prefHeight="26.0" prefWidth="254.0" text="Change password" />
+      <Button fx:id="Button4" layoutX="55.0" layoutY="352.0" mnemonicParsing="false" onMouseClicked="#Blocked_User" prefHeight="26.0" prefWidth="254.0" text="Blocked users" />
+      <Button fx:id="Button5" layoutX="55.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#Change_Theme" prefHeight="26.0" prefWidth="254.0" text="Change theme" />
       <TextField fx:id="Text" layoutX="505.0" layoutY="121.0" prefHeight="26.0" prefWidth="243.0" />
       <Label fx:id="Error" alignment="CENTER" layoutX="505.0" layoutY="164.0" prefHeight="18.0" prefWidth="243.0" text="Error" textFill="RED" />
       <ListView fx:id="List" layoutX="505.0" layoutY="237.0" prefHeight="283.0" prefWidth="243.0" />
       <Label fx:id="Information" alignment="CENTER" layoutX="505.0" layoutY="78.0" prefHeight="18.0" prefWidth="243.0" text="informatin" />
       <Button fx:id="Button" layoutX="589.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#DO" prefHeight="26.0" prefWidth="76.0" text="Change" />
-      <Button layoutX="55.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#First_A" prefHeight="26.0" prefWidth="254.0" text="Change answer of first security question" />
-      <Button layoutX="55.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#Second_A" prefHeight="26.0" prefWidth="254.0" text="Change answer of second security question" />
+      <Button fx:id="Button6" layoutX="55.0" layoutY="421.0" mnemonicParsing="false" onMouseClicked="#First_A" prefHeight="26.0" prefWidth="254.0" text="Change answer of first security question" />
+      <Button fx:id="Button7" layoutX="55.0" layoutY="456.0" mnemonicParsing="false" onMouseClicked="#Second_A" prefHeight="26.0" prefWidth="254.0" text="Change answer of second security question" />
       <ImageView fx:id="Profile_fig" fitHeight="125.0" fitWidth="125.0" layoutX="120.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="55.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#Change_Fid" prefHeight="26.0" prefWidth="254.0" text="Change profile picture" />
+      <Button fx:id="Button8" layoutX="55.0" layoutY="493.0" mnemonicParsing="false" onMouseClicked="#Change_Fid" prefHeight="26.0" prefWidth="254.0" text="Change profile picture" />
       <Label alignment="CENTER" layoutX="55.0" layoutY="228.0" prefHeight="18.0" prefWidth="254.0" text="user name" fx:id="User_Name"/>
    </children>
 </AnchorPane>

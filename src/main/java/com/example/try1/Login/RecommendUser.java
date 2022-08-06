@@ -2,9 +2,12 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ public class RecommendUser implements Serializable {
 
     public ListView<String> List;
     public AnchorPane Anchorpane;
+    public Button Button;
+    public Label Label;
 
 
     private FirstMenu firstMenu;
@@ -26,7 +31,11 @@ public class RecommendUser implements Serializable {
 
 
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            List.setStyle("-fx-background-color: #E7717D;");
+            Button.setTextFill(Paint.valueOf("#ffffff"));
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Label.setTextFill(Paint.valueOf("#950740"));
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");

@@ -6,16 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.CreateAccount">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1A1A1D;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.CreateAccount">
    <children>
-      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="20.0" prefWidth="70.0" text="back" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="814.6" AnchorPane.topAnchor="15.0">
+      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="20.0" prefWidth="70.0" style="-fx-background-color: #6F2232;" text="back" textFill="WHITE" AnchorPane.bottomAnchor="545.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="814.6" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="Text" layoutX="260.0" layoutY="260.0" prefHeight="50.0" prefWidth="380.0" AnchorPane.bottomAnchor="289.6" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="260.0" />
-      <Label fx:id="Question" alignment="CENTER" layoutX="211.0" layoutY="192.0" prefHeight="30.0" prefWidth="478.0" textAlignment="CENTER" AnchorPane.bottomAnchor="377.6" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="210.60000000000002" AnchorPane.topAnchor="192.0" />
-      <Button fx:id="Next_B" layoutX="410.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#Next" prefHeight="40.0" prefWidth="80.0" text="Next" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="400.0" />
-      <Label fx:id="Error" layoutX="300.0" layoutY="350.0" prefHeight="20.0" prefWidth="300.0" textAlignment="CENTER" textFill="RED" />
+      <TextField fx:id="Text" layoutX="260.0" layoutY="260.0" prefHeight="50.0" prefWidth="380.0" style="-fx-background-color: #E7717D;" AnchorPane.bottomAnchor="289.6" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="260.0" />
+      <Label fx:id="Question" alignment="CENTER" layoutX="211.0" layoutY="182.0" prefHeight="40.0" prefWidth="478.0" text="information" textAlignment="CENTER" textFill="#950740" AnchorPane.bottomAnchor="378.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="182.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="Next_B" layoutX="410.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#Next" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #6F2232;" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="160.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="400.0" />
+      <Label fx:id="Error" alignment="CENTER" layoutX="300.0" layoutY="350.0" prefHeight="20.0" prefWidth="300.0" text="Error" textAlignment="CENTER" textFill="RED" />
    </children>
 </AnchorPane>

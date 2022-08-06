@@ -2,6 +2,7 @@ package com.example.try1.Login;
 
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.User;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.Serializable;
@@ -20,10 +22,18 @@ public class SettingMenu implements Serializable {
     public Label Error;
     public ListView<String> List;
     public Label Information;
-    public javafx.scene.control.Button Button;
+    public Button Button;
     public ImageView Profile_fig;
     public Label User_Name;
     public AnchorPane Anchrpane;
+    public Button Button1;
+    public Button Button2;
+    public Button Button3;
+    public Button Button4;
+    public Button Button5;
+    public Button Button6;
+    public Button Button7;
+    public Button Button8;
 
 
     private boolean Dark_Mod;
@@ -39,7 +49,29 @@ public class SettingMenu implements Serializable {
         this.Dark_Mod = Dark_Mod;
 
         if (Dark_Mod) {
-            Anchrpane.setStyle("-fx-background-color: #767676;");
+            Anchrpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Button3.setStyle("-fx-background-color: #6F2232;");
+            Button3.setTextFill(Paint.valueOf("WHITE"));
+            Button4.setStyle("-fx-background-color: #6F2232;");
+            Button4.setTextFill(Paint.valueOf("WHITE"));
+            Button5.setStyle("-fx-background-color: #6F2232;");
+            Button5.setTextFill(Paint.valueOf("WHITE"));
+            Button6.setStyle("-fx-background-color: #6F2232;");
+            Button6.setTextFill(Paint.valueOf("WHITE"));
+            Button7.setStyle("-fx-background-color: #6F2232;");
+            Button7.setTextFill(Paint.valueOf("WHITE"));
+            Button8.setStyle("-fx-background-color: #6F2232;");
+            Button8.setTextFill(Paint.valueOf("WHITE"));
+            User_Name.setTextFill(Paint.valueOf("#950740"));
+            Information.setTextFill(Paint.valueOf("#950740"));
+            List.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
         }
         else {
             Anchrpane.setStyle("-fx-background-color: #ffffff;");
@@ -107,7 +139,29 @@ public class SettingMenu implements Serializable {
             Dark_Mod = true;
         }
         if (Dark_Mod) {
-            Anchrpane.setStyle("-fx-background-color: #767676;");
+
+            Anchrpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Button3.setStyle("-fx-background-color: #6F2232;");
+            Button3.setTextFill(Paint.valueOf("WHITE"));
+            Button4.setStyle("-fx-background-color: #6F2232;");
+            Button4.setTextFill(Paint.valueOf("WHITE"));
+            Button5.setStyle("-fx-background-color: #6F2232;");
+            Button5.setTextFill(Paint.valueOf("WHITE"));
+            Button6.setStyle("-fx-background-color: #6F2232;");
+            Button6.setTextFill(Paint.valueOf("WHITE"));
+            Button7.setStyle("-fx-background-color: #6F2232;");
+            Button7.setTextFill(Paint.valueOf("WHITE"));
+            Button8.setStyle("-fx-background-color: #6F2232;");
+            Button8.setTextFill(Paint.valueOf("WHITE"));
+            User_Name.setTextFill(Paint.valueOf("#950740"));
+            Information.setTextFill(Paint.valueOf("#950740"));
+
         }
         else {
             Anchrpane.setStyle("-fx-background-color: #ffffff;");

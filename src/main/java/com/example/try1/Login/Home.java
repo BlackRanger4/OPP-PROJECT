@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 public class Home implements Serializable {
 
 
-    public AnchorPane Anchorpane;
     private Boolean Dark_Mod;
     private FirstMenu firstMenu;
     private static Stage stage;
@@ -41,7 +41,49 @@ public class Home implements Serializable {
         this.users = user.getMy_Following();
         this.Dark_Mod = Dark_Mod;
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Button3.setStyle("-fx-background-color: #6F2232;");
+            Button3.setTextFill(Paint.valueOf("WHITE"));
+            Button4.setStyle("-fx-background-color: #6F2232;");
+            Button4.setTextFill(Paint.valueOf("WHITE"));
+            Button5.setStyle("-fx-background-color: #6F2232;");
+            Button5.setTextFill(Paint.valueOf("WHITE"));
+            Button6.setStyle("-fx-background-color: #6F2232;");
+            Button6.setTextFill(Paint.valueOf("WHITE"));
+            Button7.setStyle("-fx-background-color: #6F2232;");
+            Button7.setTextFill(Paint.valueOf("WHITE"));
+            Button8.setStyle("-fx-background-color: #6F2232;");
+            Button8.setTextFill(Paint.valueOf("WHITE"));
+            Button9.setStyle("-fx-background-color: #6F2232;");
+            Button9.setTextFill(Paint.valueOf("WHITE"));
+            Page_last_button.setStyle("-fx-background-color: #6F2232;");
+            Page_last_button.setTextFill(Paint.valueOf("WHITE"));
+            Post_Next_button.setStyle("-fx-background-color: #6F2232;");
+            Post_Next_button.setTextFill(Paint.valueOf("WHITE"));
+            Create_fuf_button.setStyle("-fx-background-color: #6F2232;");
+            Create_fuf_button.setTextFill(Paint.valueOf("WHITE"));
+            Remove_post.setStyle("-fx-background-color: #6F2232;");
+            Remove_post.setTextFill(Paint.valueOf("WHITE"));
+            Followers_see_button.setStyle("-fx-background-color: #6F2232;");
+            Followers_see_button.setTextFill(Paint.valueOf("WHITE"));
+            Followings_see_button.setStyle("-fx-background-color: #6F2232;");
+            Followings_see_button.setTextFill(Paint.valueOf("WHITE"));
+            Text_field.setStyle("-fx-background-color: #E7717D;");
+            List.setStyle("-fx-background-color: #E7717D;");
+            Post_text.setTextFill(Paint.valueOf("#950740"));
+            Post_Creater_Name.setTextFill(Paint.valueOf("#950740"));
+            Post_Create_time.setTextFill(Paint.valueOf("#950740"));
+            Post_Views.setTextFill(Paint.valueOf("#950740"));
+            Posr_Likes.setTextFill(Paint.valueOf("#950740"));
+            Followers_num.setTextFill(Paint.valueOf("#950740"));
+            Followings_num.setTextFill(Paint.valueOf("#950740"));
+            owner_name.setTextFill(Paint.valueOf("#950740"));
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");
@@ -49,7 +91,17 @@ public class Home implements Serializable {
         My_Post();
     }
 
-
+    public AnchorPane Anchorpane;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.control.Button Button1;
+    public javafx.scene.control.Button Button2;
+    public javafx.scene.control.Button Button3;
+    public javafx.scene.control.Button Button4;
+    public javafx.scene.control.Button Button5;
+    public javafx.scene.control.Button Button6;
+    public javafx.scene.control.Button Button7;
+    public javafx.scene.control.Button Button8;
+    public javafx.scene.control.Button Button9;
     public TextField Text_field;
     public Label Post_text;
     public ImageView Post_Image;

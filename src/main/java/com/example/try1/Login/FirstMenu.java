@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -20,6 +21,20 @@ public class FirstMenu implements Serializable {
 
 
     public AnchorPane Anchorpane;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.control.Button Button1;
+    public javafx.scene.control.Button Button2;
+    public javafx.scene.control.Button Button3;
+    public javafx.scene.control.Button Button4;
+    public javafx.scene.control.Button Button5;
+    public javafx.scene.control.Label Label;
+    public javafx.scene.control.Button Button6;
+    public javafx.scene.control.Button Button7;
+    public javafx.scene.control.Button Button8;
+    public javafx.scene.control.Button Button9;
+    public javafx.scene.control.Button Button10;
+    public javafx.scene.control.Button Button11;
+    public javafx.scene.control.Button Button12;
     private LoginToAccount loginToAccount;
     private DataBase dataBase ;
     private User user ;
@@ -90,7 +105,44 @@ public class FirstMenu implements Serializable {
     //////ok//////
     public void Back(){
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Button3.setStyle("-fx-background-color: #6F2232;");
+            Button3.setTextFill(Paint.valueOf("WHITE"));
+            Button4.setStyle("-fx-background-color: #6F2232;");
+            Button4.setTextFill(Paint.valueOf("WHITE"));
+            Button5.setStyle("-fx-background-color: #6F2232;");
+            Button5.setTextFill(Paint.valueOf("WHITE"));
+            Button6.setStyle("-fx-background-color: #6F2232;");
+            Button6.setTextFill(Paint.valueOf("WHITE"));
+            Button7.setStyle("-fx-background-color: #6F2232;");
+            Button7.setTextFill(Paint.valueOf("WHITE"));
+            Button8.setStyle("-fx-background-color: #6F2232;");
+            Button8.setTextFill(Paint.valueOf("WHITE"));
+            Button9.setStyle("-fx-background-color: #6F2232;");
+            Button9.setTextFill(Paint.valueOf("WHITE"));
+            Button10.setStyle("-fx-background-color: #6F2232;");
+            Button10.setTextFill(Paint.valueOf("WHITE"));
+            Button11.setStyle("-fx-background-color: #6F2232;");
+            Button11.setTextFill(Paint.valueOf("WHITE"));
+            Button12.setStyle("-fx-background-color: #6F2232;");
+            Button12.setTextFill(Paint.valueOf("WHITE"));
+            Label.setTextFill(Paint.valueOf("#950740"));
+            Follow_unFollow.setStyle("-fx-background-color: #6F2232;");
+            Follow_unFollow.setTextFill(Paint.valueOf("WHITE"));
+            Create_time_of_ads.setTextFill(Paint.valueOf("#950740"));
+            Creater_name_of_ads.setTextFill(Paint.valueOf("#950740"));
+            Likes_of_ads.setTextFill(Paint.valueOf("#950740"));
+            Views_of_ads.setTextFill(Paint.valueOf("#950740"));
+            Text_of_ads.setTextFill(Paint.valueOf("#950740"));
+            TextField_of_ads.setStyle("-fx-background-color: #E7717D;");
+            List_of_ads.setStyle("-fx-background-color: #E7717D;");
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");
@@ -100,13 +152,7 @@ public class FirstMenu implements Serializable {
     }
     public void Back(boolean Dark_Mod){
         this.Dark_Mod = Dark_Mod;
-        if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
-        }
-        else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
-        }
-        stage.setScene(scene);
+       Back();
     }
 
     //////ok//////
@@ -119,13 +165,7 @@ public class FirstMenu implements Serializable {
         this.stage = stage;
 
         this.Dark_Mod = Dark_Mod;
-        if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
-        }
-        else {
-            Anchorpane.setStyle("-fx-background-color: #ffffff;");
-        }
-
+        Back();
         ads_recomment();
         Upload_ads();
     }

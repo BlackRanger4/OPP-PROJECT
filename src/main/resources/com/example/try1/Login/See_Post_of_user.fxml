@@ -6,17 +6,17 @@
 
 <AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.SeePostOfUser">
    <children>
-      <Button layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="56.0" text="back" />
+      <Button fx:id="Button" layoutX="24.0" layoutY="21.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="56.0" text="back" />
       <ImageView fx:id="Creater_prof" fitHeight="83.0" fitWidth="87.0" layoutX="37.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="Post_image" fitHeight="400.0" fitWidth="400.0" layoutX="152.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="List" layoutX="562.0" layoutY="67.0" prefHeight="442.0" prefWidth="315.0" />
       <TextField fx:id="Text" layoutX="562.0" layoutY="532.0" prefHeight="26.0" prefWidth="315.0" />
-      <Button layoutX="773.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#NEXT" prefHeight="26.0" prefWidth="71.0" text="next" />
-      <Button layoutX="684.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#LAST" prefHeight="26.0" prefWidth="71.0" text="Last" />
-      <Button layoutX="440.0" layoutY="532.0" mnemonicParsing="false" onMouseClicked="#Add_Comment" prefHeight="26.0" prefWidth="102.0" text="Add comment" />
-      <Button layoutX="330.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#LIKE" prefHeight="26.0" prefWidth="102.0" text="Like" />
-      <Button layoutX="220.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#See_Likers" prefHeight="26.0" prefWidth="102.0" text="See likers" />
-      <Button layoutX="110.0" layoutY="532.0" mnemonicParsing="false" onMouseClicked="#See_Comments" prefHeight="26.0" prefWidth="102.0" text="See comments" />
+      <Button fx:id="Button1" layoutX="773.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#NEXT" prefHeight="26.0" prefWidth="71.0" text="next" />
+      <Button fx:id="Button2" layoutX="684.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#LAST" prefHeight="26.0" prefWidth="71.0" text="Last" />
+      <Button fx:id="Button3" layoutX="440.0" layoutY="532.0" mnemonicParsing="false" onMouseClicked="#Add_Comment" prefHeight="26.0" prefWidth="102.0" text="Add comment" />
+      <Button fx:id="Button4" layoutX="330.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#LIKE" prefHeight="26.0" prefWidth="102.0" text="Like" />
+      <Button fx:id="Button5" layoutX="220.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#See_Likers" prefHeight="26.0" prefWidth="102.0" text="See likers" />
+      <Button fx:id="Button6" layoutX="110.0" layoutY="532.0" mnemonicParsing="false" onMouseClicked="#See_Comments" prefHeight="26.0" prefWidth="102.0" text="See comments" />
       <Label fx:id="Views" alignment="CENTER" layoutX="37.0" layoutY="204.0" prefHeight="18.0" prefWidth="87.0" text="Views" />
       <Label fx:id="Creater" alignment="CENTER" layoutX="37.0" layoutY="167.0" prefHeight="18.0" prefWidth="87.0" text="Creater" />
       <Label fx:id="Likes" alignment="CENTER" layoutX="37.0" layoutY="238.0" prefHeight="18.0" prefWidth="87.0" text="Likes" />
@@ -24,7 +24,7 @@
       <Label fx:id="Create_time" alignment="CENTER" layoutX="37.0" layoutY="314.0" prefHeight="18.0" prefWidth="87.0" text="Create time" />
       <Label fx:id="Post_text" alignment="CENTER" layoutX="144.0" layoutY="476.0" prefHeight="34.0" prefWidth="400.0" text="Post" />
       <Label fx:id="Error" alignment="CENTER" layoutX="144.0" layoutY="26.0" prefHeight="18.0" prefWidth="400.0" text="error" textFill="#fa0000" />
-      <Button layoutX="1.0" layoutY="533.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="See viewers"
+      <Button fx:id="Button7" layoutX="1.0" layoutY="533.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" text="See viewers"
       onMouseClicked="#See_Viewers"
       />
    </children>

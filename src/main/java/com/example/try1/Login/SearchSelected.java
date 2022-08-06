@@ -11,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.Serializable;
@@ -26,9 +27,14 @@ public class SearchSelected implements Serializable {
     public Label Text;
     public Button Follow_Button;
     public Button Block_button;
+    public AnchorPane Anchorpane;
+    public Button Button;
+    public Button Button1;
+    public Button Button2;
+    public Button Button3;
+    public Button Button4;
 
     private static Stage stage;
-    public AnchorPane Anchorpane;
     private Scene scene;
     private Search search;
     private User user;
@@ -47,7 +53,26 @@ public class SearchSelected implements Serializable {
         this.dataBase =dataBase;
         this.Dark_Mod =Dark_Mod;
         if (Dark_Mod) {
-            Anchorpane.setStyle("-fx-background-color: #767676;");
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            Button2.setStyle("-fx-background-color: #6F2232;");
+            Button2.setTextFill(Paint.valueOf("WHITE"));
+            Button3.setStyle("-fx-background-color: #6F2232;");
+            Button3.setTextFill(Paint.valueOf("WHITE"));
+            Button4.setStyle("-fx-background-color: #6F2232;");
+            Button4.setTextFill(Paint.valueOf("WHITE"));
+            Block_button.setStyle("-fx-background-color: #6F2232;");
+            Block_button.setTextFill(Paint.valueOf("WHITE"));
+            Follow_Button.setStyle("-fx-background-color: #6F2232;");
+            Follow_Button.setTextFill(Paint.valueOf("WHITE"));
+            List.setStyle("-fx-background-color: #E7717D;");
+            Followers_num.setTextFill(Paint.valueOf("#950740"));
+            Followings_num.setTextFill(Paint.valueOf("#950740"));
+            UserName.setTextFill(Paint.valueOf("#950740"));
+            Text.setTextFill(Paint.valueOf("#950740"));
         }
         else {
             Anchorpane.setStyle("-fx-background-color: #ffffff;");

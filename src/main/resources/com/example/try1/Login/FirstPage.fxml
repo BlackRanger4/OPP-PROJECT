@@ -4,17 +4,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0"  xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.FirstPage">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1A1A1D;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.FirstPage">
    <children>
-      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="50.0" prefWidth="300.0" text="Login" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
+      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#Login" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #6F2232;" text="Login" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button layoutX="300.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#Create_Account" prefHeight="50.0" prefWidth="300.0" text="Create account" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
+      <Button layoutX="300.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#Create_Account" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #6F2232;" text="Create account" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
          <font>
             <Font size="21.0" />
          </font></Button>
-      <Button layoutX="300.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#Exit" prefHeight="50.0" prefWidth="300.0" text="Exit" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
+      <Button layoutX="300.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#Exit" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #6F2232;" text="Exit" textFill="WHITE" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0">
          <font>
             <Font size="21.0" />
          </font></Button>

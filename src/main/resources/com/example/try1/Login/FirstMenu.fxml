@@ -9,13 +9,13 @@
 
 <AnchorPane  fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.FirstMenu">
    <children>
-      <Button layoutX="30.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#Home" prefHeight="60.0" prefWidth="120.0" text="Home" />
-      <Button layoutX="30.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#Chats" prefHeight="60.0" prefWidth="120.0" text="Chats" />
-      <Button layoutX="30.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#Search" prefHeight="60.0" prefWidth="120.0" text="Search" />
-      <Button layoutX="30.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#Recommends" prefHeight="60.0" prefWidth="120.0" text="Recommend users" />
-      <Button layoutX="30.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#Settings" prefHeight="60.0" prefWidth="120.0" text="Setting" />
-      <Button layoutX="30.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#Exit" prefHeight="60.0" prefWidth="120.0" text="Exit" />
-      <Label alignment="CENTER" layoutX="315.0" layoutY="14.0" prefHeight="18.0" prefWidth="344.0" text="Recommend ads" />
+      <Button fx:id="Button" layoutX="30.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#Home" prefHeight="60.0" prefWidth="120.0" text="Home" />
+      <Button fx:id="Button1" layoutX="30.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#Chats" prefHeight="60.0" prefWidth="120.0" text="Chats" />
+      <Button fx:id="Button2" layoutX="30.0" layoutY="225.0" mnemonicParsing="false" onMouseClicked="#Search" prefHeight="60.0" prefWidth="120.0" text="Search" />
+      <Button fx:id="Button3" layoutX="30.0" layoutY="320.0" mnemonicParsing="false" onMouseClicked="#Recommends" prefHeight="60.0" prefWidth="120.0" text="Recommend users" />
+      <Button fx:id="Button4" layoutX="30.0" layoutY="415.0" mnemonicParsing="false" onMouseClicked="#Settings" prefHeight="60.0" prefWidth="120.0" text="Setting" />
+      <Button fx:id="Button5" layoutX="30.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#Exit" prefHeight="60.0" prefWidth="120.0" text="Exit" />
+      <Label fx:id="Label" alignment="CENTER" layoutX="315.0" layoutY="14.0" prefHeight="18.0" prefWidth="344.0" text="Recommend ads" />
       <ImageView fx:id="Prof_image_of_ads" fitHeight="120.0" fitWidth="120.0" layoutX="747.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="Creater_name_of_ads" alignment="CENTER" layoutX="727.0" layoutY="160.0" prefHeight="18.0" prefWidth="160.0" text="Creater" />
       <Label fx:id="Create_time_of_ads" alignment="CENTER" layoutX="694.0" layoutY="190.0" prefHeight="18.0" prefWidth="225.0" text="Create time data" />
@@ -25,13 +25,13 @@
       <ImageView fx:id="Image_of_ads" fitHeight="314.0" fitWidth="344.0" layoutX="315.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="List_of_ads" layoutX="315.0" layoutY="419.0" prefHeight="120.0" prefWidth="344.0" />
       <TextField fx:id="TextField_of_ads" layoutX="314.0" layoutY="544.0" prefHeight="26.0" prefWidth="315.0" />
-      <Button layoutX="757.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#Like_ads" prefHeight="26.0" prefWidth="98.0" text="Like" />
-      <Button layoutX="758.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#See_Likers_of_ads" prefHeight="26.0" prefWidth="98.0" text="likers" />
-      <Button layoutX="758.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#See_Viewrs_of_ads" prefHeight="26.0" prefWidth="98.0" text=" viwers" />
-      <Button layoutX="629.0" layoutY="544.0" mnemonicParsing="false" onMouseClicked="#Add_Comments_of_ads" prefHeight="26.0" prefWidth="31.0" text="&gt;" />
-      <Button layoutX="758.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#See_Comments_of_ads" prefHeight="26.0" prefWidth="98.0" text="commends" />
+      <Button fx:id="Button6" layoutX="757.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#Like_ads" prefHeight="26.0" prefWidth="98.0" text="Like" />
+      <Button fx:id="Button7" layoutX="758.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#See_Likers_of_ads" prefHeight="26.0" prefWidth="98.0" text="likers" />
+      <Button fx:id="Button8" layoutX="758.0" layoutY="355.0" mnemonicParsing="false" onMouseClicked="#See_Viewrs_of_ads" prefHeight="26.0" prefWidth="98.0" text=" viwers" />
+      <Button fx:id="Button9" layoutX="629.0" layoutY="544.0" mnemonicParsing="false" onMouseClicked="#Add_Comments_of_ads" prefHeight="26.0" prefWidth="31.0" text="&gt;" />
+      <Button fx:id="Button10" layoutX="758.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#See_Comments_of_ads" prefHeight="26.0" prefWidth="98.0" text="commends" />
       <Button fx:id="Follow_unFollow" layoutX="758.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#Follow_of_ads_creater" prefHeight="26.0" prefWidth="98.0" text="follow" />
-      <Button layoutX="758.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#Last_ads" prefHeight="26.0" prefWidth="98.0" text="last" />
-      <Button layoutX="758.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#Next_ads" prefHeight="26.0" prefWidth="98.0" text="next" />
+      <Button fx:id="Button11" layoutX="758.0" layoutY="497.0" mnemonicParsing="false" onMouseClicked="#Last_ads" prefHeight="26.0" prefWidth="98.0" text="last" />
+      <Button fx:id="Button12" layoutX="758.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#Next_ads" prefHeight="26.0" prefWidth="98.0" text="next" />
    </children>
 </AnchorPane>

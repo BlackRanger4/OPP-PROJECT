@@ -3,12 +3,14 @@ package com.example.try1.Login;
 import com.example.try1.oop.Comment;
 import com.example.try1.oop.Post;
 import com.example.try1.oop.User;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,6 +29,14 @@ public class SeePostOfUser implements Serializable {
     public Label Post_text;
     public Label Error;
     public AnchorPane Anchorpane;
+    public Button Button;
+    public javafx.scene.control.Button Button1;
+    public javafx.scene.control.Button Button2;
+    public javafx.scene.control.Button Button3;
+    public javafx.scene.control.Button Button4;
+    public javafx.scene.control.Button Button5;
+    public javafx.scene.control.Button Button6;
+    public javafx.scene.control.Button Button7;
 
     private SearchSelected searchSelected;
     private User user;
@@ -43,7 +53,31 @@ public class SeePostOfUser implements Serializable {
             this.user_selected = user_selected;
             this.Dark_Mod =Dark_Mod;
             if (Dark_Mod) {
-                Anchorpane.setStyle("-fx-background-color: #767676;");
+                Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+                Button.setStyle("-fx-background-color: #6F2232;");
+                Button.setTextFill(Paint.valueOf("WHITE"));
+                Button1.setStyle("-fx-background-color: #6F2232;");
+                Button1.setTextFill(Paint.valueOf("WHITE"));
+                Button2.setStyle("-fx-background-color: #6F2232;");
+                Button2.setTextFill(Paint.valueOf("WHITE"));
+                Button3.setStyle("-fx-background-color: #6F2232;");
+                Button3.setTextFill(Paint.valueOf("WHITE"));
+                Button4.setStyle("-fx-background-color: #6F2232;");
+                Button4.setTextFill(Paint.valueOf("WHITE"));
+                Button5.setStyle("-fx-background-color: #6F2232;");
+                Button5.setTextFill(Paint.valueOf("WHITE"));
+                Button6.setStyle("-fx-background-color: #6F2232;");
+                Button6.setTextFill(Paint.valueOf("WHITE"));
+                Button7.setStyle("-fx-background-color: #6F2232;");
+                Button7.setTextFill(Paint.valueOf("WHITE"));
+                List.setStyle("-fx-background-color: #E7717D;");
+                Text.setStyle("-fx-background-color: #E7717D;");
+                Views.setTextFill(Paint.valueOf("#950740"));
+                Create_time.setTextFill(Paint.valueOf("#950740"));
+                Create_day.setTextFill(Paint.valueOf("#950740"));
+                Creater.setTextFill(Paint.valueOf("#950740"));
+                Likes.setTextFill(Paint.valueOf("#950740"));
+                Post_text.setTextFill(Paint.valueOf("#950740"));
             }
             else {
                 Anchorpane.setStyle("-fx-background-color: #ffffff;");
