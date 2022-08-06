@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.newgroupchatcont">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.newgroupchatcont">
     <children>
         <TextField fx:id="username" layoutX="167.0" layoutY="61.0" onKeyTyped="#search_user" prefHeight="26.0" prefWidth="209.0" />
         <Text layoutX="187.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a username to search">
@@ -15,21 +15,21 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <Text layoutX="250.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results">
+        <Text fx:id="Text2" layoutX="250.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Results">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
         <ListView fx:id="results" layoutX="142.0" layoutY="143.0" prefHeight="400.0" prefWidth="258.0" />
-        <Button layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+        <Button fx:id="Button" layoutX="21.0" layoutY="17.0" mnemonicParsing="false" onAction="#Back" text="Back" />
       <TextField fx:id="groupname" layoutX="558.0" layoutY="61.0" onKeyTyped="#entergroupname" prefHeight="26.0" prefWidth="209.0" />
-      <Text layoutX="607.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter group name">
+      <Text fx:id="Text1" layoutX="607.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter group name">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
       <ListView fx:id="addedmembers" layoutX="532.0" layoutY="225.0" prefHeight="173.0" prefWidth="258.0" />
-      <Text layoutX="611.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Added members">
+      <Text fx:id="Text" layoutX="611.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Added members">
          <font>
             <Font size="14.0" />
          </font>

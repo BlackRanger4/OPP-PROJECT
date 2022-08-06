@@ -7,12 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.net.URL;
@@ -29,13 +31,14 @@ public class forwardcont implements Initializable, Serializable {
     private Scene scene;
     private Message message;
 
-
+    public AnchorPane Anchorpane;
     public Button cancel;
     public ChoiceBox<String> choose;
     public TextField searchingbox;
     public ListView<User> List1;
     public ListView<Group_Chat> List2;
     public Label searchtext;
+    public javafx.scene.text.Text Text;
 
     static String[] choice = {"PV chats","Group chats"};
     public String textmssg;
@@ -48,7 +51,7 @@ public class forwardcont implements Initializable, Serializable {
     public Group_Chat selectedgr;
 
 
-    public void forwardcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene, Message message , Stage stage) {
+    public void forwardcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene, Message message , Stage stage , boolean Dark_Mod) {
         this.dataBase = dataBase;
         this.user = user;
         this.chatscont = chatscont;
@@ -56,6 +59,20 @@ public class forwardcont implements Initializable, Serializable {
         this.message = message;
         forwardcont.stage = stage;
         pvorgr = false;
+        if (Dark_Mod){
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            cancel.setStyle("-fx-background-color: #6F2232;");
+            cancel.setTextFill(Paint.valueOf("WHITE"));
+            searchingbox.setStyle("-fx-background-color: #E7717D;");
+            searchtext.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
+            List1.setStyle("-fx-background-color: #E7717D;");
+            List2.setStyle("-fx-background-color: #E7717D;");
+            choose.setStyle("-fx-background-color: #E7717D;");
+        }
+        else {
+
+        }
     }
 
     public void cancelfor () {

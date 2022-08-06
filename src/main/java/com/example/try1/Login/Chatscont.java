@@ -257,7 +257,7 @@ public class Chatscont implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         stage.setScene(scene);
         newpvchatcont newpvchatcont = fxmlLoader.getController();
-        newpvchatcont.newpvchatcont(dataBase,user,this,scene,stage);
+        newpvchatcont.newpvchatcont(dataBase,user,this,scene,stage,Dark_Mod);
     }
 
     public void createnewgr() throws IOException {
@@ -265,7 +265,7 @@ public class Chatscont implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         stage.setScene(scene);
         newgroupchatcont newgroupchatcont = fxmlLoader.getController();
-        newgroupchatcont.newgroupchatcont(dataBase,user,this,scene,stage);
+        newgroupchatcont.newgroupchatcont(dataBase,user,this,scene,stage,Dark_Mod);
     }
 
     public void sendmassage () {
@@ -417,7 +417,7 @@ public class Chatscont implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         stage.setScene(scene);
         forwardcont forwardcont = fxmlLoader.getController();
-        forwardcont.forwardcont(dataBase,user,this,scene,x,stage);
+        forwardcont.forwardcont(dataBase,user,this,scene,x,stage,Dark_Mod);
     }
 
 

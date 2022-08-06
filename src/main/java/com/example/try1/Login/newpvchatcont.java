@@ -5,14 +5,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -25,6 +29,10 @@ public class newpvchatcont implements Initializable {
 
     public TextField username;
     public ListView<User> results;
+    public javafx.scene.text.Text Text;
+    public javafx.scene.text.Text Text1;
+    public javafx.scene.control.Button Button;
+    public AnchorPane Anchorpane;
 
     private DataBase dataBase;
     private User user;
@@ -42,12 +50,27 @@ public class newpvchatcont implements Initializable {
         results.getItems().addAll(user.searchfromfollow(username.getText()));
     }
 
-    public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage) {
+    public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage , boolean Dark_Mod) {
         this.dataBase = dataBase;
         this.user = user;
         this.chatscont = chatscont;
         this.scene = scene;
         newpvchatcont.stage = stage;
+
+        if (Dark_Mod){
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            username.setStyle("-fx-background-color: #E7717D;");
+            results.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
+            Text1.setStyle("-fx-background-color: #E7717D;");
+        }
+        else {
+
+        }
+
+
     }
 
     public DataBase getDataBase() {

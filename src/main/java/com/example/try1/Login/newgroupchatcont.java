@@ -8,9 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -27,6 +29,11 @@ public class newgroupchatcont implements Initializable, Serializable {
     public ListView<String> addedmembers;
     public Button create;
     public Text errorbox;
+    public javafx.scene.text.Text Text;
+    public javafx.scene.text.Text Text1;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.text.Text Text2;
+    public AnchorPane Anchorpane;
 
     private DataBase dataBase;
     private User user;
@@ -42,7 +49,7 @@ public class newgroupchatcont implements Initializable, Serializable {
     boolean name;
     boolean members;
 
-    public void newgroupchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene,Stage stage) {
+    public void newgroupchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene,Stage stage,boolean Dark_Mod) {
         this.dataBase = dataBase;
         this.user = user;
         this.chatscont = chatscont;
@@ -52,6 +59,25 @@ public class newgroupchatcont implements Initializable, Serializable {
         name = false;
         groupnametext = "";
         addedmemb = new ArrayList<>();
+
+        if (Dark_Mod){
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            username.setStyle("-fx-background-color: #E7717D;");
+            results.setStyle("-fx-background-color: #E7717D;");
+            Text.setStyle("-fx-background-color: #E7717D;");
+            Text1.setStyle("-fx-background-color: #E7717D;");
+            Text2.setStyle("-fx-background-color: #E7717D;");
+            create.setStyle("-fx-background-color: #6F2232;");
+            create.setTextFill(Paint.valueOf("WHITE"));
+            addedmembers.setStyle("-fx-background-color: #E7717D;");
+            groupname.setStyle("-fx-background-color: #E7717D;");
+        }
+        else {
+
+        }
+
     }
 
 
