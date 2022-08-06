@@ -10,6 +10,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -76,6 +79,9 @@ public class Chatscont implements Initializable {
     MenuItem delete = new MenuItem();
     MenuItem reply = new MenuItem();
     MenuItem forward = new MenuItem();
+
+    final String replypart = "Reply to : ";
+    final String forwardedpart = " ( Forwarded from ";
 
 
     public void Sort_Pv_Chats_with_time(){
@@ -234,7 +240,7 @@ public class Chatscont implements Initializable {
     public void sendmassage () {
 
         if (replyrun) {
-            textmssg = textmssg + mssgtext.getText();
+            textmssg = mssgtext.getText();
             if (!textmssg.equals("")) {
                 Message temp = new Message(user, textmssg, selmessage, null, null);
                 if (!pvorgr) {
@@ -270,8 +276,6 @@ public class Chatscont implements Initializable {
                 }
             }
         }
-
-
 
     }
 
@@ -367,7 +371,6 @@ public class Chatscont implements Initializable {
             temp = temp + x.getText();
             replymassage.setText(temp);
         }
-        textmssg = temp + "\n";
         popup();
         replyrun = true;
     }
@@ -390,6 +393,8 @@ public class Chatscont implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         edit.setText("Edit/Caption");
         edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -550,16 +555,26 @@ public class Chatscont implements Initializable {
     class chatshow extends ListCell<Message> {
 
     VBox vbox = new VBox();
+    HBox hBox = new HBox();
+    Label replyto = new Label();
     ImageView imgview = new ImageView();
-    Label label = new Label();
+    Label text = new Label();
+    Label sender = new Label();
     Pane pane = new Pane();
+    Pane pane1 = new Pane();
 
 
 
     public chatshow() {
         super();
         VBox.setVgrow(pane,Priority.ALWAYS);
-        vbox.getChildren().addAll(imgview,label,pane);
+        vbox.getChildren().addAll(sender,imgview,text,pane);
+        vbox.setMaxWidth(300);
+        text.setTextFill(Color.WHITE);
+        sender.setStyle("-fx-font-weight: bold");
+        sender.setTextFill(Color.WHITE);
+        HBox.setHgrow(pane1,Priority.ALWAYS);
+        hBox.setSpacing(4);
     }
 
 
@@ -568,21 +583,79 @@ public class Chatscont implements Initializable {
 
         super.updateItem(mssg, empty);
 
-        label.setText(null);
+        text.setText(null);
+        sender.setText(null);
         imgview.setImage(null);
-        setText(null);
+        replyto.setText(null);
         setGraphic(null);
 
+        replyto.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Listchat.getSelectionModel().select(mssg.getReply());
+            }
+        });
+
        if (!empty && mssg != null) {
-            setText(null);
-            label.setText(mssg.getText());
+            text.setText(mssg.getText());
+            if (mssg.getForwarded() == null) {
+                sender.setText(mssg.getSender().getUser_Name());
+            }
+            else {
+                sender.setText(mssg.getSender().getUser_Name() + forwardedpart
+                        + mssg.getForwarded().getUser_Name() + " )" );
+            }
+
+
+            if (mssg.getReply() != null) {
+
+                if (mssg.getText() == null){
+                    replyto.setText("| " + replypart + "IMAGE" + " |");
+                }
+                else {
+                    if (mssg.getReply().getText().length() > 10) {
+                        replyto.setText("| " + replypart + mssg.getReply().getText().substring(0, 10) + "..." + " |");
+                    } else {
+                        replyto.setText("| " + replypart + mssg.getReply().getText() + " |");
+                    }
+                }
+            }
+
+
             imgview.setImage(mssg.getImage());
             if (mssg.getImage() != null) {
                 double cons = (mssg.getImage().getHeight() / mssg.getImage().getWidth());
                 imgview.setFitWidth(300);
                 imgview.setFitHeight(300.0 * cons);
             }
-            setGraphic(vbox);
+            else {
+                imgview.setFitWidth(0);
+                imgview.setFitHeight(0);
+            }
+
+            if (getUser() != mssg.getSender()) {
+                hBox.getChildren().clear();
+                hBox.getChildren().addAll(pane1,replyto,vbox);
+                vbox.setStyle("-fx-background-color: #6F2232;\n"+
+                        "-fx-border-color: #6F2232 ;\n" +
+                        "-fx-border-style: solid;\n " +
+                        "-fx-background-radius: 5; \n" +
+                        "-fx-border-radius: 5; \n " +
+                        "-fx-border-width: 5" );
+            }
+            else {
+                hBox.getChildren().clear();
+                hBox.getChildren().addAll(vbox,replyto,pane1);
+                //vbox.setBackground(new Background(new BackgroundFill(Color.ORANGE , CornerRadii.EMPTY, Insets.EMPTY)));
+                vbox.setStyle("-fx-background-color: #C3073F ;\n"+
+                              "-fx-border-color: #C3073F ;\n" +
+                              "-fx-border-style: solid;\n " +
+                              "-fx-background-radius: 5; \n" +
+                              "-fx-border-radius: 5; \n " +
+                              "-fx-border-width: 5" );
+            }
+
+            setGraphic(hBox);
        }
     }
 }

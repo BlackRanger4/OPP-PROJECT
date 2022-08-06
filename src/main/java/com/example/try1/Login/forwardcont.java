@@ -151,12 +151,10 @@ public class forwardcont implements Initializable, Serializable {
             public void changed(ObservableValue<? extends User> observableValue, User user1, User t1) {
 
                 selecteduser = List1.getSelectionModel().getSelectedItem();
+                Message temp = null ;
 
                 if (user.checkpvret(selecteduser) != null) {
-                    user.checkpvret(selecteduser).getMessages().add(message);
-                } else {
-                    user.createpvchat(selecteduser);
-                    Message temp = null;
+
                     if (message.getImage() != null && message.getForwarded() == null) {
                         temp = new Message(user, message.getText(), null,
                                 message.getSender(), message.getImage().getUrl());
@@ -166,7 +164,28 @@ public class forwardcont implements Initializable, Serializable {
                                 message.getForwarded(), message.getImage().getUrl());
                     }
                     if (message.getImage() == null && message.getForwarded() == null) {
+                        temp = new Message(user , message.getText(), null,
+                                message.getSender(), null);
+                    }
+                    if (message.getImage() == null && message.getForwarded() != null) {
                         temp = new Message(user, message.getText(), null,
+                                message.getForwarded(), null);
+                    }
+                    user.checkpvret(selecteduser).getMessages().add(temp);
+
+
+                } else {
+                    user.createpvchat(selecteduser);
+                    if (message.getImage() != null && message.getForwarded() == null) {
+                        temp = new Message(user, message.getText(), null,
+                                message.getSender(), message.getImage().getUrl());
+                    }
+                    if (message.getImage() != null && message.getForwarded() != null) {
+                        temp = new Message(user, message.getText(), null,
+                                message.getForwarded(), message.getImage().getUrl());
+                    }
+                    if (message.getImage() == null && message.getForwarded() == null) {
+                        temp = new Message(user , message.getText(), null,
                                 message.getSender(), null);
                     }
                     if (message.getImage() == null && message.getForwarded() != null) {
