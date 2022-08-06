@@ -133,6 +133,9 @@ public class Chatscont implements Initializable {
 
     public void choose () {
         if (porg.getValue().equals("pv chats")){
+            try {
+                Sort_Pv_Chats_with_time();
+            }catch (Exception ignored){}
             pvorgr = false;
             List1.getItems().clear();
             List1.getItems().addAll(user.getMy_Privete_Chat());
@@ -141,6 +144,9 @@ public class Chatscont implements Initializable {
             Listchat.getItems().clear();
         }
         else {
+            try {
+                Sort_Group_Chats_with_time();
+            }catch (Exception ignored){}
             pvorgr = true;
             List2.getItems().clear();
             List2.getItems().addAll(user.getMy_Group_Chat());
@@ -582,6 +588,10 @@ public class Chatscont implements Initializable {
                 imgview.setFitWidth(300);
                 imgview.setFitHeight(300.0 * cons);
             }
+            else {
+                imgview.setFitWidth(0);
+                imgview.setFitHeight(0);
+            }
             setGraphic(vbox);
        }
     }
@@ -658,4 +668,5 @@ public class Chatscont implements Initializable {
 
         }
     }
+
 }
