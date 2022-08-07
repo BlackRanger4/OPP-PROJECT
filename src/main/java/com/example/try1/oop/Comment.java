@@ -40,4 +40,20 @@ public class Comment implements Serializable {
         this.Text = user.getUser_Name()+":"+text ;
     }
 
+    public ArrayList<User> getLiker() {
+        return Liker;
+    }
+
+    public void setLiker(ArrayList<User> liker) {
+        Liker = liker;
+    }
+
+    public User getSender() {
+        return Sender;
+    }
+
+    public void setSender(User sender) {
+        Sender = sender;
+    }
+
 }
