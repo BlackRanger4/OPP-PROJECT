@@ -193,6 +193,7 @@ public class CreateAccount implements Serializable {
         this.firstPage =firstPage;
         this.dataBase = dataBase;
 
+        Error.setText("");
         Question.setText(" Enter User Name ");
     }
 

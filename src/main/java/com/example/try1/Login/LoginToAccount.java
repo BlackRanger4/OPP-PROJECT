@@ -112,7 +112,7 @@ public class LoginToAccount implements Serializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FirstMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),900,600);
         FirstMenu firstMenu = fxmlLoader.getController();
-        firstMenu.firstmenu(stage,scene,this,dataBase,user,true);
+        firstMenu.firstmenu(stage,scene,this,dataBase,user,false);
         stage.setScene(scene);
     }
 

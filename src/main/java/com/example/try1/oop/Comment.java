@@ -28,7 +28,7 @@ public class Comment implements Serializable {
     }
 
     public String comment_info(){
-        String string = "Likes:"+Liker.size()+CreatTime+Creat_our.getHour()+":"+Creat_our.getMinute() ;
+        String string = "Likes:"+Liker.size()+","+CreatTime+","+Creat_our.getHour()+":"+Creat_our.getMinute() ;
         return string;
     }
 

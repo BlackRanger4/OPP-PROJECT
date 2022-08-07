@@ -5,15 +5,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #1A1A1D;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.LoginToAccount">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #F5E8C7;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.LoginToAccount">
    <children>
-      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #6F2232;" text="Back" textFill="WHITE" />
-      <Button layoutX="381.0" layoutY="431.0" mnemonicParsing="false" onMouseClicked="#Forget_Pass" style="-fx-background-color: #6F2232;" text="Forget your password?" textFill="WHITE" />
-      <Button layoutX="427.0" layoutY="385.0" mnemonicParsing="false" onMouseClicked="#Login_to_acc" style="-fx-background-color: #6F2232;" text="Login" textFill="WHITE" />
-      <TextField fx:id="Name_or_A1" layoutX="330.0" layoutY="225.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: #E7717D;"/>
-      <TextField fx:id="Pass_or_A2" layoutX="330.0" layoutY="300.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: #E7717D;"/>
-      <Label fx:id="Q1" alignment="CENTER" layoutX="329.0" layoutY="187.0" prefHeight="18.0" prefWidth="240.0" text="Q1" textFill="#950740" />
-      <Label fx:id="Q2" alignment="CENTER" layoutX="330.0" layoutY="266.0" prefHeight="18.0" prefWidth="240.0" text="q2" textAlignment="CENTER" textFill="#950740" />
-      <Label fx:id="Error" alignment="CENTER" layoutX="330.0" layoutY="338.0" prefHeight="18.0" prefWidth="240.0" text="Error" textFill="RED" />
+      <Button layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#Back" prefHeight="26.0" prefWidth="57.0" style="-fx-background-color: #6F2232;" text="Back" textFill="WHITE" />
+      <Button layoutX="66.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#Forget_Pass" style="-fx-background-color: #6F2232;" text="Forget your password?" textFill="WHITE" />
+      <Button layoutX="111.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#Login_to_acc" style="-fx-background-color: #6F2232;" text="Login" textFill="WHITE" />
+      <TextField fx:id="Name_or_A1" layoutX="14.0" layoutY="192.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: #E7717D;" />
+      <TextField fx:id="Pass_or_A2" layoutX="14.0" layoutY="308.0" prefHeight="26.0" prefWidth="240.0" style="-fx-background-color: #E7717D;" />
+      <Label fx:id="Q1" alignment="CENTER" layoutX="15.0" layoutY="144.0" prefHeight="18.0" prefWidth="240.0" text="Q1" textFill="#950740" />
+      <Label fx:id="Q2" alignment="CENTER" layoutX="14.0" layoutY="262.0" prefHeight="18.0" prefWidth="240.0" text="q2" textAlignment="CENTER" textFill="#950740" />
+      <Label fx:id="Error" alignment="CENTER" layoutX="15.0" layoutY="371.0" prefHeight="18.0" prefWidth="240.0" text="Error" textFill="RED" />
    </children>
 </AnchorPane>

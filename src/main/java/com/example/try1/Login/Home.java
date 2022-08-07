@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class Home implements Serializable {
 
 
+    public ImageView Page_Image;
     private Boolean Dark_Mod;
     private FirstMenu firstMenu;
     private static Stage stage;
@@ -350,6 +351,7 @@ public class Home implements Serializable {
             Post_text.setText(post.getText());
             try {
                 Post_Image.setImage(post.getImage());
+                Page_Image.setImage(user.getProfile_Image());
             }catch (Exception e){}
             List.getItems().clear();
             try {
@@ -390,6 +392,7 @@ public class Home implements Serializable {
             Text_field.setText("");
             Post_text.setText(post.getText());
             try {
+                Page_Image.setImage(user.getProfile_Image());
                 Post_Image.setImage(post.getImage());
             }catch (Exception e){}
             List.getItems().clear();
@@ -439,6 +442,7 @@ public class Home implements Serializable {
                 Post_text.setText(post.getText());
                 try {
                     Post_Image.setImage(post.getImage());
+                    Page_Image.setImage(users.get(user_num).getProfile_Image());
                 } catch (Exception e) {
                 }
                 List.getItems().clear();
@@ -489,6 +493,7 @@ public class Home implements Serializable {
                 Post_text.setText(post.getText());
                 try {
                     Post_Image.setImage(post.getImage());
+                    Page_Image.setImage(users.get(user_num).getProfile_Image());
                 } catch (Exception e) {
                 }
                 List.getItems().clear();
