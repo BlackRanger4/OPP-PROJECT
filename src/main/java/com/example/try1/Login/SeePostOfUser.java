@@ -1,26 +1,31 @@
 package com.example.try1.Login;
 
 import com.example.try1.oop.Comment;
+import com.example.try1.oop.PV_Chat;
 import com.example.try1.oop.Post;
 import com.example.try1.oop.User;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
+import javafx.util.Callback;
 
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class SeePostOfUser implements Serializable {
+public class SeePostOfUser implements Serializable, Initializable {
 
 
     public ImageView Creater_prof;
     public ImageView Post_image;
-    public ListView<String> List;
+    public ListView<Comment> comments;
+    public ListView<User> usersarr;
     public TextField Text;
     public Label Views;
     public Label Creater;
@@ -69,7 +74,8 @@ public class SeePostOfUser implements Serializable {
                 Button6.setTextFill(Paint.valueOf("WHITE"));
                 Button7.setStyle("-fx-background-color: #6F2232;");
                 Button7.setTextFill(Paint.valueOf("WHITE"));
-                List.setStyle("-fx-background-color: #E7717D;");
+                usersarr.setStyle("-fx-background-color: #E7717D;");
+                comments.setStyle("-fx-background-color: #E7717D;");
                 Text.setStyle("-fx-background-color: #E7717D;");
                 Views.setTextFill(Paint.valueOf("#950740"));
                 Create_time.setTextFill(Paint.valueOf("#950740"));
@@ -96,7 +102,8 @@ public class SeePostOfUser implements Serializable {
                 Button6.setTextFill(Paint.valueOf("#AC3B61"));
                 Button7.setStyle("-fx-background-color: #EDC7B7;");
                 Button7.setTextFill(Paint.valueOf("#AC3B61"));
-                List.setStyle("-fx-background-color: #E7717D;");
+                usersarr.setStyle("-fx-background-color: #E7717D;");
+                comments.setStyle("-fx-background-color: #E7717D;");
                 Text.setStyle("-fx-background-color: #E7717D;");
                 Views.setTextFill(Paint.valueOf("#AC3B61"));
                 Create_time.setTextFill(Paint.valueOf("#AC3B61"));
@@ -111,7 +118,8 @@ public class SeePostOfUser implements Serializable {
             Creater.setText(user_selected.getUser_Name());
             Text.setText("");
             Error.setText("");
-            List.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().clear();
             post_num = user_selected.getMy_Posts().size() - 1;
             user_selected.getMy_Posts().get(post_num).Add_View(user);
             Update_Post_information();
@@ -125,7 +133,8 @@ public class SeePostOfUser implements Serializable {
             try {
                 Post_image.setImage(post.getImage());
             }catch (Exception e){}
-            List.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().clear();
             Text.setText("");
             Views.setText("Views:" + post.getViews());
             Likes.setText("Likes:" + post.getLikes());
@@ -185,7 +194,7 @@ public class SeePostOfUser implements Serializable {
         try {
             user_selected.getMy_Posts().get(post_num).Add_Like(user);
             Text.setText("");
-            List.getItems().clear();
+            usersarr.getItems().clear();
             Error.setText("");
             Likes.setText("Likes:" + user_selected.getMy_Posts().get(post_num).getLikes());
         }catch (Exception e){}
@@ -194,56 +203,157 @@ public class SeePostOfUser implements Serializable {
     public void See_Likers(MouseEvent mouseEvent) {
 
         try {
-            ArrayList<User> users = user_selected.getMy_Posts().get(post_num).getLikers();
-            Text.setText("");
-            List.getItems().clear();
-            Error.setText("");
-
-            for (User value : users) {
-                List.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(user.getMy_Posts().get(post_num).getLikers());
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
     public void See_Comments(MouseEvent mouseEvent){
 
         try {
-            ArrayList<Comment> comments = user_selected.getMy_Posts().get(post_num).getComments();
-            Text.setText("");
-            List.getItems().clear();
-            Error.setText("");
-
-            for (Comment value : comments) {
-                List.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            comments.getItems().clear();
+            comments.getItems().addAll(user.getMy_Posts().get(post_num).getComments());
+            comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
     public void See_Comments(){
 
         try {
-            ArrayList<Comment> comments = user_selected.getMy_Posts().get(post_num).getComments();
-            Text.setText("");
-            List.getItems().clear();
-            Error.setText("");
-
-            for (Comment value : comments) {
-                List.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            comments.getItems().clear();
+            comments.getItems().addAll(user.getMy_Posts().get(post_num).getComments());
+            comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
 
     public void See_Viewers(MouseEvent mouseEvent) {
 
         try {
-            ArrayList<User> users = user_selected.getMy_Posts().get(post_num).getViwer();
-            Text.setText("");
-            List.getItems().clear();
-            Error.setText("");
-
-            for (User value : users) {
-                List.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(user.getMy_Posts().get(post_num).getViwer());
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        usersarr.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+            @Override
+            public ListCell<User> call(ListView<User> userListView) {
+                return new usersshow();
+            }
+        });
+
+
+
+    }
+
+    class usersshow extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public usersshow() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(user.getUser_Name());
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+        }
+    }
+
+    class showcomments extends ListCell<Comment> {
+
+        HBox hBox = new HBox();
+        HBox hBox2= new HBox();
+        VBox vbox = new VBox();
+        Label text = new Label();
+        Button like = new Button("Like");
+        Label Likes = new Label("Likes");
+        Label Replies = new Label("Replies");
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+        Pane pane1 = new Pane();
+
+
+
+        public showcomments() {
+            super();
+            hBox.getChildren().addAll(imgview,text,pane,like);
+            hBox2.getChildren().addAll(Replies,pane1,Likes);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            vbox.getChildren().addAll(hBox,hBox2);
+            imgview.setFitHeight(15);
+            imgview.setFitWidth(15);
+            Likes.setUnderline(true);
+            Replies.setUnderline(true);
+        }
+
+
+        @Override
+        public void updateItem(Comment comment, boolean empty) {
+
+            super.updateItem( comment , empty);
+
+            if (empty || comment == null){
+                setGraphic(null);
+            }
+
+            else {
+
+                imgview.setImage(comment.getSender().getProfile_Image());
+                text.setText(comment.getText());
+
+                if (comment.getLiker().contains(user)){
+                    like.setVisible(false);
+                }
+                else {
+                    like.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            comment.Add_like(user);
+                            like.setVisible(false);
+                        }
+                    });
+                }
+
+                Likes.setText(comment.getLiker().size() + " Likes");
+                Replies.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+
+                    }
+                });
+
+            }
+        }
+    }
+
 
 }
