@@ -7,11 +7,14 @@ import com.example.try1.oop.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.util.Callback;
 
 import java.io.Serializable;
@@ -176,9 +179,7 @@ public class SeePostOfUser implements Serializable, Initializable {
         }catch (Exception e){}
     }
 
-    public void Add_Comment(MouseEvent mouseEvent) {
-
-        try {
+    public void Add_Comment() {
             if (!Text.getText().equals("")) {
                 Comment comment = new Comment(user, Text.getText());
                 user_selected.getMy_Posts().get(post_num).Add_Comment(comment);
@@ -186,10 +187,9 @@ public class SeePostOfUser implements Serializable, Initializable {
                 Error.setText(" you must enter a message ");
             }
             See_Comments();
-        }catch (Exception e){}
     }
 
-    public void LIKE(MouseEvent mouseEvent) {
+    public void LIKE() {
 
         try {
             user_selected.getMy_Posts().get(post_num).Add_Like(user);
@@ -200,40 +200,29 @@ public class SeePostOfUser implements Serializable, Initializable {
         }catch (Exception e){}
     }
 
-    public void See_Likers(MouseEvent mouseEvent) {
+    public void See_Likers() {
 
         try {
             usersarr.getItems().clear();
-            usersarr.getItems().addAll(user.getMy_Posts().get(post_num).getLikers());
+            usersarr.getItems().addAll(user_selected.getMy_Posts().get(post_num).getLikers());
             comments.setVisible(false);
             usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
-    public void See_Comments(MouseEvent mouseEvent){
-
-        try {
-            comments.getItems().clear();
-            comments.getItems().addAll(user.getMy_Posts().get(post_num).getComments());
-            comments.setVisible(true);
-            usersarr.setVisible(false);
-        }catch (Exception e){}
-    }
     public void See_Comments(){
 
-        try {
             comments.getItems().clear();
-            comments.getItems().addAll(user.getMy_Posts().get(post_num).getComments());
+            comments.getItems().addAll(user_selected.getMy_Posts().get(post_num).getComments());
             comments.setVisible(true);
             usersarr.setVisible(false);
-        }catch (Exception e){}
     }
 
-    public void See_Viewers(MouseEvent mouseEvent) {
+    public void See_Viewers() {
 
         try {
             usersarr.getItems().clear();
-            usersarr.getItems().addAll(user.getMy_Posts().get(post_num).getViwer());
+            usersarr.getItems().addAll(user_selected.getMy_Posts().get(post_num).getViwer());
             comments.setVisible(false);
             usersarr.setVisible(true);
         }catch (Exception e){}
@@ -246,6 +235,13 @@ public class SeePostOfUser implements Serializable, Initializable {
             @Override
             public ListCell<User> call(ListView<User> userListView) {
                 return new usersshow();
+            }
+        });
+
+        comments.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
+            @Override
+            public ListCell<Comment> call(ListView<Comment> commentListView) {
+                return new showcomments();
             }
         });
 
@@ -293,24 +289,30 @@ public class SeePostOfUser implements Serializable, Initializable {
         HBox hBox = new HBox();
         HBox hBox2= new HBox();
         VBox vbox = new VBox();
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+        VBox vbox3 = new VBox();
+        Circle circle = new Circle(15);
         Label text = new Label();
         Button like = new Button("Like");
         Label Likes = new Label("Likes");
         Label Replies = new Label("Replies");
-        ImageView imgview = new ImageView();
         Pane pane = new Pane();
-        Pane pane1 = new Pane();
 
 
 
         public showcomments() {
             super();
-            hBox.getChildren().addAll(imgview,text,pane,like);
-            hBox2.getChildren().addAll(Replies,pane1,Likes);
-            HBox.setHgrow(pane, Priority.ALWAYS);
+            vbox1.getChildren().add(circle);
+            vbox2.getChildren().add(text);
+            vbox2.setAlignment(Pos.CENTER_LEFT);
+            vbox3.getChildren().add(like);
+            vbox3.setAlignment(Pos.CENTER_RIGHT);
+            hBox.getChildren().addAll(vbox1,vbox2,vbox3);
+            hBox2.getChildren().addAll(Replies,pane,Likes);
+            HBox.setHgrow(vbox2,Priority.ALWAYS);
+            HBox.setHgrow(pane,Priority.SOMETIMES);
             vbox.getChildren().addAll(hBox,hBox2);
-            imgview.setFitHeight(15);
-            imgview.setFitWidth(15);
             Likes.setUnderline(true);
             Replies.setUnderline(true);
         }
@@ -327,7 +329,7 @@ public class SeePostOfUser implements Serializable, Initializable {
 
             else {
 
-                imgview.setImage(comment.getSender().getProfile_Image());
+                circle.setFill(new ImagePattern(comment.getSender().getProfile_Image()));
                 text.setText(comment.getText());
 
                 if (comment.getLiker().contains(user)){
@@ -339,6 +341,7 @@ public class SeePostOfUser implements Serializable, Initializable {
                         public void handle(ActionEvent event) {
                             comment.Add_like(user);
                             like.setVisible(false);
+                            reflist();
                         }
                     });
                 }
@@ -351,8 +354,16 @@ public class SeePostOfUser implements Serializable, Initializable {
                     }
                 });
 
+                setGraphic(vbox);
             }
         }
+    }
+
+    public void reflist() {
+        comments.getItems().clear();
+        usersarr.getItems().clear();
+        usersarr.getItems().addAll(user_selected.getMy_Posts().get(post_num).getLikers());
+        comments.getItems().addAll(user_selected.getMy_Posts().get(post_num).getComments());
     }
 
 
