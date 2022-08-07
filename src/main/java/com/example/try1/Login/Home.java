@@ -131,6 +131,7 @@ public class Home implements Serializable {
             owner_name.setTextFill(Paint.valueOf("#AC3B61"));
         }
         My_Post();
+
     }
 
     public AnchorPane Anchorpane;

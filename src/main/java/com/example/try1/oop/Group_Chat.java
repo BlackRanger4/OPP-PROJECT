@@ -19,6 +19,9 @@ public class Group_Chat implements Serializable {
     private LocalDate CreateTime ;
     private String image;
 
+
+
+
     public ArrayList<User> getMembers() {
         return Members;
     }
@@ -100,32 +103,4 @@ public class Group_Chat implements Serializable {
         }
     }
 
-    /*
-    public ArrayList<Object> printchatmassage() {
-        String test = "";
-        ArrayList<Object> temp = new ArrayList<>();
-        int i;
-        int cap = this.getMessages().size();
-        if (cap != 0) {
-            for (i = 0; i < cap; i++) {
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() +
-                            " : " + this.getMessages().get(i).getText();
-                }
-                if (this.getMessages().get(i).getForwarded() != null && this.getMessages().get(i).getReply() == null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " forwarded from " +
-                            this.getMessages().get(i).getForwarded().getUser_Name();
-                }
-                if (this.getMessages().get(i).getForwarded() == null && this.getMessages().get(i).getReply() != null) {
-                    test = this.getMessages().get(i).getSender().getUser_Name() + " : " +
-                            this.getMessages().get(i).getText() + " replied to " +
-                            this.getMessages().get(i).getReply().getText();
-                }
-                temp.add(test);
-            }
-        }
-        return temp;
-    }
-     */
 }

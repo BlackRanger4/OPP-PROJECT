@@ -5,11 +5,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.memberviewcont">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.memberviewcont">
    <children>
       <ListView fx:id="members" layoutX="115.0" layoutY="34.0" prefHeight="532.0" prefWidth="314.0" />
-      <Label layoutX="247.0" layoutY="14.0" text="Members" />
-      <Button layoutX="639.0" layoutY="275.0" mnemonicParsing="false" onAction="#leavegroup" text="Leave group" />
-      <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Back" onAction="#backtochat" />
+      <Label fx:id="Label" layoutX="247.0" layoutY="14.0" text="Members" />
+      <Button fx:id="Button" layoutX="639.0" layoutY="275.0" mnemonicParsing="false" onAction="#leavegroup" text="Leave group" />
+      <Button fx:id="Button1" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" text="Back" onAction="#backtochat" />
    </children>
 </AnchorPane>

@@ -98,10 +98,7 @@ public class Chatscont implements Initializable {
             newpv.setTextFill(Paint.valueOf("WHITE"));
             newgroup.setStyle("-fx-background-color: #6F2232;");
             newgroup.setTextFill(Paint.valueOf("WHITE"));
-            Listchat.setStyle("-fx-background-color: transparent ;\n"+
-                    "-fx-background-radius: 5; \n " +
-                    "-fx-border-radius: 5; \n"+
-                    "-fx-border-color: #ffffff;");
+            Listchat.setStyle("-fx-background-color: #E7717D;");
             List1.setStyle("-fx-background-color: #E9E9EB ;\n" +
                     "-fx-background-radius: 5; \n " +
                     "-fx-border-radius: 5; \n" +
@@ -135,6 +132,7 @@ public class Chatscont implements Initializable {
             mssgtext.setStyle("-fx-background-color: #950740;");
             replymassage.setStyle("-fx-background-color: #950740;");
         }
+
     }
 
 
