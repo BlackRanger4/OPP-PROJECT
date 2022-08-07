@@ -21,7 +21,9 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class Chatscont implements Initializable {
 
@@ -54,6 +57,8 @@ public class Chatscont implements Initializable {
     public javafx.scene.control.Button newpv;
     public javafx.scene.control.Button newgroup;
     public Button settbutton;
+    public Label error;
+    public Button delerror;
 
     public void Chatscont(DataBase dataBase, User user, FirstMenu firstMenu, Scene scene , Stage stage , boolean Dark_Mod) {
         Chatscont.stage = stage;
@@ -63,12 +68,20 @@ public class Chatscont implements Initializable {
         this.scene = scene;
         editbutton.setVisible(false);
         popdown();
+        errorpopdown();
+        reflists();
+        List2.setVisible(false);
+        List1.setVisible(true);
 
         this.pv_chats = user.getMy_Privete_Chat();
         this.group_chats = user.getMy_Group_Chat();
 
         replyrun = false;
         this.Dark_Mod = Dark_Mod;
+
+
+
+
         if (Dark_Mod) {
             Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
             Button.setStyle("-fx-background-color: #6F2232;");
@@ -205,6 +218,16 @@ public class Chatscont implements Initializable {
         replymassage.setVisible(false);
     }
 
+    public void errorpopup (String x){
+        error.setText(x);
+        delerror.setVisible(true);
+    }
+
+    public void errorpopdown () {
+        error.setText("");
+        delerror.setVisible(false);
+    }
+
     public void choose () {
         if (porg.getValue().equals("pv chats")){
             pvorgr = false;
@@ -270,15 +293,18 @@ public class Chatscont implements Initializable {
 
     public void gotosetting () throws IOException {
         if (user == selectedgr.getAdmin()) {
-            System.out.println("zart");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminview.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),900,600);
             stage.setScene(scene);
-            adminviewcont adminviewcont = new adminviewcont();
+            adminviewcont adminviewcont =fxmlLoader.getController();
             adminviewcont.adminviewcont(dataBase,user,scene,Dark_Mod,selectedgr,this,stage);
         }
         else {
-
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("memberview.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),900,600);
+            stage.setScene(scene);
+            memberviewcont memberviewcont =fxmlLoader.getController();
+            memberviewcont.memberviewcont(dataBase,user,scene,Dark_Mod,selectedgr,this,stage);
         }
     }
 
@@ -305,6 +331,12 @@ public class Chatscont implements Initializable {
 
     public void sendmassage () {
 
+        if (pvorgr && selectedgr.getBanned().contains(user)){
+            errorpopup("You are banned");
+            textmssg = "";
+            mssgtext.setText("");
+            return;
+        }
         if (replyrun) {
             textmssg = mssgtext.getText();
             if (!textmssg.equals("")) {
@@ -350,6 +382,13 @@ public class Chatscont implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.*"));
         File file = fileChooser.showOpenDialog(null);
+
+        if (pvorgr && selectedgr.getBanned().contains(user)){
+            errorpopup("You are banned");
+            textmssg = "";
+            mssgtext.setText("");
+            return;
+        }
 
         if (!replyrun) {
 
@@ -464,7 +503,15 @@ public class Chatscont implements Initializable {
         edit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                edit(Listchat.getSelectionModel().getSelectedItem());
+                if (user == getSelmessage().getSender()) {
+                    edit(Listchat.getSelectionModel().getSelectedItem());
+                }
+                else {
+                    errorpopup("You can only edit your own messages!");
+                }
+                if (getSelmessage().getForwarded() != null){
+                    errorpopup("You can't edit a forwarded message!");
+                }
             }
         });
 
@@ -472,7 +519,12 @@ public class Chatscont implements Initializable {
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                delete(Listchat.getSelectionModel().getSelectedItem());
+                if (user == getSelmessage().getSender()) {
+                    delete(Listchat.getSelectionModel().getSelectedItem());
+                }
+                else {
+                    errorpopup("You can only delete you own messages!");
+                }
             }
         });
 
@@ -621,7 +673,9 @@ public class Chatscont implements Initializable {
 
     class chatshow extends ListCell<Message> {
 
-    VBox vbox = new VBox();
+    VBox vbox2 = new VBox();
+    VBox vbox3 = new VBox();
+    VBox vbox1 = new VBox();
     HBox hBox = new HBox();
     Label replyto = new Label();
     ImageView imgview = new ImageView();
@@ -629,20 +683,24 @@ public class Chatscont implements Initializable {
     Label sender = new Label();
     Pane pane = new Pane();
     Pane pane1 = new Pane();
+    Circle circle = new Circle(15);
 
 
 
     public chatshow() {
         super();
         VBox.setVgrow(pane,Priority.ALWAYS);
-        vbox.getChildren().addAll(sender,imgview,text,pane);
-        vbox.setMaxWidth(300);
+        vbox2.getChildren().addAll(sender,imgview,text,pane);
+        vbox2.setMaxWidth(300);
+        vbox3.getChildren().addAll(replyto);
+        vbox1.getChildren().addAll(circle);
         text.setTextFill(Color.WHITE);
         sender.setStyle("-fx-font-weight: bold");
         sender.setTextFill(Color.WHITE);
         HBox.setHgrow(pane1,Priority.ALWAYS);
-        hBox.setSpacing(4);
+        hBox.setSpacing(5);
         this.setStyle("-fx-background-color: transparent; \n");
+        replyto.setTextFill(Color.WHITE);
     }
 
 
@@ -666,6 +724,7 @@ public class Chatscont implements Initializable {
 
        if (!empty && mssg != null) {
             text.setText(mssg.getText());
+            circle.setFill(new ImagePattern(mssg.getSender().getProfile_Image()));
             if (mssg.getForwarded() == null) {
                 sender.setText(mssg.getSender().getUser_Name());
             }
@@ -703,8 +762,10 @@ public class Chatscont implements Initializable {
 
             if (getUser() != mssg.getSender()) {
                 hBox.getChildren().clear();
-                hBox.getChildren().addAll(pane1,replyto,vbox);
-                vbox.setStyle("-fx-background-color: #6F2232;\n"+
+                hBox.getChildren().addAll(pane1,vbox3,vbox2,vbox1);
+                vbox1.setAlignment(Pos.BASELINE_CENTER);
+                vbox3.setAlignment(Pos.CENTER_LEFT);
+                vbox2.setStyle("-fx-background-color: #6F2232;\n"+
                         "-fx-border-color: #6F2232 ;\n" +
                         "-fx-border-style: solid;\n " +
                         "-fx-background-radius: 5; \n" +
@@ -713,9 +774,9 @@ public class Chatscont implements Initializable {
             }
             else {
                 hBox.getChildren().clear();
-                hBox.getChildren().addAll(vbox,replyto,pane1);
+                hBox.getChildren().addAll(vbox1,vbox2,vbox3,pane1);
                 //vbox.setBackground(new Background(new BackgroundFill(Color.ORANGE , CornerRadii.EMPTY, Insets.EMPTY)));
-                vbox.setStyle("-fx-background-color: #C3073F ;\n"+
+                vbox2.setStyle("-fx-background-color: #C3073F ;\n"+
                               "-fx-border-color: #C3073F ;\n" +
                               "-fx-border-style: solid;\n " +
                               "-fx-background-radius: 5; \n" +
@@ -742,7 +803,7 @@ public class Chatscont implements Initializable {
             HBox.setHgrow(pane,Priority.ALWAYS);
             imgview.setFitHeight(50);
             imgview.setFitWidth(50);
-            this.setStyle("-fx-background-color: transparent;");
+            this.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
         }
 
 
@@ -785,6 +846,7 @@ public class Chatscont implements Initializable {
             HBox.setHgrow(pane,Priority.ALWAYS);
             imgview.setFitHeight(50);
             imgview.setFitWidth(50);
+            this.setStyle("-fx-background-color: transparent;");
         }
 
 
@@ -811,6 +873,13 @@ public class Chatscont implements Initializable {
             }
 
         }
+    }
+
+    public void reflists(){
+        List1.getItems().clear();
+        List1.getItems().addAll(user.getMy_Privete_Chat());
+        List2.getItems().clear();
+        List2.getItems().addAll(user.getMy_Group_Chat());
     }
 
 }

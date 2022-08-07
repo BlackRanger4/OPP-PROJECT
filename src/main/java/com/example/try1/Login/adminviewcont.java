@@ -7,12 +7,19 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.Serializable;
 import java.lang.reflect.Member;
@@ -31,17 +38,20 @@ public class adminviewcont implements Initializable, Serializable {
     private Group_Chat group;
     private Chatscont chatscont;
 
-    public Button applychanges;
-    public TextField grname;
-    public Button grouppic;
-    public ListView<User> members = new ListView<>();
-    public ListView<User> results = new ListView<>();
+    @FXML
+    public TextField grname ;
+    @FXML
+    public Button grouppic ;
+    @FXML
+    public ListView<User> members ;
+    @FXML
+    public ListView<User> results ;
+    @FXML
     public TextField username;
-    public ContextMenu contextMenu;
-    public MenuItem removeuser = new MenuItem();
-    public MenuItem banuser = new MenuItem();
-    public MenuItem unbanuser = new MenuItem();
-    public ImageView grouppicview;
+    @FXML
+    public ImageView grouppicview ;
+
+
     public ArrayList<User> searched = new ArrayList<>();
 
     public User selectedmember;
@@ -59,9 +69,6 @@ public class adminviewcont implements Initializable, Serializable {
         members.getItems().addAll(gr1.getMembers());
         grname.setText(group.getGroupName());
         grouppicview.setImage(group.getImage());
-        removeuser.setText("Remove");
-        banuser.setText("Ban");
-        unbanuser.setText("Unban");
     }
 
 
@@ -69,64 +76,21 @@ public class adminviewcont implements Initializable, Serializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-
-        removeuser.setOnAction(new EventHandler<ActionEvent>() {
+        members.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
             @Override
-            public void handle(ActionEvent event) {
-                group.getMembers().remove(selectedmember);
+            public ListCell<User> call(ListView<User> userListView) {
+                return new List3();
             }
         });
 
-        banuser.setOnAction(new EventHandler<ActionEvent>() {
+        results.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
             @Override
-            public void handle(ActionEvent event) {
-                group.getBanned().add(selectedmember);
-            }
-        });
-
-        unbanuser.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                group.getBanned().remove(selectedmember);
+            public ListCell<User> call(ListView<User> userListView) {
+                return new List2();
             }
         });
 
 
-        members.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<User>() {
-            @Override
-            public void changed(ObservableValue<? extends User> observableValue, User user, User t1) {
-
-
-                selectedmember = members.getSelectionModel().getSelectedItem();
-
-                if (!group.getBanned().contains(selectedmember)) {
-
-                    contextMenu.getItems().clear();
-                    contextMenu.getItems().addAll(removeuser,banuser);
-                    members.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-                        @Override
-                        public void handle(ContextMenuEvent event) {
-                            contextMenu.show(members.getScene().getWindow(), event.getScreenX(), event.getScreenY());
-                            members.getSelectionModel().getSelectedIndices().clear();
-                        }
-                    });
-
-                }
-
-                else {
-
-                    contextMenu.getItems().clear();
-                    contextMenu.getItems().addAll(removeuser,unbanuser);
-                    members.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-                        @Override
-                        public void handle(ContextMenuEvent event) {
-                            contextMenu.show(members.getScene().getWindow(), event.getScreenX(), event.getScreenY());
-                            members.getSelectionModel().getSelectedIndices().clear();
-                        }
-                    });
-                }
-            }
-        });
     }
 
     public void namechanging() {
@@ -140,9 +104,121 @@ public class adminviewcont implements Initializable, Serializable {
     }
 
     public void back() {
+        chatscont.reflists();
         chatscont.back();
     }
 
+    class List3 extends ListCell<User> {
 
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Label name = new Label();
+        Button ban = new Button("Ban");
+        Button remove = new Button("Remove");
+        Pane pane = new Pane();
+
+
+
+        public List3() {
+            super();
+            hBox.getChildren().addAll(imgview,name,pane,ban,remove);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            hBox.setAlignment(Pos.CENTER);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setGraphic(null);
+            }
+
+            else {
+                name.setText(user.getUser_Name());
+                ban.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (ban.getText().equals("Ban")) {
+                            group.getBanned().add(user);
+                            ban.setText("Unaban");
+                            name.setTextFill(Color.RED);
+                        }
+                        else {
+                            group.getBanned().remove(user);
+                            ban.setText("Ban");
+                            name.setTextFill(Color.BLACK);
+                        }
+                    }
+                });
+                remove.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        group.getMembers().remove(user);
+                        members.getItems().remove(user);
+                        user.getMy_Group_Chat().remove(group);
+                    }
+                });
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+
+        }
+    }
+
+    class List2 extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Label name = new Label();
+        Button add = new Button("Add");
+        Pane pane = new Pane();
+
+
+
+        public List2() {
+            super();
+            hBox.getChildren().addAll(imgview,name,pane,add);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            hBox.setAlignment(Pos.CENTER);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setGraphic(null);
+            }
+
+            else {
+                name.setText(user.getUser_Name());
+                add.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        if (!group.getMembers().contains(user)) {
+                            group.getMembers().add(user);
+                            members.getItems().add(user);
+                            user.getMy_Group_Chat().add(group);
+                        }
+                        else {
+                            members.getSelectionModel().select(user);
+                        }
+                    }
+                });
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+
+        }
+    }
 
 }

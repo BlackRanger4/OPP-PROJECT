@@ -114,6 +114,7 @@ public class newpvchatcont implements Initializable {
     }
 
     public void Back(){
+        chatscont.reflists();
         chatscont.back();
     }
 

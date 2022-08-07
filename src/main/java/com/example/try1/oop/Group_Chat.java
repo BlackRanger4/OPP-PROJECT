@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Group_Chat implements Serializable {
 
     private ArrayList<User> Members ;
-    private ArrayList<User> banned;
+    private ArrayList<User> banned = new ArrayList<>();
     private User Admin;
     private String GroupName;
     private DataBase data;

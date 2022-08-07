@@ -135,6 +135,7 @@ public class newgroupchatcont implements Initializable, Serializable {
     }
 
     public void Back(){
+        chatscont.reflists();
         chatscont.back();
     }
 
