@@ -12,15 +12,21 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Member;
 import java.net.URL;
@@ -29,6 +35,13 @@ import java.util.ResourceBundle;
 
 public class adminviewcont implements Initializable, Serializable {
 
+
+    public javafx.scene.control.Label Label;
+    public Button backbutton;
+    public javafx.scene.control.Label Label2;
+    public javafx.scene.control.Label Label3;
+    public javafx.scene.control.Label Label1;
+    public AnchorPane Anchorpane;
 
     private DataBase dataBase;
     private User user;
@@ -69,6 +82,38 @@ public class adminviewcont implements Initializable, Serializable {
         members.getItems().addAll(gr1.getMembers());
         grname.setText(group.getGroupName());
         grouppicview.setImage(group.getImage());
+
+        if (Dark_Mod){
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            backbutton.setStyle("-fx-background-color: #6F2232;");
+            backbutton.setTextFill(Paint.valueOf("WHITE"));
+            grouppic.setStyle("-fx-background-color: #6F2232;");
+            grouppic.setTextFill(Paint.valueOf("WHITE"));
+            members.setStyle("-fx-background-color: #E7717D;");
+            results.setStyle("-fx-background-color: #E7717D;");
+            grname.setStyle("-fx-background-color: #E7717D;");
+            username.setStyle("-fx-background-color: #E7717D;");
+            Label.setTextFill(Paint.valueOf("#950740"));
+            Label1.setTextFill(Paint.valueOf("#950740"));
+            Label2.setTextFill(Paint.valueOf("#950740"));
+            Label3.setTextFill(Paint.valueOf("#950740"));
+        }
+        else {
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            backbutton.setStyle("-fx-background-color: #EDC7B7;");
+            backbutton.setTextFill(Paint.valueOf("#AC3B61"));
+            grouppic.setStyle("-fx-background-color: #EDC7B7;");
+            grouppic.setTextFill(Paint.valueOf("#AC3B61"));
+            members.setStyle("-fx-background-color: #E7717D;");
+            results.setStyle("-fx-background-color: #E7717D;");
+            grname.setStyle("-fx-background-color: #E7717D;");
+            username.setStyle("-fx-background-color: #E7717D;");
+            Label.setTextFill(Paint.valueOf("#AC3B61"));
+            Label1.setTextFill(Paint.valueOf("#AC3B61"));
+            Label2.setTextFill(Paint.valueOf("#AC3B61"));
+            Label3.setTextFill(Paint.valueOf("#AC3B61"));
+        }
+
     }
 
 
@@ -106,6 +151,23 @@ public class adminviewcont implements Initializable, Serializable {
     public void back() {
         chatscont.reflists();
         chatscont.back();
+    }
+
+    public void ChangeFig(MouseEvent mouseEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File","*.*"));
+        File file = fileChooser.showOpenDialog(null);
+
+        if ( file != null) {
+            try {
+                Image image = new Image(file.toURI().toString());
+                grouppicview.setImage(image);
+                group.setImage(file.toURI().toString());
+            }
+            catch (Exception e){}
+        }
+
     }
 
     class List3 extends ListCell<User> {

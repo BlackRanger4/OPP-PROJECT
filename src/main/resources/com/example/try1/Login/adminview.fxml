@@ -7,18 +7,18 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.adminviewcont">
+<AnchorPane fx:id="Anchorpane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.try1.Login.adminviewcont">
    <children>
       <ListView fx:id="members" layoutX="60.0" layoutY="29.0" prefHeight="542.0" prefWidth="286.0" />
       <ImageView fx:id="grouppicview" fitHeight="118.0" fitWidth="118.0" layoutX="390.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="grouppic" layoutX="374.0" layoutY="452.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change group picture" />
-      <Label layoutX="178.0" layoutY="14.0" text="Members" />
+      <Button fx:id="grouppic" layoutX="374.0" layoutY="452.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change group picture" onMouseClicked="#ChangeFig"/>
+      <Label fx:id="Label" layoutX="178.0" layoutY="14.0" text="Members" />
       <TextField fx:id="grname" layoutX="375.0" layoutY="153.0" onKeyTyped="#namechanging" />
-      <Label layoutX="416.0" layoutY="135.0" text="Group name" />
+      <Label fx:id="Label1" layoutX="416.0" layoutY="135.0" text="Group name" />
       <ListView fx:id="results" layoutX="555.0" layoutY="85.0" prefHeight="488.0" prefWidth="318.0" />
       <TextField fx:id="username" layoutX="555.0" layoutY="32.0" onKeyTyped="#searchuser" prefHeight="26.0" prefWidth="318.0" />
-      <Label layoutX="650.0" layoutY="14.0" text="Enter a name to search :" />
-      <Label layoutX="695.0" layoutY="67.0" text="Results" />
+      <Label fx:id="Label2" layoutX="650.0" layoutY="14.0" text="Enter a name to search :" />
+      <Label fx:id="Label3" layoutX="695.0" layoutY="67.0" text="Results" />
       <Button fx:id="backbutton" layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#back" text="Back" />
    </children>
 </AnchorPane>

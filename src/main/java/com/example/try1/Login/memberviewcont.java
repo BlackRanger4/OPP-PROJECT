@@ -7,12 +7,16 @@ import com.example.try1.oop.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -24,6 +28,10 @@ public class memberviewcont implements Initializable, Serializable {
 
     @FXML
     public ListView<User> members;
+    public javafx.scene.control.Label Label;
+    public javafx.scene.control.Button Button;
+    public javafx.scene.control.Button Button1;
+    public AnchorPane Anchorpane;
 
     private DataBase dataBase;
     private User user;
@@ -44,6 +52,30 @@ public class memberviewcont implements Initializable, Serializable {
         memberviewcont.stage = stage;
         members.getItems().clear();
         members.getItems().addAll(group.getMembers());
+
+        if (Dark_Mod){
+
+            Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
+            Button.setStyle("-fx-background-color: #6F2232;");
+            Button.setTextFill(Paint.valueOf("WHITE"));
+            Button1.setStyle("-fx-background-color: #6F2232;");
+            Button1.setTextFill(Paint.valueOf("WHITE"));
+            members.setStyle("-fx-background-color: #E7717D;");
+            Label.setTextFill(Paint.valueOf("#950740"));
+
+        }
+        else {
+
+            Anchorpane.setStyle("-fx-background-color: #EEE2DC;");
+            Button.setStyle("-fx-background-color: #EDC7B7;");
+            Button.setTextFill(Paint.valueOf("#AC3B61"));
+            Button1.setStyle("-fx-background-color: #EDC7B7;");
+            Button1.setTextFill(Paint.valueOf("#AC3B61"));
+            members.setStyle("-fx-background-color: #EDC7B7;");
+            Label.setTextFill(Paint.valueOf("#AC3B61"));
+
+        }
+
     }
 
     @Override
