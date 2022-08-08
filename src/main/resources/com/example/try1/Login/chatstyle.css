@@ -1,0 +1,25 @@
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: rgba(52, 32, 34, 0.8) ;
+    -fx-background-radius: 8;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+}
+
+#Listchat {
+    -fx-background-color:linear-gradient(#E7717D,#6F2232);
+    -fx-background-radius: 8;
+}
+
+#List1 {
+    -fx-background-radius: 8;
+}
+
+#List2 {
+    -fx-background-radius: 8;
+}
+
+#mssgtext {
+    -fx-background-radius: 8;
+}

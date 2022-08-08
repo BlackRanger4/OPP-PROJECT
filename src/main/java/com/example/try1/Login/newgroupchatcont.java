@@ -61,6 +61,9 @@ public class newgroupchatcont implements Initializable, Serializable {
         groupnametext = "";
         addedmemb = new ArrayList<>();
 
+        results.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
+        addedmembers.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
+
         if (Dark_Mod){
             Anchorpane.setStyle("-fx-background-color: #1A1A1D;");
             Button.setStyle("-fx-background-color: #6F2232;");
@@ -319,7 +322,6 @@ public class newgroupchatcont implements Initializable, Serializable {
                 setGraphic(null);
             } else {
                 label.setText(person);
-                setGraphic(hBox);
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
@@ -346,6 +348,7 @@ public class newgroupchatcont implements Initializable, Serializable {
                                 }
                             }
                         });
+                    setGraphic(hBox);
                     }
                 }
     }

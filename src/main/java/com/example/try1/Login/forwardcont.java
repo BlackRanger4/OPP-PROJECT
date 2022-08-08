@@ -257,7 +257,7 @@ public class forwardcont implements Initializable, Serializable {
     public void searchbox() {
         textmssg = searchingbox.getText();
         if (!pvorgr) {
-            setResultpvchat(user.searchfromfollow(textmssg));
+            setResultpvchat(user.searchfrompvchat(textmssg));
             List1.getItems().clear();
             List1.getItems().addAll(getResultpvchat());
         }

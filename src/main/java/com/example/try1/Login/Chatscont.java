@@ -72,12 +72,18 @@ public class Chatscont implements Initializable {
         reflists();
         List2.setVisible(false);
         List1.setVisible(true);
+        mssgtext.setWrapText(true);
 
         this.pv_chats = user.getMy_Privete_Chat();
         this.group_chats = user.getMy_Group_Chat();
 
         replyrun = false;
         this.Dark_Mod = Dark_Mod;
+
+        Listchat.getStylesheets().add(String.valueOf(getClass().getResource("chatstyle.css")));
+        List1.getStylesheets().add(String.valueOf(getClass().getResource("chatstyle.css")));
+        List2.getStylesheets().add(String.valueOf(getClass().getResource("chatstyle.css")));
+        mssgtext.getStylesheets().add(String.valueOf(getClass().getResource("chatstyle.css")));
 
 
 
@@ -235,7 +241,6 @@ public class Chatscont implements Initializable {
             List1.setVisible(true);
             List2.setVisible(false);
             Listchat.getItems().clear();
-            settbutton.setVisible(false);
         }
         else {
             pvorgr = true;
@@ -245,7 +250,6 @@ public class Chatscont implements Initializable {
             List2.setVisible(true);
             List1.setVisible(false);
             Listchat.getItems().clear();
-            settbutton.setVisible(true);
         }
     }
 
@@ -290,19 +294,20 @@ public class Chatscont implements Initializable {
 
 
     public void gotosetting () throws IOException {
-        if (user == selectedgr.getAdmin()) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminview.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(),900,600);
-            stage.setScene(scene);
-            adminviewcont adminviewcont =fxmlLoader.getController();
-            adminviewcont.adminviewcont(dataBase,user,scene,Dark_Mod,selectedgr,this,stage);
-        }
-        else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("memberview.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(),900,600);
-            stage.setScene(scene);
-            memberviewcont memberviewcont =fxmlLoader.getController();
-            memberviewcont.memberviewcont(dataBase,user,scene,Dark_Mod,selectedgr,this,stage);
+        if (pvorgr) {
+            if (user == selectedgr.getAdmin()) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("adminview.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+                stage.setScene(scene);
+                adminviewcont adminviewcont = fxmlLoader.getController();
+                adminviewcont.adminviewcont(dataBase, user, scene, Dark_Mod, selectedgr, this, stage);
+            } else {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("memberview.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+                stage.setScene(scene);
+                memberviewcont memberviewcont = fxmlLoader.getController();
+                memberviewcont.memberviewcont(dataBase, user, scene, Dark_Mod, selectedgr, this, stage);
+            }
         }
     }
 
@@ -372,7 +377,6 @@ public class Chatscont implements Initializable {
                 }
             }
         }
-
     }
 
     public void Add_Fig(MouseEvent mouseEvent) {
@@ -679,6 +683,8 @@ public class Chatscont implements Initializable {
     ImageView imgview = new ImageView();
     Label text = new Label();
     Label sender = new Label();
+    Label time = new Label();
+    HBox timeshow = new HBox();
     Pane pane = new Pane();
     Pane pane1 = new Pane();
     Circle circle = new Circle(15);
@@ -688,7 +694,10 @@ public class Chatscont implements Initializable {
     public chatshow() {
         super();
         VBox.setVgrow(pane,Priority.ALWAYS);
-        vbox2.getChildren().addAll(sender,imgview,text,pane);
+        timeshow.getChildren().add(time);
+        time.setStyle("-fx-font-size: 10");
+        time.setTextFill(Color.rgb(237,199,183));
+        vbox2.getChildren().addAll(sender,imgview,text,pane,timeshow);
         vbox2.setMaxWidth(300);
         vbox3.getChildren().addAll(replyto);
         vbox1.getChildren().addAll(circle);
@@ -697,8 +706,8 @@ public class Chatscont implements Initializable {
         sender.setTextFill(Color.WHITE);
         HBox.setHgrow(pane1,Priority.ALWAYS);
         hBox.setSpacing(5);
-        this.setStyle("-fx-background-color: transparent; \n");
         replyto.setTextFill(Color.WHITE);
+        this.getStylesheets().add(String.valueOf(getClass().getResource("chatstyle.css")));
     }
 
 
@@ -711,6 +720,7 @@ public class Chatscont implements Initializable {
         sender.setText(null);
         imgview.setImage(null);
         replyto.setText(null);
+        time.setText(null);
         setGraphic(null);
 
         replyto.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -722,6 +732,7 @@ public class Chatscont implements Initializable {
 
        if (!empty && mssg != null) {
             text.setText(mssg.getText());
+            text.setWrapText(true);
             circle.setFill(new ImagePattern(mssg.getSender().getProfile_Image()));
             if (mssg.getForwarded() == null) {
                 sender.setText(mssg.getSender().getUser_Name());
@@ -763,6 +774,7 @@ public class Chatscont implements Initializable {
                 hBox.getChildren().addAll(pane1,vbox3,vbox2,vbox1);
                 vbox1.setAlignment(Pos.BASELINE_CENTER);
                 vbox3.setAlignment(Pos.CENTER_LEFT);
+                timeshow.setAlignment(Pos.CENTER_LEFT);
                 vbox2.setStyle("-fx-background-color: #6F2232;\n"+
                         "-fx-border-color: #6F2232 ;\n" +
                         "-fx-border-style: solid;\n " +
@@ -773,6 +785,8 @@ public class Chatscont implements Initializable {
             else {
                 hBox.getChildren().clear();
                 hBox.getChildren().addAll(vbox1,vbox2,vbox3,pane1);
+                timeshow.setAlignment(Pos.CENTER_LEFT);
+                timeshow.setAlignment(Pos.CENTER_RIGHT);
                 //vbox.setBackground(new Background(new BackgroundFill(Color.ORANGE , CornerRadii.EMPTY, Insets.EMPTY)));
                 vbox2.setStyle("-fx-background-color: #C3073F ;\n"+
                               "-fx-border-color: #C3073F ;\n" +
@@ -781,6 +795,8 @@ public class Chatscont implements Initializable {
                               "-fx-border-radius: 5; \n " +
                               "-fx-border-width: 5" );
             }
+
+            time.setText(mssg.getCreat_time_our().toString().substring(0,5));
 
             setGraphic(hBox);
        }

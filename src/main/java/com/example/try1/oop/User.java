@@ -25,6 +25,7 @@ public class User implements Serializable {
     ArrayList<User> My_Followers = new ArrayList<>();
     ArrayList<User> My_Following = new ArrayList<>();
     ArrayList<User> Blocked_User = new ArrayList<>();
+    ArrayList<User> oppchat = new ArrayList<>();
 
     String[] Security_Q  ;
     String[] Security_A  ;
@@ -223,6 +224,30 @@ public class User implements Serializable {
         y.getMy_Privete_Chat().add(temp);
         getMy_Privete_Chat().add(temp);
         return temp;
+    }
+
+    public ArrayList<User> searchfrompvchat (String name){
+        oppusersarr();
+        int Size = oppchat.size();
+        ArrayList<User> users = new ArrayList<>();
+        if (!name.equals("")) {
+            for (int i = 0; i < Size; i++) {
+                if (oppchat.get(i).getUser_Name().contains(name) &&
+                        oppchat.get(i).getUser_Name().indexOf(name) == 0) {
+                    users.add(getMy_Followers().get(i));
+                }
+            }
+        }
+        return users;
+    }
+
+    public void oppusersarr() {
+        int i;
+        int cap = getMy_Group_Chat().size();
+        oppchat.clear();
+        for (i=0;i<cap;i++) {
+            oppchat.add(oppuser(getMy_Privete_Chat().get(i)));
+        }
     }
 
     public void creategroup (String groupname , ArrayList<User> temp) {

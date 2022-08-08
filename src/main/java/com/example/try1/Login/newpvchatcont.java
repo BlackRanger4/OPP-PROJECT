@@ -46,6 +46,7 @@ public class newpvchatcont implements Initializable {
     public void search_user(KeyEvent keyEvent) {
         results.getItems().clear();
         results.getItems().addAll(dataBase.User_Search(username.getText()));
+        results.getItems().remove(user);
     }
 
     public void newpvchatcont(DataBase dataBase, User user, Chatscont chatscont, Scene scene , Stage stage , boolean Dark_Mod) {
@@ -121,6 +122,7 @@ public class newpvchatcont implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         results.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
             @Override
             public ListCell<User> call(ListView<User> userListView) {
@@ -167,6 +169,7 @@ public class newpvchatcont implements Initializable {
             HBox.setHgrow(pane, Priority.ALWAYS);
             imgview.setFitHeight(50);
             imgview.setFitWidth(50);
+            this.getStylesheets().add(String.valueOf(getClass().getResource("style.css")));
         }
 
 
