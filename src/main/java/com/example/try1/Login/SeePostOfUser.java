@@ -296,7 +296,7 @@ public class SeePostOfUser implements Serializable, Initializable {
         Label text = new Label();
         Button like = new Button("Like");
         Label Likes = new Label("Likes");
-        Label Replies = new Label("Replies");
+        Label Replies = new Label("reply");
         Pane pane = new Pane();
 
 
@@ -350,7 +350,8 @@ public class SeePostOfUser implements Serializable, Initializable {
                 Replies.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-
+                        comment.Add_reply(Text.getText(),user.getUser_Name());
+                        reflist();
                     }
                 });
 

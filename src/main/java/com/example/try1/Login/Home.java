@@ -4,25 +4,34 @@ import com.example.try1.oop.Comment;
 import com.example.try1.oop.DataBase;
 import com.example.try1.oop.Post;
 import com.example.try1.oop.User;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class Home implements Serializable {
+public class Home implements Initializable {
 
 
     public ImageView Page_Image;
+    public ListView<User> usersarr;
+    public ListView<Comment> comments;
     private Boolean Dark_Mod;
     private FirstMenu firstMenu;
     private static Stage stage;
@@ -76,7 +85,8 @@ public class Home implements Serializable {
             Followings_see_button.setStyle("-fx-background-color: #6F2232;");
             Followings_see_button.setTextFill(Paint.valueOf("WHITE"));
             Text_field.setStyle("-fx-background-color: #E7717D;");
-            List.setStyle("-fx-background-color: #E7717D;");
+            usersarr.setStyle("-fx-background-color: #E7717D;");
+            comments.setStyle("-fx-background-color: #E7717D;");
             Post_text.setTextFill(Paint.valueOf("#950740"));
             Post_Creater_Name.setTextFill(Paint.valueOf("#950740"));
             Post_Create_time.setTextFill(Paint.valueOf("#950740"));
@@ -121,7 +131,8 @@ public class Home implements Serializable {
             Followings_see_button.setStyle("-fx-background-color: #EDC7B7;");
             Followings_see_button.setTextFill(Paint.valueOf("#AC3B61"));
             Text_field.setStyle("-fx-background-color: #E7717D;");
-            List.setStyle("-fx-background-color: #E7717D;");
+            usersarr.setStyle("-fx-background-color: #E7717D;");
+            comments.setStyle("-fx-background-color: #E7717D;");
             Post_text.setTextFill(Paint.valueOf("#AC3B61"));
             Post_Creater_Name.setTextFill(Paint.valueOf("#AC3B61"));
             Post_Create_time.setTextFill(Paint.valueOf("#AC3B61"));
@@ -149,7 +160,7 @@ public class Home implements Serializable {
     public TextField Text_field;
     public Label Post_text;
     public ImageView Post_Image;
-    public ListView<String> List;
+
     public ImageView Post_Creater_Image;
     public Label Post_Create_time;
     public Label Post_Creater_Name;
@@ -206,46 +217,40 @@ public class Home implements Serializable {
     public void See_Likers(MouseEvent mouseEvent) {
 
         try {
-            List.getItems().clear();
-            ArrayList<User> users = posts.get(post_num).getLikers();
-
-            for (User value : users) {
-                List.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(posts.get(post_num).getLikers());
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
     public void See_Viewers(MouseEvent mouseEvent) {
 
         try {
-            List.getItems().clear();
-            ArrayList<User> users = posts.get(post_num).getViwer();
-
-            for (User value : users) {
-                List.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(posts.get(post_num).getViwer());
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
     public void See_Comments(MouseEvent mouseEvent) {
 
         try {
-            List.getItems().clear();
+            comments.getItems().clear();
             ArrayList<Comment> comments = posts.get(post_num).getComments();
-
-            for (Comment value : comments) {
-                List.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            this.comments.getItems().addAll(comments);
+            this.comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
     public void See_Comments() {
         try {
-            List.getItems().clear();
+            comments.getItems().clear();
             ArrayList<Comment> comments = posts.get(post_num).getComments();
-
-            for (Comment value : comments) {
-                List.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            this.comments.getItems().addAll(comments);
+            this.comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
 
@@ -266,7 +271,8 @@ public class Home implements Serializable {
             try {
                 Post_Image.setImage(post.getImage());
             }catch (Exception e){}
-            List.getItems().clear();
+            comments.getItems().clear();
+            usersarr.getItems().clear();
             try {
                 Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
             }catch (Exception e){}
@@ -294,7 +300,8 @@ public class Home implements Serializable {
             try {
                 Post_Image.setImage(post.getImage());
             }catch (Exception e){}
-            List.getItems().clear();
+            comments.getItems().clear();
+            usersarr.getItems().clear();
             try {
                 Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
             }catch (Exception e){}
@@ -323,7 +330,8 @@ public class Home implements Serializable {
             try {
                 Post_Image.setImage(post.getImage());
             }catch (Exception e){}
-            List.getItems().clear();
+            comments.getItems().clear();
+            usersarr.getItems().clear();
             try {
                 Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
             }catch (Exception e){}
@@ -353,7 +361,8 @@ public class Home implements Serializable {
                 Post_Image.setImage(post.getImage());
                 Page_Image.setImage(user.getProfile_Image());
             }catch (Exception e){}
-            List.getItems().clear();
+            comments.getItems().clear();
+            usersarr.getItems().clear();
             try {
                 Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
             }catch (Exception e){}
@@ -395,7 +404,8 @@ public class Home implements Serializable {
                 Page_Image.setImage(user.getProfile_Image());
                 Post_Image.setImage(post.getImage());
             }catch (Exception e){}
-            List.getItems().clear();
+            comments.getItems().clear();
+            usersarr.getItems().clear();
             try {
                 Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
             }catch (Exception e){}
@@ -445,7 +455,8 @@ public class Home implements Serializable {
                     Page_Image.setImage(users.get(user_num).getProfile_Image());
                 } catch (Exception e) {
                 }
-                List.getItems().clear();
+                comments.getItems().clear();
+                usersarr.getItems().clear();
                 try {
                     Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
                 } catch (Exception e) {
@@ -496,7 +507,8 @@ public class Home implements Serializable {
                     Page_Image.setImage(users.get(user_num).getProfile_Image());
                 } catch (Exception e) {
                 }
-                List.getItems().clear();
+                comments.getItems().clear();
+                usersarr.getItems().clear();
                 try {
                     Post_Creater_Image.setImage(post.getCreater().getProfile_Image());
                 } catch (Exception e) {
@@ -527,7 +539,8 @@ public class Home implements Serializable {
         Text_field.setText("");
         Post_text.setText("");
         Post_Image.setImage(null);
-        List.getItems().clear();
+        comments.getItems().clear();
+        usersarr.getItems().clear();
         Post_Creater_Image.setImage(null);
         Post_Create_time.setText("");
         Post_Creater_Name.setText("");
@@ -619,20 +632,26 @@ public class Home implements Serializable {
 
         if (Me_Or_Myfollowing){
             try {
-                List.getItems().clear();
+
+                comments.getItems().clear();
+                usersarr.getItems().clear();
                 ArrayList<User> users = user.getMy_Followers();
-                for (User user:users){
-                    List.getItems().add(user.getUser_Name());
-                }
+                usersarr.getItems().addAll(users);
+                comments.setVisible(false);
+                usersarr.setVisible(true);
+
             }catch (Exception e){}
         }
         else {
             try {
-                List.getItems().clear();
+
+                comments.getItems().clear();
+                usersarr.getItems().clear();
                 ArrayList<User> users = this.users.get(user_num).getMy_Followers();
-                for (User user:users){
-                    List.getItems().add(user.getUser_Name());
-                }
+                usersarr.getItems().addAll(users);
+                comments.setVisible(false);
+                usersarr.setVisible(true);
+
             }catch (Exception e){}
         }
     }
@@ -641,22 +660,167 @@ public class Home implements Serializable {
 
         if (Me_Or_Myfollowing){
             try {
-                List.getItems().clear();
+
                 ArrayList<User> users = user.getMy_Following();
-                for (User user:users){
-                    List.getItems().add(user.getUser_Name());
-                }
+                comments.getItems().clear();
+                usersarr.getItems().clear();
+                usersarr.getItems().addAll(users);
+                comments.setVisible(false);
+                usersarr.setVisible(true);
             }catch (Exception e){}
         }
         else {
             try {
-                List.getItems().clear();
+
                 ArrayList<User> users = this.users.get(user_num).getMy_Following();
-                for (User user:users){
-                    List.getItems().add(user.getUser_Name());
-                }
+                comments.getItems().clear();
+                usersarr.getItems().clear();
+                usersarr.getItems().addAll(users);
+                comments.setVisible(false);
+                usersarr.setVisible(true);
             }catch (Exception e){}
         }
     }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        usersarr.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+            @Override
+            public ListCell<User> call(ListView<User> userListView) {
+                return new usersshow();
+            }
+        });
+
+        comments.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
+            @Override
+            public ListCell<Comment> call(ListView<Comment> commentListView) {
+                return new showcomments();
+            }
+        });
+
+
+
+    }
+
+    class usersshow extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public usersshow() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(user.getUser_Name());
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+        }
+    }
+
+    class showcomments extends ListCell<Comment> {
+
+        HBox hBox = new HBox();
+        HBox hBox2= new HBox();
+        VBox vbox = new VBox();
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+        VBox vbox3 = new VBox();
+        Circle circle = new Circle(15);
+        Label text = new Label();
+        Button like = new Button("Like");
+        Label Likes = new Label("Likes");
+        Label Replies = new Label("reply");
+        Pane pane = new Pane();
+
+
+
+        public showcomments() {
+            super();
+            vbox1.getChildren().add(circle);
+            vbox2.getChildren().add(text);
+            vbox2.setAlignment(Pos.CENTER_LEFT);
+            vbox3.getChildren().add(like);
+            vbox3.setAlignment(Pos.CENTER_RIGHT);
+            hBox.getChildren().addAll(vbox1,vbox2,vbox3);
+            hBox2.getChildren().addAll(Replies,pane,Likes);
+            HBox.setHgrow(vbox2,Priority.ALWAYS);
+            HBox.setHgrow(pane,Priority.SOMETIMES);
+            vbox.getChildren().addAll(hBox,hBox2);
+            Likes.setUnderline(true);
+            Replies.setUnderline(true);
+        }
+
+
+        @Override
+        public void updateItem(Comment comment, boolean empty) {
+
+            super.updateItem( comment , empty);
+
+            if (empty || comment == null){
+                setGraphic(null);
+            }
+
+            else {
+
+                circle.setFill(new ImagePattern(comment.getSender().getProfile_Image()));
+                text.setText(comment.getText());
+
+                if (comment.getLiker().contains(user)){
+                    like.setVisible(false);
+                }
+                else {
+                    like.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            comment.Add_like(user);
+                            like.setVisible(false);
+                            reflist();
+                        }
+                    });
+                }
+
+                Likes.setText(comment.getLiker().size() + " Likes");
+                Replies.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        comment.Add_reply(Text_field.getText(),user.getUser_Name());
+                        reflist();
+                    }
+                });
+
+                setGraphic(vbox);
+            }
+        }
+    }
+
+    public void reflist() {
+        comments.getItems().clear();
+        usersarr.getItems().clear();
+        comments.getItems().addAll(posts.get(post_num).getComments());
+    }
+
+
 
 }

@@ -16,7 +16,6 @@
       <TextField fx:id="Text_field" layoutX="309.0" layoutY="499.0" prefHeight="26.0" prefWidth="257.0" />
       <Label fx:id="Post_text" alignment="CENTER" layoutX="271.0" layoutY="434.0" prefHeight="48.0" prefWidth="334.0" text="Post_Text" />
       <ImageView fx:id="Post_Image" fitHeight="350.0" fitWidth="334.0" layoutX="268.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="List" layoutX="634.0" layoutY="80.0" prefHeight="350.0" prefWidth="207.0" />
       <ImageView fx:id="Post_Creater_Image" fitHeight="60.0" fitWidth="60.0" layoutX="268.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="Post_Creater_Name" alignment="CENTER" layoutX="328.0" layoutY="29.0" prefHeight="18.0" prefWidth="166.0" text="Createer" />
       <Label fx:id="Post_Create_time" alignment="CENTER" layoutX="328.0" layoutY="56.0" prefHeight="18.0" prefWidth="165.0" text="Time" />
@@ -37,6 +36,8 @@
       <Button fx:id="Followers_see_button" layoutX="146.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#Follower_See" prefHeight="26.0" prefWidth="42.0" text="see" />
       <Button fx:id="Followings_see_button" layoutX="146.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#Following_See" prefHeight="26.0" prefWidth="42.0" text="see" />
       <Label fx:id="owner_name" alignment="CENTER" layoutX="15.0" layoutY="224.0" prefHeight="18.0" prefWidth="176.0" text="page owner" />
-      <ImageView fitHeight="134.0" fitWidth="134.0" layoutX="36.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" fx:id="Page_Image"/>
+      <ImageView fx:id="Page_Image" fitHeight="134.0" fitWidth="134.0" layoutX="36.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="usersarr" layoutX="641.0" layoutY="80.0" prefHeight="350.0" prefWidth="207.0" />
+      <ListView fx:id="comments" layoutX="641.0" layoutY="80.0" prefHeight="350.0" prefWidth="207.0" />
    </children>
 </AnchorPane>

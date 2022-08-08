@@ -1,23 +1,30 @@
 package com.example.try1.Login;
 
 import com.example.try1.oop.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class FirstMenu implements Serializable {
+public class FirstMenu implements Initializable {
 
 
     public AnchorPane Anchorpane;
@@ -35,6 +42,8 @@ public class FirstMenu implements Serializable {
     public javafx.scene.control.Button Button10;
     public javafx.scene.control.Button Button11;
     public javafx.scene.control.Button Button12;
+    public ListView<User> usersarr;
+    public ListView<Comment> comments;
     private LoginToAccount loginToAccount;
     private DataBase dataBase ;
     private User user ;
@@ -146,7 +155,8 @@ public class FirstMenu implements Serializable {
             Views_of_ads.setTextFill(Paint.valueOf("#950740"));
             Text_of_ads.setTextFill(Paint.valueOf("#950740"));
             TextField_of_ads.setStyle("-fx-background-color: #E7717D;");
-            List_of_ads.setStyle("-fx-background-color: #E7717D;");
+            usersarr.setStyle("-fx-background-color: #E7717D;");
+            comments.setStyle("-fx-background-color: #E7717D;");
         }
         else {
 
@@ -186,7 +196,8 @@ public class FirstMenu implements Serializable {
             Views_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
             Text_of_ads.setTextFill(Paint.valueOf("#AC3B61"));
             TextField_of_ads.setStyle("-fx-background-color: #C38D9E;");
-            List_of_ads.setStyle("-fx-background-color: #C38D9E;");
+            usersarr.setStyle("-fx-background-color: #C38D9E;");
+            comments.setStyle("-fx-background-color: #C38D9E;");
 
         }
         stage.setScene(scene);
@@ -322,7 +333,6 @@ public class FirstMenu implements Serializable {
     public Label Views_of_ads;
     public Label Text_of_ads;
     public ImageView Image_of_ads;
-    public ListView<String> List_of_ads;
     public TextField TextField_of_ads;
     public Button Follow_unFollow;
     private int post_Num;
@@ -345,7 +355,8 @@ public class FirstMenu implements Serializable {
             try {
                 Image_of_ads.setImage(post.getImage());
             }catch (Exception e){}
-            List_of_ads.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().clear();
 
             if (post.getCreater().Is_my_followers(user)) {
                 Follow_unFollow.setText("Unfollow");
@@ -367,11 +378,13 @@ public class FirstMenu implements Serializable {
     public void See_Likers_of_ads(MouseEvent mouseEvent) {
         try {
             Post post = posts.get(post_Num);
-            List_of_ads.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().clear();
             ArrayList<User> users = post.getLikers();
-            for (User value : users) {
-                List_of_ads.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(users);
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
@@ -379,11 +392,13 @@ public class FirstMenu implements Serializable {
 
         try {
             Post post = posts.get(post_Num);
-            List_of_ads.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().clear();
             ArrayList<User> users = post.getViwer();
-            for (User value : users) {
-                List_of_ads.getItems().add(value.getUser_Name());
-            }
+            usersarr.getItems().clear();
+            usersarr.getItems().addAll(users);
+            comments.setVisible(false);
+            usersarr.setVisible(true);
         }catch (Exception e){}
     }
 
@@ -403,22 +418,26 @@ public class FirstMenu implements Serializable {
 
         try {
             Post post = posts.get(post_Num);
-            List_of_ads.getItems().clear();
             ArrayList<Comment> comments = post.getComments();
-            for (Comment value : comments) {
-                List_of_ads.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            this.comments.getItems().clear();
+            this.comments.getItems().addAll(comments);
+            this.comments.setVisible(true);
+            this.usersarr.setVisible(false);
+            this.comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
     public void See_Comments_of_ads() {
 
         try {
             Post post = posts.get(post_Num);
-            List_of_ads.getItems().clear();
             ArrayList<Comment> comments = post.getComments();
-            for (Comment value : comments) {
-                List_of_ads.getItems().add(value.comment_info()+"\n"+value.getText());
-            }
+            this.comments.getItems().clear();
+            this.comments.getItems().addAll(comments);
+            this.comments.setVisible(true);
+            this.usersarr.setVisible(false);
+            this.comments.setVisible(true);
+            usersarr.setVisible(false);
         }catch (Exception e){}
     }
 
@@ -454,6 +473,145 @@ public class FirstMenu implements Serializable {
         }
         Upload_ads();
     }
-    
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        usersarr.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+            @Override
+            public ListCell<User> call(ListView<User> userListView) {
+                return new usersshow();
+            }
+        });
+
+        comments.setCellFactory(new Callback<ListView<Comment>, ListCell<Comment>>() {
+            @Override
+            public ListCell<Comment> call(ListView<Comment> commentListView) {
+                return new showcomments();
+            }
+        });
+
+
+
+    }
+
+    class usersshow extends ListCell<User> {
+
+        HBox hBox = new HBox();
+        ImageView imgview = new ImageView();
+        Pane pane = new Pane();
+
+
+
+        public usersshow() {
+            super();
+            hBox.getChildren().addAll(imgview,pane);
+            HBox.setHgrow(pane, Priority.ALWAYS);
+            imgview.setFitHeight(50);
+            imgview.setFitWidth(50);
+        }
+
+
+        @Override
+        public void updateItem(User user, boolean empty) {
+
+            super.updateItem( user, empty);
+
+            if (empty || user == null){
+                setText(null);
+                setGraphic(null);
+            }
+
+            else {
+                setText(user.getUser_Name());
+                imgview.setImage(user.getProfile_Image());
+                setGraphic(hBox);
+            }
+        }
+    }
+
+    class showcomments extends ListCell<Comment> {
+
+        HBox hBox = new HBox();
+        HBox hBox2= new HBox();
+        VBox vbox = new VBox();
+        VBox vbox1 = new VBox();
+        VBox vbox2 = new VBox();
+        VBox vbox3 = new VBox();
+        Circle circle = new Circle(15);
+        Label text = new Label();
+        Button like = new Button("Like");
+        Label Likes = new Label("Likes");
+        Label Replies = new Label("reply");
+        Pane pane = new Pane();
+
+
+
+        public showcomments() {
+            super();
+            vbox1.getChildren().add(circle);
+            vbox2.getChildren().add(text);
+            vbox2.setAlignment(Pos.CENTER_LEFT);
+            vbox3.getChildren().add(like);
+            vbox3.setAlignment(Pos.CENTER_RIGHT);
+            hBox.getChildren().addAll(vbox1,vbox2,vbox3);
+            hBox2.getChildren().addAll(Replies,pane,Likes);
+            HBox.setHgrow(vbox2,Priority.ALWAYS);
+            HBox.setHgrow(pane,Priority.SOMETIMES);
+            vbox.getChildren().addAll(hBox,hBox2);
+            Likes.setUnderline(true);
+            Replies.setUnderline(true);
+        }
+
+
+        @Override
+        public void updateItem(Comment comment, boolean empty) {
+
+            super.updateItem( comment , empty);
+
+            if (empty || comment == null){
+                setGraphic(null);
+            }
+
+            else {
+
+                circle.setFill(new ImagePattern(comment.getSender().getProfile_Image()));
+                text.setText(comment.getText());
+
+                if (comment.getLiker().contains(user)){
+                    like.setVisible(false);
+                }
+                else {
+                    like.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            comment.Add_like(user);
+                            like.setVisible(false);
+                            reflist();
+                        }
+                    });
+                }
+
+                Likes.setText(comment.getLiker().size() + " Likes");
+                Replies.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        comment.Add_reply(TextField_of_ads.getText(),user.getUser_Name());
+                        reflist();
+                    }
+                });
+
+                setGraphic(vbox);
+            }
+        }
+    }
+
+    public void reflist() {
+        try {
+            comments.getItems().clear();
+            usersarr.getItems().clear();
+            comments.getItems().addAll(posts.get(post_Num).getComments());
+        }catch (Exception ignored){}
+    }
 
 }
